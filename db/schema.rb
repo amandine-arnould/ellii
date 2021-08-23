@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_131510) do
+ActiveRecord::Schema.define(version: 2021_08_23_145943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,15 +38,12 @@ ActiveRecord::Schema.define(version: 2021_08_23_131510) do
 
   create_table "activities", force: :cascade do |t|
     t.string "title"
-    t.date "date"
-    t.time "time"
     t.text "description"
     t.integer "duration"
     t.boolean "remote"
     t.bigint "user_id", null: false
     t.integer "min_participants"
     t.integer "max_participants"
-    t.integer "number_of_participants"
     t.boolean "mind"
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
@@ -56,31 +53,30 @@ ActiveRecord::Schema.define(version: 2021_08_23_131510) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.bigint "activity_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["activity_id"], name: "index_bookings_on_activity_id"
+    t.integer "score"
+    t.text "comment"
+    t.bigint "session_id"
+    t.index ["session_id"], name: "index_bookings_on_session_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "moods", force: :cascade do |t|
-    t.integer "state"
+    t.integer "score"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_moods_on_user_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "booking_id", null: false
-    t.integer "mood"
-    t.text "content"
+  create_table "sessions", force: :cascade do |t|
+    t.datetime "start_at"
+    t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["booking_id"], name: "index_reviews_on_booking_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["activity_id"], name: "index_sessions_on_activity_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -103,9 +99,8 @@ ActiveRecord::Schema.define(version: 2021_08_23_131510) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
-  add_foreign_key "bookings", "activities"
+  add_foreign_key "bookings", "sessions"
   add_foreign_key "bookings", "users"
   add_foreign_key "moods", "users"
-  add_foreign_key "reviews", "bookings"
-  add_foreign_key "reviews", "users"
+  add_foreign_key "sessions", "activities"
 end
