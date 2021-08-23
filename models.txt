@@ -1,0 +1,9 @@
+rails g migration AddColumnsToUsers first_name last_name status phone_number address avatar
+rails g model Activity title date:date time:time description:text duration:integer remote:boolean user:references min_participants:integer max_participants:integer number_of_participants:integer mind:boolean address
+rails g model Booking activity:references user:references
+rails g model Review user:references booking:references mood:integer content:text
+rails g model Mood state:integer user:references
+
+rails g controller Activities
+rails g controller Reviews
+rails g controller Bookings
