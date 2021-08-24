@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new
-    @session = Session.find(params[:activity_id])
+    @session = Session.find(params[:session_id])
     @booking.user = current_user
     @booking.session = @session
 
@@ -26,5 +26,4 @@ class BookingsController < ApplicationController
     authorize @booking
     redirect_back(fallback_location: dashboard_path)
   end
-
 end
