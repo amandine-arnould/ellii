@@ -1,7 +1,7 @@
 class Activity < ApplicationRecord
   include Abyme::Model
 
-  LOCATION = ["Distanciel", "Présentiel"]
+  LOCATION = { "Distanciel" => true, "Présentiel" => false }
   TYPE = ["Corps", "Esprit"]
   TITLE = ["Yoga", "Danse", "Ecriture", "Cours de cuisine", "Méditation"]
   ACTIVITIES_TYPE = [["Yoga", "corps"], ["Danse", "Esprit"]]
