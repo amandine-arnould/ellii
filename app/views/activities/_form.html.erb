@@ -3,7 +3,7 @@
 
     <%= f.hidden_field :mind, as: :radio_buttons, collection: Activity::TYPE %>
 
-    <%= f.input :title, collection: Activity::ACTIVITIES_TYPE, label: "Type", prompt: "Choisir le nom de l'activité" %>
+    <%= f.input :title, collection: Activity::ACTIVITY_TITLES, label: "Nom de l'activité", prompt: "Choisir le nom de l'activité" %>
 
     <%#= f.input :title, label: "Nom de l'activité", collection: Activity::TITLE, prompt: "Choisir le nom de l'activité" %>
 
@@ -11,13 +11,13 @@
 
     <%= f.input :duration, label: "Durée", placeholder: "Entrer la durée de l'activité (en minutes)" %>
 
-    <%= f.input :remote, as: :radio_buttons, collection: Activity::LOCATION, label: "Localisation" %>
+    <%= f.input :remote, as: :radio_buttons, collection: Activity::LOCATION, label: "Localisation", input_html: { class: "activity-location"} %>
 
     <%= f.input :max_participants, input_html: { min: '1' }, label: "Nombre de participants maximum", placeholder: "Entrer le nombre de participants maximum" %>
 
     <%= f.input :min_participants, input_html: { min: '1' }, label: "Nombre de participants minimum", placeholder: "Entrer le nombre de participants minimum" %>
 
-    <%= f.input :address, label: "Adresse", placeholder: "Entrer l'adresse de l'activité" %>
+    <%= f.input :address, label: "Adresse", placeholder: "Entrer l'adresse de l'activité", input_html: { class: "address-hidden", id: "address-field"}, label_html: { class: 'address-label' } %>
 
     <%= f.button :submit, "Créer une activité", class: "btn-primary" %>
     <%= f.button :button, "Annuler", type: "reset", class: "btn-outline-secondary" %>
