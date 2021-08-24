@@ -19,6 +19,8 @@
 
     <%= f.input :address, label: "Adresse", placeholder: "Entrer l'adresse de l'activité" %>
 
+    <%= f.abyme_for(:sessions) %>
+
     <%= f.button :submit, "Créer une activité", class: "btn-primary" %>
     <%= f.button :button, "Annuler", type: "reset", class: "btn-outline-secondary" %>
   <% end %>

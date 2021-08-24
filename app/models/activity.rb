@@ -1,4 +1,6 @@
 class Activity < ApplicationRecord
+  include Abyme::Model
+
   LOCATION = ["Distanciel", "Présentiel"]
   TYPE = ["Corps", "Esprit"]
   TITLE = ["Yoga", "Danse", "Ecriture", "Cours de cuisine", "Méditation"]
@@ -7,6 +9,8 @@ class Activity < ApplicationRecord
 
   belongs_to :user
   has_many :sessions, dependent: :destroy
+  abymize :sessions
+
   validates :title, presence: true
   validates :description, presence: true, length: { minimum: MIN_CHAR_DESCRIPTION }
   validates :duration, presence: true
