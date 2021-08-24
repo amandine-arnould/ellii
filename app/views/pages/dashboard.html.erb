@@ -2,17 +2,17 @@
 <div class="container mt-4">
 <%# SENIOR DASHBOARD %>
 
-  <%# MY UPCOMING CLASSES SECTION, CLICK TO JOIN SESSION%>
+  <%# MY UPCOMING ATELIERS SECTION, CLICK TO JOIN SESSION%>
   <div class="row">
     <div class="col-8">
       <div class="card">
         <div class="row g-0">
           <div class="col-md-4">
-            <h4 class="card-title text-center">Cours à venir dans:</h4>
-              <h4 class="card-text text-center"><strong>4h20</strong></h4>
+            <h4 class="card-title text-center">prochain <br> atelier à:</h4>
+              <h4 class="card-text text-center"><strong>14h30</strong></h4>
               <h6 class="card-text text-center">lundi, 23 Août</h6>
               <%= link_to session_path(session), class: "btn btn-primary" do %>
-                Rejoindre Mon Cours
+                Rejoindre l'Atelier
               <% end %>
           </div>
           <div class="col-md-8">
@@ -39,7 +39,12 @@
             <% end %>
       </div>
     </div>
-
   </div>
+
+  <%# ALL ATELIERS %>
+
+
+
+
 
 </div>
