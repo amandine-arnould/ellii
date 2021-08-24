@@ -19,7 +19,8 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     @activity.user = current_user
     authorize @activity
-
+    Activity::ACTIVITIES_MIND.include?(@activity.title) ? @activity.mind = 'true' : @activity.mind = 'false'
+    @activity.remote == 'Distanciel' ? @activity.remote = 'true' :  @activity.remote = 'false'
     if @activity.save
       redirect_to activity_path(@activity)
     else
@@ -39,7 +40,7 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity.destroy
-    redirect_to dashboard_path
+    redirect_to activities_path
     authorize @activity
   end
 
