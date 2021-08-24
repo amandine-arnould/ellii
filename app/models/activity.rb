@@ -2,6 +2,7 @@ class Activity < ApplicationRecord
   LOCATION = ["Distanciel", "Présentiel"]
   TYPE = ["Corps", "Esprit"]
   TITLE = ["Yoga", "Danse", "Ecriture", "Cours de cuisine", "Méditation"]
+  ACTIVITIES_TYPE = [["Yoga", "corps"], ["Danse", "Esprit"]]
   MIN_CHAR_DESCRIPTION = 250
 
   belongs_to :user
