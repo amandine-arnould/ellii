@@ -50,6 +50,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:title, :description, :duration, :remote, :user, :max_participants, :min_participants, :mind, :address)
+    params.require(:activity).permit(:title, :description, :duration, :remote, :user, :max_participants, :min_participants, :mind, :address, sessions_attributes: [:start_at, :activity, :_destroy])
+    # params.require(:activity).permit(:title, :description, :duration, :remote, :user, :max_participants, :min_participants, :mind, :address, abyme_attributes)
   end
 end
