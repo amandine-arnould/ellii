@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Ajouter une activité</h1>
+
+  <%= simple_form_for @activity do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :title %>
+
+    <%= f.input :description %>
+
+    <%= f.input :duration %>
+
+    <%= f.input :remote, as: :radio_buttons, collection: Activity::LOCATION %>
+
+    <%= f.input :mind, as: :radio_buttons, collection: Activity::TYPE %>
+
+    <%= f.input :max_participants, input_html: { min: '1' } %>
+
+    <%= f.input :min_participants, input_html: { min: '1' } %>
+
+    <%= f.input :address %>
+
+    <%= f.button :submit, class: "btn-primary" %>
+    <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+  <% end %>
+</div>
