@@ -6,6 +6,6 @@ class SessionPolicy < ApplicationPolicy
   end
 
   def show?
-    user.status == "admin" || user.status == "teacher"
+    user.status == "admin" || user.status == "teacher" || user.status == "senior"
   end
 end
