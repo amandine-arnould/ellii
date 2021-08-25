@@ -3,46 +3,32 @@
   margin: 50px auto;
 
   i {
-    opacity: 0.6;
+    color: rgb(167, 167, 167);
   }
 
   #frown {
-    color: red;
-
     &:hover {
-      opacity: 1;
+      color: red;
     }
   }
-
   #meh {
-    color: orange;
-
     &:hover {
-      opacity: 1;
+      color: orange;
     }
   }
-
   #smile {
-    color: rgb(250, 236, 37);
-
     &:hover {
-      opacity: 1;
+      color: rgb(255, 217, 0);
     }
   }
-
   #smile-beam {
-    color: lightgreen;
-
     &:hover {
-      opacity: 1;
+      color: lightgreen;
     }
   }
-
   #laugh-beam {
-    color: green;
-
     &:hover {
-      opacity: 1;
+      color: green;
     }
   }
 }
@@ -75,32 +61,24 @@
     text-align: center;
   }
 
-  .category-selector:checked + label {
-    color: white !important;
+  // .category-selector:checked + label {
+  //   color: white !important;
+  // }
+
+  #mood_score_1:checked + label i {
+    color: red;
+  }
+  #mood_score_2:checked + label i {
+    color: orange;
+  }
+  #mood_score_3:checked + label i {
+    color: rgb(250, 236, 37);
+  }
+  #mood_score_4:checked + label i {
+    color: lightgreen;
+  }
+  #mood_score_5:checked + label i {
+    color: green;
   }
 
-  // #mood_score_1:checked + label {
-  //   background-color: red;
-  //   border-color: red;
-  // }
-
-  // #mood_score_2:checked + label {
-  //   background-color: orange;
-  //   border-color: orange;
-  // }
-
-  // #mood_score_3:checked + label {
-  //   background-color: yellow;
-  //   border-color: yellow;
-  // }
-
-  // #mood_score_4:checked + label {
-  //   background-color: lightgreen;
-  //   border-color: lightgreen;
-  // }
-
-  // #mood_score_5:checked + label {
-  //   background-color: green;
-  //   border-color: green;
-  // }
 }

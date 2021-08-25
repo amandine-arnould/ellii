@@ -2,7 +2,11 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-    @activities = policy_scope(Activity).order(created_at: :desc)
+    if params[:mind].present?
+      @activities = policy_scope(Activity).order(created_at: :desc).where(mind: params[:mind])
+    else
+      @activities = policy_scope(Activity).order(created_at: :desc)
+    end
   end
 
   def show
