@@ -10,7 +10,7 @@ class Activity < ApplicationRecord
 
   belongs_to :user
   has_many :sessions, dependent: :destroy
-  abymize :sessions
+  abymize :sessions, permit: :all_attributes
 
   validates :title, presence: true
   validates :description, presence: true, length: { minimum: MIN_CHAR_DESCRIPTION }

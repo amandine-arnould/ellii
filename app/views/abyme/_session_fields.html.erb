@@ -1,6 +1,6 @@
 <%# Partial for session fields %>
 <div data-controller="flatpickr">
-  <%= f.input :start_at, as: :string, required: false, input_html: { data: { flatpickr_target: 'input' }  }%>
+  <%= f.input :start_at, as: :string, required: false, input_html: { data: { flatpickr_target: 'input' }, placeholder: "Choisir un créneau" }, label: "Date et heure" %>
   <%= f.hidden_field :_destroy %>
-  <%= remove_associated_record content: "Remove session" %>
+  <%= remove_associated_record content: "Supprimer un créneau" %>
 </div>

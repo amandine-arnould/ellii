@@ -20,8 +20,12 @@
     <%= f.input :min_participants, input_html: { min: '1' }, label: "Nombre de participants minimum", placeholder: "Entrer le nombre de participants minimum" %>
 
 
-    <%= f.abyme_for(:sessions) %>
+    <%= f.abyme_for(:sessions, button_text: "Ajouter un créneau") %>
 
-    <%= f.button :submit, "Créer une activité", class: "btn-primary" %>
+    <% if activity.new_record? %>
+      <%= f.button :submit, "Créer une activité", class: "btn-primary" %>
+    <% else %>
+      <%= f.button :submit, "Enregistrer les modifications", class: "btn-primary" %>
+    <% end %>
     <%= f.button :button, "Annuler", type: "reset", class: "btn-outline-secondary" %>
   <% end %>
