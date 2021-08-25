@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Resend unlock instructions</h2>
+  <h2>Renvoyer les instructions pour débloquer mon compte</h2>
 
   <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
     <%= f.error_notification %>
@@ -9,11 +9,13 @@
       <%= f.input :email,
                   required: true,
                   autofocus: true,
+                  label: "Adresse mail",
+                  placeholder: "Entrer votre adresse mail",
                   input_html: { autocomplete: "email" } %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Resend unlock instructions" %>
+      <%= f.button :submit, "Renvoyer les instructions" %>
     </div>
   <% end %>
 

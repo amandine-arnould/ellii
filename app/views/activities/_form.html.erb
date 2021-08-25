@@ -13,7 +13,7 @@
 
     <%= f.input :remote, as: :radio_buttons, collection: Activity::LOCATION, label: "Localisation", input_html: { class: "activity-location"} %>
 
-    <%= f.input :address, label: "Adresse", placeholder: "Entrer l'adresse de l'activité", input_html: { class: "address-hidden", id: "address-field"}, label_html: { class: 'address-label' } %>
+    <%= f.input :address, label: "Adresse", placeholder: "Entrer l'adresse de l'activité", input_html: { class: "address-hidden address-field", id: "activity_address"}, label_html: { class: 'address-label' } %>
 
     <%= f.input :max_participants, input_html: { min: '1' }, label: "Nombre de participants maximum", placeholder: "Entrer le nombre de participants maximum" %>
 
