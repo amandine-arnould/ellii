@@ -8,6 +8,9 @@ class Activity < ApplicationRecord
   ACTIVITY_TITLES = ACTIVITIES_BODY.concat(ACTIVITIES_MIND)
   MIN_CHAR_DESCRIPTION = 250
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   belongs_to :user
   has_many :sessions, dependent: :destroy
   abymize :sessions, permit: :all_attributes

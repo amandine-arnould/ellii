@@ -6,8 +6,16 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @activity = Activity.find(params[:id])
     @booking = Booking.new
     authorize @activity
+
+    @marker =
+      {
+        lat: @activity.latitude,
+        lng: @activity.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { activity: @activity })
+     }
   end
 
   def new

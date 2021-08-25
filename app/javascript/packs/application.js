@@ -22,7 +22,9 @@ require("channels");
 
 // External imports
 import "bootstrap";
-import twilioInit from "../plugins/twilio.js";
+import { twilioInit } from "../plugins/twilio.js";
+import "controllers";
+import { initMapbox } from "../plugins/init_mapbox";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -33,9 +35,8 @@ document.addEventListener("turbolinks:load", () => {
   // Call your functions here, e.g:
   // initSelect2();
   triggerActivityAddress();
+  initMapbox();
   if (document.querySelector(".twilio-video")) {
     twilioInit();
   }
 });
-
-import "controllers";
