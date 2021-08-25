@@ -10,8 +10,19 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @activity = Activity.find(params[:id])
     @booking = Booking.new
     authorize @activity
+
+    if @activity.remote == false
+      @marker =
+        {
+          lat: @activity.latitude,
+          lng: @activity.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { activity: @activity })
+      }
+    else
+    end
   end
 
   def new
@@ -24,7 +35,6 @@ class ActivitiesController < ApplicationController
     @activity.user = current_user
     authorize @activity
     Activity::ACTIVITIES_MIND.include?(@activity.title) ? @activity.mind = 'true' : @activity.mind = 'false'
-    @activity.remote == 'Distanciel' ? @activity.remote = 'true' :  @activity.remote = 'false'
     if @activity.save
       redirect_to activity_path(@activity)
     else

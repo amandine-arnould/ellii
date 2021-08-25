@@ -38,6 +38,7 @@ gem 'simple_form'
 gem 'pundit'
 gem 'geocoder'
 gem "abyme"
+gem "twilio-ruby"
 
 
 group :development, :test do  gem 'pry-byebug'
