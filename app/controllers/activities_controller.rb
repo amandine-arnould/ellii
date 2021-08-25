@@ -10,12 +10,15 @@ class ActivitiesController < ApplicationController
     @booking = Booking.new
     authorize @activity
 
+    if @activity.remote == true
     @marker =
       {
         lat: @activity.latitude,
         lng: @activity.longitude,
         info_window: render_to_string(partial: "info_window", locals: { activity: @activity })
      }
+    else
+    end
   end
 
   def new
