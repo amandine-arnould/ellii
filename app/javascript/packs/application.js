@@ -30,13 +30,11 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 
 import { triggerActivityAddress } from "../components/trigger_activity_address";
-import { moodSmiley } from "../components/mood_smiley";
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   triggerActivityAddress();
-  moodSmiley();
 });
 
 import "controllers"
