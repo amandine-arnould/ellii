@@ -10,12 +10,12 @@ class ActivitiesController < ApplicationController
     @booking = Booking.new
     authorize @activity
 
-    @markers = @activities.geocoded.map do |activity|
+    @marker =
       {
-        lat: flat.latitude,
-        lng: flat.longitude
+        lat: @activity.latitude,
+        lng: @activity.longitude,
+        # info_window: render_to_string(partial: "info_window", locals: { activity: @activity })
       }
-    end
   end
 
   def new
