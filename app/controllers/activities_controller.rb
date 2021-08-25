@@ -14,8 +14,8 @@ class ActivitiesController < ApplicationController
       {
         lat: @activity.latitude,
         lng: @activity.longitude,
-        # info_window: render_to_string(partial: "info_window", locals: { activity: @activity })
-      }
+        info_window: render_to_string(partial: "info_window", locals: { activity: @activity })
+     }
   end
 
   def new
