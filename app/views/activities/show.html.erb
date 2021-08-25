@@ -1,5 +1,5 @@
 <div class="container">
   <h1><%= @activity.title %></h1>
-  <%= link_to "Modifier", activity_path(@activity) %>
+  <%= link_to "Modifier", edit_activity_path(@activity) %>
   <%= link_to "Supprimer", activity_path(@activity), method: :delete, data: { confirm: "Etes-vous sûr de vouloir supprimer #{@activity.title} ?"} %>
 </div>
