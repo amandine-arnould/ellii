@@ -17,9 +17,10 @@
   <% end %>
 </div>
 
-<div>
+<div class="text-center">
   <h2 class="text-center">Que fait-on aujourd'hui ?</h2>
-
+  <%= link_to "On bouge !", activities_path(mind: "false"),  class:"btn btn-secondary" %>
+  <%= link_to "On apprend !", activities_path(mind: "true"), class:"btn btn-secondary" %>
 </div>
 
 <div>
