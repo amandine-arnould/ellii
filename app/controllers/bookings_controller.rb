@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
                                          identity: current_user.email
     # Grant access to Video
     grant = Twilio::JWT::AccessToken::VideoGrant.new
-    grant.room = booking.url_room
+    grant.session = booking.url_session
     token.add_grant grant
     # Serialize the token as a JWT
     token.to_jwt
