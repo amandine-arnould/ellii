@@ -26,19 +26,4 @@ class BookingsController < ApplicationController
     authorize @booking
     redirect_back(fallback_location: dashboard_path)
   end
-
-  private
-
-  def generate_token(booking)
-    # Create an Access Token
-    token = Twilio::JWT::AccessToken.new ENV["ACCOUNT_SID"], ENV["KEY_ID"], ENV["AUTH_TOKEN"], [],
-                                         ttl: 14400,
-                                         identity: current_user.email
-    # Grant access to Video
-    grant = Twilio::JWT::AccessToken::VideoGrant.new
-    grant.session = booking.url_session
-    token.add_grant grant
-    # Serialize the token as a JWT
-    token.to_jwt
-  end
 end

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
     resources :sessions, only: [:index, :new, :create], as: :activity_session
   end
-  resources :bookings, only: [:index, :destroy]
+  resources :bookings, only: [:index, :destroy, :show]
   resources :sessions, only: [:show, :edit, :update, :destroy], as: :activity_session
 end

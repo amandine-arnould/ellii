@@ -1,6 +1,6 @@
-const twilioAddParticipant = () => {
+const twilioAddParticipant = (room) => {
 // Attach the Participant's Media to a <div> element.
-session.on('participantConnected', participant => {
+room.on('participantConnected', participant => {
   console.log(`Participant "${participant.identity}" connected`);
   participant.tracks.forEach(publication => {
     if (publication.isSubscribed) {
@@ -13,4 +13,4 @@ session.on('participantConnected', participant => {
   });
 });
 }
-export default twilioAddParticipant;
+export { twilioAddParticipant };
