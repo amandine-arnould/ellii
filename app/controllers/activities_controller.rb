@@ -6,8 +6,16 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @activity = Activity.find(params[:id])
     @booking = Booking.new
     authorize @activity
+
+    @markers = @activities.geocoded.map do |activity|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def new
