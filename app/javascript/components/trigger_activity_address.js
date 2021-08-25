@@ -2,7 +2,7 @@ const triggerActivityAddress = () => {
   const checkboxes = document.querySelectorAll('.activity-location');
   checkboxes.forEach( (checkbox) => {
     checkbox.addEventListener('click', () => {
-      const addressField = document.getElementById("address-field");
+      const addressField = document.querySelector(".address-field");
       const addressLabel = document.querySelector(".address-label");
       const checkboxLabel = checkbox.nextSibling;
 
