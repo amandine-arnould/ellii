@@ -4,7 +4,9 @@ const triggerActivityAddress = () => {
     checkbox.addEventListener('click', () => {
       const addressField = document.getElementById("address-field");
       const addressLabel = document.querySelector(".address-label");
-      if (checkbox.value === "Présentiel") {
+      const checkboxLabel = checkbox.nextSibling;
+
+      if (checkboxLabel.innerHTML == "Présentiel") {
         addressField.classList.add('toggle-address-visibility');
         addressLabel.classList.add('toggle-address-visibility');
       }
