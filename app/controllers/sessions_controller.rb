@@ -12,7 +12,7 @@ def generate_token(session)
   # Create an Access Token
   token = Twilio::JWT::AccessToken.new ENV["ACCOUNT_SID"], ENV["KEY_ID"], ENV["API_SECRET"], [],
                                        ttl: 14400,
-                                       identity: current_user.email
+                                       identity: current_user.email + "$" + current_user.status
   # Grant access to Video
   grant = Twilio::JWT::AccessToken::VideoGrant.new
   grant.room = session.id
