@@ -5,25 +5,29 @@
   <%# MY UPCOMING ATELIERS SECTION, CLICK TO JOIN SESSION%>
   <div class="row">
     <div class="col-8">
-      <div class="card">
+      <% @user_bookings.each do |booking| %>
+      <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4">
-            <h4 class="card-title text-center">prochain <br> atelier à:</h4>
-              <h4 class="card-text text-center"><strong>14h30</strong></h4>
-              <h6 class="card-text text-center">lundi, 23 Août</h6>
+            <h4 class="card-title text-center">prochain <br> atelier:</h4>
+              <h4 class="card-text text-center"><strong><%=booking.session.start_at%></strong></h4>
               <%= link_to activity_session_path(session), class: "btn btn-primary" do %>
                 Rejoindre l'Atelier
               <% end %>
           </div>
           <div class="col-md-8">
             <div class="card-body">
-            <%# HERE WE WILL USE RAILS FOR LATEST BOOKING OF CURRENT USER %>
-              <h4 class="card-title">Gym Douce</h4>
+              <h4 class="card-title"><%= booking.session.activity_id %></h4>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
+                booking_path(booking),
+                method: :delete,
+                data: { confirm: "Annuler?" } %>
             </div>
           </div>
         </div>
       </div>
+      <% end %>
     </div>
 
     <%# MY PROFILE SECTION %>
@@ -32,7 +36,6 @@
         <i class="far fa-user" style="font-size: 100px;"></i>
         <div class="card-body">
           <h5 class="card-title"><%= current_user.first_name %> <%= current_user.last_name %></h5>
-          <h5>Daniela Zubia</h5>
           <p class="card-text"><%= current_user.email %></p>
             <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
               <i class="fas fa-user-edit"></i> Modifier profil

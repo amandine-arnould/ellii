@@ -22,4 +22,8 @@ class SessionsController < ApplicationController
     # Serialize the token as a JWT
     token.to_jwt
   end
+
+  # def sessions_params
+  #   params.require(:booking).permit(:session_id)
+  # end
 end

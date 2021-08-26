@@ -12,7 +12,7 @@
 <%# SESSIONS %>
   <h3>Sessions</h3>
     <%= simple_form_for [ @booking ] do |f| %>
-      <%= f.input :session_id, collection: Session.all, include_blank: true %>
+      <%= f.input :session_id, collection: Session.where(activity_id: @activity), include_blank: true %>
       <%= f.submit "Choisir ce session", class: "btn btn-primary " %>
     <% end %>
 
