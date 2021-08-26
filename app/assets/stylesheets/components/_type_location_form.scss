@@ -1,0 +1,43 @@
+.type-location-form {
+  .category-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .category-item {
+    flex: 0 0 0 0 20%;
+  }
+
+  .category-selector {
+    position: absolute;
+    transform: scale(0);
+  }
+
+  .category-selector + label {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    font-size: 80px;
+    text-align: center;
+  }
+}
+
+.type-location-form {
+  .card {
+    font-size: 30px;
+    padding: 20px 40px;
+
+    &:hover {
+      background-color: rgb(165, 201, 231);
+    }
+
+  }
+
+  #search_mind_true:checked + label .card,
+  #search_mind_false:checked + label .card,
+  #search_remote_true:checked + label .card,
+  #search_remote_false:checked + label .card {
+    background-color: rgb(165, 201, 231);
+  }
+}

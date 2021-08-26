@@ -1,38 +1,51 @@
-<div class="text-center mt-5">
-  <h1>Bonjour <%= current_user.first_name %> !</h1>
-</div>
+<div class="container mt-5 mb-5">
+  <div class="text-center mt-5">
+    <h1>Bonjour <%= current_user.first_name %> !</h1>
+  </div>
 
-<div class="mood">
-  <h2 class="text-center mb-5">Comment allez-vous ?</h2>
-  <%= simple_form_for @mood do |f| %>
-    <%= f.input :score,
-        as: :radio_buttons,
-        collection: Mood::SCORES,
-        collection_wrapper_tag: 'div',
-        collection_wrapper_class: 'category-wrapper',
-        item_wrapper_class: 'category-item',
-        label_method: lambda { |score| render 'mood_label', score: score },
-        input_html: {class: 'category-selector'}
-         %>
-    <%= f.button :submit, "Enregistrer mon humeur", class: "btn-primary" %>
-  <% end %>
-</div>
+  <div class="mood">
+    <h2 class="text-center mb-5">Comment allez-vous ?</h2>
+    <%= simple_form_for @mood do |f| %>
+      <%= f.input :score,
+          as: :radio_buttons,
+          collection: Mood::SCORES,
+          collection_wrapper_tag: 'div',
+          collection_wrapper_class: 'category-wrapper',
+          item_wrapper_class: 'category-item',
+          label_method: lambda { |score| render 'mood_label', score: score },
+          input_html: {class: 'category-selector'}
+          %>
+      <%= f.button :submit, "Enregistrer mon humeur", class: "btn-primary" %>
+    <% end %>
+  </div>
 
-<div class="text-center">
-  <%# <h2 class="text-center">Que fait-on aujourd'hui ?</h2> %>
-  <%#= link_to "On bouge !", activities_path(mind: "false"),  class:"btn btn-secondary" %>
-  <%#= link_to "On apprend !", activities_path(mind: "true"), class:"btn btn-secondary" %>
-
-  <%= simple_form_for :search, url: activities_path, method: "GET"  do |f| %>
-    <div class="choose-type">
-      <h2 class="text-center">Que fait-on aujourd'hui ?</h2>
-      <%= f.input :mind, as: :radio_buttons, collection: [['On apprend', true], ['On bouge', false]], legend_tag: false %>
-    </div>
-    <div class="choose-location">
-      <h2 class="text-center">Plutôt chez vous ou à l'extérieur ?</h2>
-      <%= f.input :remote, as: :radio_buttons, collection: [['Chez moi', true], ["A l'extérieur", false]], legend_tag: false %>
-    </div>
-    <%= f.button :submit, "Voir les activités", class: "btn-primary" %>
-  <% end %>
-
+  <div class="text-center type-location-form">
+    <%= simple_form_for :search, url: activities_path, method: "GET"  do |f| %>
+      <div class="choose-type">
+        <h2 class="text-center mb-5">Que fait-on aujourd'hui ?</h2>
+        <%= f.input :mind,
+            as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: [true, false],
+            label_method: lambda { |mind| render 'type_label', mind: mind },
+            legend_tag: false %>
+      </div>
+      <div class="choose-location">
+        <h2 class="text-center mb-5 mt-5">Plutôt chez vous ou à l'extérieur ?</h2>
+        <%= f.input :remote,
+            as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: [true, false],
+            label_method: lambda { |remote| render 'location_label', remote: remote },
+            legend_tag: false %>
+      </div>
+      <%= f.button :submit, "Voir les activités", class: "btn-primary" %>
+    <% end %>
+  </div>
 </div>
