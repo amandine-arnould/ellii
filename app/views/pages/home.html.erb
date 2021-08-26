@@ -4,7 +4,7 @@
 
 <div class="container">
   <% if user_signed_in? %>
-    <% if current_user.status == "senior" || current_user.status == "admin" %>
+    <% if current_user.status == "senior" %>
       <%= render "home_senior" %>
     <% end %>
   <% end %>
