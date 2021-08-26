@@ -5,4 +5,8 @@ class PagesController < ApplicationController
     @mood = Mood.new
   end
 
+  def dashboard
+    @user_info = current_user
+    @user_bookings = Booking.where(user: current_user)
+  end
 end
