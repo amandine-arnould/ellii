@@ -15,7 +15,6 @@
       <%= f.input :session_id, collection: Session.where(activity_id: @activity), include_blank: true %>
       <%= f.submit "Choisir ce session", class: "btn btn-primary " %>
     <% end %>
-
 <%# MAP %>
 <% if @activity.remote == false %>
     <div id="map" class="mb-4 mt-3"
