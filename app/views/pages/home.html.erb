@@ -3,8 +3,10 @@
 </head>
 
 <div class="container">
-  <% if user_signed_in? && current_user.status == "senior" %>
-    <%= render "home_senior" %>
+  <% if user_signed_in? %>
+    <% if current_user.status == "senior" || current_user.status == "admin" %>
+      <%= render "home_senior" %>
+    <% end %>
   <% end %>
 
 </div>

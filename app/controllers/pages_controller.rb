@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @mood = Mood.new
+    @activities = Activity.all
   end
 
 end

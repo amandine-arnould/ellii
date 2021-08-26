@@ -2,10 +2,14 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:mind].present?
-      @activities = policy_scope(Activity).order(created_at: :desc).where(mind: params[:mind])
-    else
-      @activities = policy_scope(Activity).order(created_at: :desc)
+    @activities = policy_scope(Activity).order(created_at: :desc)
+    if !params[:search].nil?
+      if params[:search][:mind].present?
+        @activities = @activities.where(mind: params[:search][:mind])
+      end
+      if params[:search][:remote].present?
+        @activities = @activities.where(remote: params[:search][:remote])
+      end
     end
   end
 
