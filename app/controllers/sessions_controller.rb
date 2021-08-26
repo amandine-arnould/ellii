@@ -23,7 +23,4 @@ class SessionsController < ApplicationController
     token.to_jwt
   end
 
-  def sessions_params
-    params.require(:booking).permit(:session_id)
-  end
 end
