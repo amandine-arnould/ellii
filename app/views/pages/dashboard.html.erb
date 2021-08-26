@@ -19,6 +19,10 @@
             <div class="card-body">
               <h4 class="card-title"><%= booking.session.activity_id %></h4>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
+                booking_path(booking),
+                method: :delete,
+                data: { confirm: "Annuler?" } %>
             </div>
           </div>
         </div>
