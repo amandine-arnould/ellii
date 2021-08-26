@@ -10,7 +10,7 @@ class ActivityPolicy < ApplicationPolicy
   end
 
   def show?
-    user.status == "senior" || user.status == "relative" || user.status == "admin"
+    user.status == "senior" || user.status == "relative" || user.status == "admin" || user.status == "teacher"
   end
 
   def new?
