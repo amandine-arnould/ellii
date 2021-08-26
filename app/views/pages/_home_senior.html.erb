@@ -23,28 +23,15 @@
   <%#= link_to "On bouge !", activities_path(mind: "false"),  class:"btn btn-secondary" %>
   <%#= link_to "On apprend !", activities_path(mind: "true"), class:"btn btn-secondary" %>
 
-  <%= simple_form_for :index, url: activities_path, method: "GET"  do |f| %>
-    <div class="choose-mood">
+  <%= simple_form_for :search, url: activities_path, method: "GET"  do |f| %>
+    <div class="choose-type">
       <h2 class="text-center">Que fait-on aujourd'hui ?</h2>
-      <%= f.input :score,
-          as: :radio_buttons,
-          collection: Mood::SCORES,
-          collection_wrapper_tag: 'div',
-          collection_wrapper_class: 'category-wrapper',
-          item_wrapper_class: 'category-item',
-          label_method: lambda { |score| render 'mood_label', score: score },
-          input_html: {class: 'category-selector'}
-          %>
+      <%= f.input :mind, as: :radio_buttons, collection: [['On apprend', true], ['On bouge', false]], legend_tag: false %>
     </div>
     <div class="choose-location">
       <h2 class="text-center">Plutôt chez vous ou à l'extérieur ?</h2>
+      <%= f.input :remote, as: :radio_buttons, collection: [['Chez moi', true], ["A l'extérieur", false]], legend_tag: false %>
     </div>
-    <%= f.button :submit, "Voir les activités", class: "btn-primary" %>
-  <% end %>
-
-  <%= simple_form_for :index, url: activities_path, method: "GET" do |f| %>
-    <%= f.select :mind, options_for_select(@activities.pluck(:mind).uniq) %>
-    <%= f.select :remote, options_for_select(@activities.pluck(:remote).uniq) %>
     <%= f.button :submit, "Voir les activités", class: "btn-primary" %>
   <% end %>
 
