@@ -16,22 +16,9 @@
   }
 }
 
-.remote-media-div {
-}
-
 #userVideo {
   width: 100%;
   border-radius: 6px;
-}
-
-.muted-video {
-  position: absolute;
-  border-radius: 6px;
-  background-color: #000;
-  opacity: 0;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  z-index: 100;
+  opacity: 1;
+  margin-bottom: -7px;
 }

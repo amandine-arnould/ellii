@@ -1,5 +1,4 @@
 import { connect, createLocalTracks } from "twilio-video";
-// import { twilioAddParticipant } from "./twilio_new_part";
 
 const twilioInit = () => {
   const twilioContainer = document.querySelector(".twilio-video");
@@ -67,10 +66,10 @@ const twilioInit = () => {
         });
       });
 
-      const blackVideo = document.querySelector(".muted-video");
+      const userVideo = document.getElementById("userVideo");
       const muteVideo = document.getElementById("muteVideo");
       muteVideo.addEventListener("click", () => {
-        blackVideo.style.opacity = "1";
+        userVideo.style.opacity = "0";
         room.localParticipant.videoTracks.forEach((track) => {
           track.track.disable();
         });
@@ -78,13 +77,11 @@ const twilioInit = () => {
 
       const unmuteVideo = document.getElementById("unmuteVideo");
       unmuteVideo.addEventListener("click", () => {
-        blackVideo.style.opacity = "0";
+        userVideo.style.opacity = "1";
         room.localParticipant.videoTracks.forEach((track) => {
           track.track.enable();
         });
       });
-
-      // twilioAddParticipant(room);
     });
 };
 

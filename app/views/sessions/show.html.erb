@@ -13,15 +13,16 @@
       </div>
       <div class="col-4">
         <div class="remote-media-div text-center">
-        <div style="position: relative;">
-          <div class="muted-video"></div>
-          <video id="userVideo" autoplay muted="true" ></video>
-        </div>
-          <div>
-            <button id="muteAudio" class="btn  btn-outline-secondary btn-sm">Mute audio</button>
-            <button id="unmuteAudio" class="btn  btn-outline-secondary btn-sm">Unmute audio</button>
-            <button id="muteVideo" class="btn  btn-outline-secondary btn-sm">Mute video</button>
-            <button id="unmuteVideo" class="btn  btn-outline-secondary btn-sm">Unmute video</button>
+          <div style="position: relative;background: black; overflow: hidden; border-radius: 6px;">
+            <video id="userVideo" autoplay muted="true" ></video>
+          </div>
+          <div class="mt-3">
+            <button id="muteAudio" class="btn btn-outline-secondary btn-sm">Mute</button>
+            <button id="unmuteAudio" class="btn btn-outline-secondary btn-sm">Unmute</button>
+            <br>
+            <button id="muteVideo" class="btn btn-outline-secondary btn-sm">Mute video</button>
+            <button id="unmuteVideo" class="btn btn-outline-secondary btn-sm">Unmute video</button>
+            <br>
             <button id='leave-btn' class='btn btn-outline-primary btn-sm mt-3'>Quitter l'activité</button>
           </div>
         </div>
@@ -30,8 +31,8 @@
     <%# <div class="row">
       <div class="col-7">
         <p class="text-center"> %>
-          <%#= @booking.user == current_user ? @booking.proposal.proposer.email : @booking.booker.email %>
-        <%# </p>
+    <%#= @booking.user == current_user ? @booking.proposal.proposer.email : @booking.booker.email %>
+    <%# </p>
       </div>
     </div> %>
     <%#= link_to '', root_path, class: 'd-none root-link', data: {turbolinks: false}  %>
