@@ -1,0 +1,84 @@
+.mood {
+  text-align: center;
+  margin: 50px auto;
+
+  i {
+    color: rgb(167, 167, 167);
+  }
+
+  #frown {
+    &:hover {
+      color: red;
+    }
+  }
+  #meh {
+    &:hover {
+      color: orange;
+    }
+  }
+  #smile {
+    &:hover {
+      color: rgb(255, 217, 0);
+    }
+  }
+  #smile-beam {
+    &:hover {
+      color: lightgreen;
+    }
+  }
+  #laugh-beam {
+    &:hover {
+      color: green;
+    }
+  }
+}
+
+.mood legend {
+  display: none;
+}
+
+.mood {
+  .category-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .category-item {
+    flex: 0 0 0 0 20%;
+  }
+
+  .category-selector {
+    position: absolute;
+    transform: scale(0);
+  }
+
+  .category-selector + label {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    font-size: 80px;
+    text-align: center;
+  }
+
+  // .category-selector:checked + label {
+  //   color: white !important;
+  // }
+
+  #mood_score_1:checked + label i {
+    color: red;
+  }
+  #mood_score_2:checked + label i {
+    color: orange;
+  }
+  #mood_score_3:checked + label i {
+    color: rgb(250, 236, 37);
+  }
+  #mood_score_4:checked + label i {
+    color: lightgreen;
+  }
+  #mood_score_5:checked + label i {
+    color: green;
+  }
+
+}
