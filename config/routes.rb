@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   resources :moods, only: [ :create ]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :activities do
-    resources :bookings, only: [:new, :create]
-    resources :sessions, only: [:index, :new, :create], as: :activity_session
+    resources :sessions, only: [:index, :new, :create], as: :activity_session do
+      resources :bookings, only: [:new]
+    end
   end
-  resources :bookings, only: [:index, :destroy, :show]
+  resources :bookings, only: [:create, :index, :destroy, :show]
   resources :sessions, only: [:show, :edit, :update, :destroy], as: :activity_session
 end
