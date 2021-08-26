@@ -1,5 +1,5 @@
 import { connect, createLocalTracks } from "twilio-video";
-import { twilioAddParticipant } from "./twilio_new_part";;
+// import { twilioAddParticipant } from "./twilio_new_part";
 
 const twilioInit = () => {
   const twilioContainer = document.querySelector(".twilio-video");
@@ -49,29 +49,45 @@ const twilioInit = () => {
         console.log(`Disconnected from Room ${videoRoom.name}`);
         link.click();
       });
-      twilioAddParticipant(room);
+      // twilioAddParticipant(room);
     });
 };
 
 const participantConnected = (participant) => {
-  console.log(`Participant ${participant.identity} connected'`);
+  const currentUserStatus =
+    document.querySelector(".twilio-video").dataset.status;
+  if (
+    participant.identity.split("$")[1] === "teacher" ||
+    currentUserStatus === "teacher"
+  ) {
+    console.log(`Participant ${participant.identity.split("$")[0]} connected'`);
 
-  const div = document.querySelector(".participant"); //locates div for new participant
-  div.id = participant.sid;
+    const div = document.querySelector(".participant"); //locates div for new participant
+    div.id = participant.sid;
 
-  participant.on("trackSubscribed", (track) => trackSubscribed(div, track));
-  participant.on("trackUnsubscribed", trackUnsubscribed);
+    participant.on("trackSubscribed", (track) => trackSubscribed(div, track));
+    participant.on("trackUnsubscribed", trackUnsubscribed);
 
-  participant.tracks.forEach((publication) => {
-    if (publication.isSubscribed) {
-      trackSubscribed(div, publication.track);
-    }
-  });
+    participant.tracks.forEach((publication) => {
+      if (publication.isSubscribed) {
+        trackSubscribed(div, publication.track);
+      }
+    });
+  }
 };
 
 const participantDisconnected = (participant) => {
-  console.log(`Participant ${participant.identity} disconnected.`);
-  document.getElementById(participant.sid).style.visibility = "hidden";
+  const currentUserStatus =
+    document.querySelector(".twilio-video").dataset.status;
+  if (
+    participant.identity.split("$")[1] === "teacher" ||
+    currentUserStatus === "teacher"
+  ) {
+    console.log(
+      `Participant ${participant.identity.split("$")[0]} disconnected.`
+    );
+    document.getElementById(participant.sid).style.visibility = "hidden";
+  }
 };
 
 const trackSubscribed = (div, track) => {
