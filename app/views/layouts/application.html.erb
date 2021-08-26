@@ -16,8 +16,10 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    <div class="content-wrapper" style="min-height: calc(100vh - 70px - 120px);">
+      <%= yield %>
+    </div>
+    <%= render 'shared/footer' %>
 
     <script src="https://media.twiliocdn.com/sdk/js/video/v1/twilio-video.min.js"></script>
   </body>

@@ -1,0 +1,29 @@
+.footer {
+  height: 120px;
+}
+
+.footer .social-link {
+  text-decoration: none;
+
+  &:hover .social-icon {
+    color: #E7957E;
+  }
+}
+
+.footer .social-icon {
+  color: #6C6BA3;
+  font-size: 50px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.footer .footer-text {
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #95D3D9;
+  width: 100%;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
