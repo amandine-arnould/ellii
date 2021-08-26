@@ -3,16 +3,19 @@ import { connect, createLocalTracks } from "twilio-video";
 
 const twilioInit = () => {
   const twilioContainer = document.querySelector(".twilio-video");
+  const yourVideo = document.querySelector(".remote-media-div");
   const video = document.getElementById("userVideo");
   const leaveBtn = document.getElementById("leave-btn");
   const link = document.querySelector(".root-link");
   const Video = Twilio.Video;
   let videoRoom, localStream;
+
   // preview screen
   navigator.mediaDevices
     .getUserMedia({ video: true, audio: true })
     .then((vid) => {
-      console.log("get user media");
+      // console.log("get user media");
+      yourVideo.insertAdjacentHTML("afterbegin", "Vous");
       video.srcObject = vid;
       localStream = vid;
       console.log(video);
@@ -60,17 +63,23 @@ const participantConnected = (participant) => {
     participant.identity.split("$")[1] === "teacher" ||
     currentUserStatus === "teacher"
   ) {
-    console.log(`Participant ${participant.identity.split("$")[0]} connected'`);
+    console.log(
+      `Participant ${participant.identity.split("$")[2]} ${
+        participant.identity.split("$")[3]
+      } connected'`
+    );
 
-    const div = document.querySelector(".participant"); //locates div for new participant
-    div.id = participant.sid;
+    //locates div for new participant
+    const div = document.querySelector(".participant");
 
-    participant.on("trackSubscribed", (track) => trackSubscribed(div, track));
+    participant.on("trackSubscribed", (track) =>
+      trackSubscribed(div, track, participant)
+    );
     participant.on("trackUnsubscribed", trackUnsubscribed);
 
     participant.tracks.forEach((publication) => {
       if (publication.isSubscribed) {
-        trackSubscribed(div, publication.track);
+        trackSubscribed(div, publication.track, participant);
       }
     });
   }
@@ -84,18 +93,29 @@ const participantDisconnected = (participant) => {
     currentUserStatus === "teacher"
   ) {
     console.log(
-      `Participant ${participant.identity.split("$")[0]} disconnected.`
+      `Participant ${participant.identity.split("$")[2]} ${
+        participant.identity.split("$")[3]
+      } disconnected.`
     );
-    document.getElementById(participant.sid).style.visibility = "hidden";
   }
 };
 
-const trackSubscribed = (div, track) => {
-  div.appendChild(track.attach());
+const trackSubscribed = (div, track, participant) => {
+  const innerDiv = document.createElement("div");
+  if (track.kind === "video") {
+    innerDiv.insertAdjacentHTML(
+      "afterbegin",
+      `${participant.identity.split("$")[2]} ${
+        participant.identity.split("$")[3]
+      }`
+    );
+  }
+  innerDiv.appendChild(track.attach());
+  div.appendChild(innerDiv);
 };
 
 const trackUnsubscribed = (track) => {
-  track.detach().forEach((element) => element.remove());
+  track.detach().forEach((element) => element.parentElement.remove());
 };
 
 export { twilioInit };

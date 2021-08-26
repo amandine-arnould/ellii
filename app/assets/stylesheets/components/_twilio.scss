@@ -7,11 +7,11 @@
   list-style: none;
 }
 
-  .participant {
-  border-radius: 16px;
+.participant {
+  border-radius: 6px;
   overflow: hidden;
   video {
-    border-radius: 16px;
+    border-radius: 6px;
     width: 100%;
   }
 }
@@ -21,6 +21,5 @@
 
 #userVideo {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 6px;
 }
-
