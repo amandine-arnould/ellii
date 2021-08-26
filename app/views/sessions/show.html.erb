@@ -13,11 +13,16 @@
       </div>
       <div class="col-4">
         <div class="remote-media-div text-center">
+        <div style="position: relative;">
+          <div class="muted-video"></div>
           <video id="userVideo" autoplay muted="true" ></video>
+        </div>
           <div>
-            <button id='leave-btn' class='btn btn-primary mt-3'>
-              Quitter
-            </button>
+            <button id="muteAudio" class="btn  btn-outline-secondary btn-sm">Mute audio</button>
+            <button id="unmuteAudio" class="btn  btn-outline-secondary btn-sm">Unmute audio</button>
+            <button id="muteVideo" class="btn  btn-outline-secondary btn-sm">Mute video</button>
+            <button id="unmuteVideo" class="btn  btn-outline-secondary btn-sm">Unmute video</button>
+            <button id='leave-btn' class='btn btn-outline-primary btn-sm mt-3'>Quitter l'activité</button>
           </div>
         </div>
       </div>

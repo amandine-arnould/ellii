@@ -52,6 +52,38 @@ const twilioInit = () => {
         console.log(`Disconnected from Room ${videoRoom.name}`);
         link.click();
       });
+
+      const muteAudio = document.getElementById("muteAudio");
+      muteAudio.addEventListener("click", () => {
+        room.localParticipant.audioTracks.forEach((track) => {
+          track.track.disable();
+        });
+      });
+
+      const unmuteAudio = document.getElementById("unmuteAudio");
+      unmuteAudio.addEventListener("click", () => {
+        room.localParticipant.audioTracks.forEach((track) => {
+          track.track.enable();
+        });
+      });
+
+      const blackVideo = document.querySelector(".muted-video");
+      const muteVideo = document.getElementById("muteVideo");
+      muteVideo.addEventListener("click", () => {
+        blackVideo.style.opacity = "1";
+        room.localParticipant.videoTracks.forEach((track) => {
+          track.track.disable();
+        });
+      });
+
+      const unmuteVideo = document.getElementById("unmuteVideo");
+      unmuteVideo.addEventListener("click", () => {
+        blackVideo.style.opacity = "0";
+        room.localParticipant.videoTracks.forEach((track) => {
+          track.track.enable();
+        });
+      });
+
       // twilioAddParticipant(room);
     });
 };
