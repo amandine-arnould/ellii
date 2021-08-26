@@ -19,11 +19,33 @@
 </div>
 
 <div class="text-center">
-  <h2 class="text-center">Que fait-on aujourd'hui ?</h2>
-  <%= link_to "On bouge !", activities_path(mind: "false"),  class:"btn btn-secondary" %>
-  <%= link_to "On apprend !", activities_path(mind: "true"), class:"btn btn-secondary" %>
-</div>
+  <%# <h2 class="text-center">Que fait-on aujourd'hui ?</h2> %>
+  <%#= link_to "On bouge !", activities_path(mind: "false"),  class:"btn btn-secondary" %>
+  <%#= link_to "On apprend !", activities_path(mind: "true"), class:"btn btn-secondary" %>
 
-<div>
-  <h2 class="text-center">Avez-vous un moyen de locomotion ?</h2>
+  <%= simple_form_for :index, url: activities_path, method: "GET"  do |f| %>
+    <div class="choose-mood">
+      <h2 class="text-center">Que fait-on aujourd'hui ?</h2>
+      <%= f.input :score,
+          as: :radio_buttons,
+          collection: Mood::SCORES,
+          collection_wrapper_tag: 'div',
+          collection_wrapper_class: 'category-wrapper',
+          item_wrapper_class: 'category-item',
+          label_method: lambda { |score| render 'mood_label', score: score },
+          input_html: {class: 'category-selector'}
+          %>
+    </div>
+    <div class="choose-location">
+      <h2 class="text-center">Plutôt chez vous ou à l'extérieur ?</h2>
+    </div>
+    <%= f.button :submit, "Voir les activités", class: "btn-primary" %>
+  <% end %>
+
+  <%= simple_form_for :index, url: activities_path, method: "GET" do |f| %>
+    <%= f.select :mind, options_for_select(@activities.pluck(:mind).uniq) %>
+    <%= f.select :remote, options_for_select(@activities.pluck(:remote).uniq) %>
+    <%= f.button :submit, "Voir les activités", class: "btn-primary" %>
+  <% end %>
+
 </div>
