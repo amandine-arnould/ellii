@@ -1,7 +1,6 @@
 <%# CONTAINER WITH MARGIN FOR SPACE FROM NAV-BAR %>
 <div class="container mt-4">
-<%# SENIOR DASHBOARD %>
-
+  <%# SENIOR DASHBOARD %>
   <%# MY UPCOMING ATELIERS SECTION, CLICK TO JOIN SESSION%>
   <div class="row">
     <div class="col-8">
@@ -23,14 +22,13 @@
                 booking_path(booking),
                 method: :delete,
                 data: { confirm: "Annuler?" } %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       <% end %>
     </div>
-
-
+    
     <%# MY PROFILE SECTION %>
     <div class="col-4">
       <div class="card text-center" id="profile-card">
@@ -38,17 +36,11 @@
         <div class="card-body">
           <h5 class="card-title"><%= current_user.first_name %> <%= current_user.last_name %></h5>
           <p class="card-text"><%= current_user.email %></p>
-            <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
-              <i class="fas fa-user-edit"></i> Modifier profil
-            <% end %>
+          <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
+            <i class="fas fa-user-edit"></i> Modifier mon profil
+          <% end %>
+        </div>
       </div>
     </div>
+    <%# ALL ATELIERS %>
   </div>
-
-  <%# ALL ATELIERS %>
-
-
-
-
-
-</div>
