@@ -1,12 +1,20 @@
 <div class="container mb-5 d-flex flex-column">
-  <h1 class="mt-5 mb-5 text-center"><%= @activity.title %> avec <%= @activity.user.first_name %></h1>
+  <h1 class="mt-5 mb-3 text-center"><%= @activity.title %> avec <%= @activity.user.first_name %></h1>
 
-  <% if @activity.user == current_user %>
-    <% if current_user.status == "teacher" || current_user.status == "admin" %>
-      <%= link_to "Modifier", edit_activity_path(@activity) %>
-      <%= link_to "Supprimer", activity_path(@activity), method: :delete, data: { confirm: "Etes-vous sûr de vouloir supprimer #{@activity.title} ?"} %>
+  <%# EDIT AND DELETE ACTIVITY %>
+  <div class="d-flex justify-content-center mb-4">
+    <% if @activity.user == current_user %>
+      <% if current_user.status == "teacher" || current_user.status == "admin" %>
+        <%= link_to edit_activity_path(@activity) do %>
+          <i class="fas fa-pencil-alt mr-3"></i>
+        <% end %>
+        <%= link_to activity_path(@activity), method: :delete, data: { confirm: "Etes-vous sûr de vouloir supprimer #{@activity.title} ?"} do %>
+          <i class="far fa-trash-alt" style="color: red;"></i>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+
   <p class="text-justify">
     <i class="fas fa-quote-left"></i>
     <%= @activity.description %>
