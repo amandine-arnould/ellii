@@ -10,7 +10,7 @@
           <div class="col-md-4">
             <h4 class="card-title text-center">prochain <br> atelier:</h4>
               <h4 class="card-text text-center"><strong><%=booking.session.start_at.strftime("%B %d, %Y %H")%> h</strong></h4>
-              <%= link_to activity_session_path(session), class: "btn btn-primary" do %>
+              <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
                 Rejoindre l'Atelier
               <% end %>
           </div>
@@ -28,7 +28,7 @@
         </div>
       <% end %>
     </div>
-    
+
     <%# MY PROFILE SECTION %>
     <div class="col-4">
       <div class="card text-center" id="profile-card">
