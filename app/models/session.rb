@@ -4,15 +4,15 @@ class Session < ApplicationRecord
   has_many :users, through: :bookings
   validates :start_at, presence: true
 
-  after_create :set_session_name
+  # after_create :set_session_name
 
-  # callback ActiveRecord
-  def set_session_name
-    client = Twilio::REST::Client.new(ENV["ACCOUNT_SID"], ENV["AUTH_TOKEN"])
-    client.video.rooms.create(unique_name: id)
-  end
+  # # callback ActiveRecord
+  # def set_session_name
+  #   client = Twilio::REST::Client.new(ENV["ACCOUNT_SID"], ENV["AUTH_TOKEN"])
+  #   client.video.rooms.create(unique_name: id)
+  # end
 
-  def name
-    start_at.to_s
-  end
+  # def name
+  #   start_at.to_s
+  # end
 end
