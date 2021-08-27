@@ -51,4 +51,28 @@
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   <% end %>
+
+  <%# BACK TO RESULTS %>
+  <div class="back-to-results">
+    <%= simple_form_for :search, url: activities_path, method: :get do |f| %>
+      <%= f.input :mind,
+          as: :radio_buttons,
+          input_html: {checked: true, style: "display: none"},
+          collection: [@activity.mind],
+          legend_tag: false %>
+
+      <%= f.input :remote,
+          as: :radio_buttons,
+          input_html: {checked: true, style: "display: none"},
+          collection: [@activity.remote],
+          legend_tag: false %>
+
+      <%= f.button :submit, "Retour aux activités", class: "btn btn-dark mt-3" %>
+    <% end %>
+  </div>
+
+
+
+
+  <%= link_to "Retour aux activités", "#", class: "btn btn-dark mt-3", style: "width: fit-content;" %>
 </div>
