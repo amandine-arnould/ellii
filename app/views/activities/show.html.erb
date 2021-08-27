@@ -31,6 +31,7 @@
     <div class="d-flex" style="height: 40px;">
       <%= f.input :session_id,
                   collection: Session.where(activity_id: @activity),
+
                   prompt: "Choisir un créneau",
                   label: false,
                   input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
