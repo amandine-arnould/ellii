@@ -10,7 +10,7 @@
           <div class="row g-0">
             <div class="col-md-4">
               <h4 class="card-title text-center">prochain <br> atelier:</h4>
-              <h4 class="card-text text-center"><strong><%= booking.session.start_at.strftime("%d")%> <%= @month[booking.session.start_at.month] %><br> <%= booking.session.start_at.strftime("%Y") %> <br>à <%= booking.session.start_at.strftime("%H") %></strong></h4>
+              <h4 class="card-text text-center"><strong><%= booking.session.start_at.strftime("%d")%> <%= @month[booking.session.start_at.month] %><br> <%= booking.session.start_at.strftime("%Y") %> <br>à <%= booking.session.start_at.strftime("%H")%>h<%= booking.session.start_at.strftime("%M") %></strong></h4>
               <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
                 Rejoindre l'Atelier
               <% end %>
