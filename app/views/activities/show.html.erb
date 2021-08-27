@@ -1,31 +1,47 @@
 <div class="container mb-5 d-flex flex-column">
-  <h1 class="mt-5 mb-5 text-center"><%= @activity.title %></h1>
+  <h1 class="mt-5 mb-5 text-center"><%= @activity.title %> avec <%= @activity.user.first_name %></h1>
+
   <% if @activity.user == current_user %>
     <% if current_user.status == "teacher" || current_user.status == "admin" %>
       <%= link_to "Modifier", edit_activity_path(@activity) %>
       <%= link_to "Supprimer", activity_path(@activity), method: :delete, data: { confirm: "Etes-vous sûr de vouloir supprimer #{@activity.title} ?"} %>
     <% end %>
   <% end %>
-  <p>Description: <%= @activity.description %></p>
-  <p>Durée: <%= @activity.duration %> min</p>
-  <p>Lieu:
+  <p class="text-justify">
+    <i class="fas fa-quote-left"></i>
+    <%= @activity.description %>
+    <i class="fas fa-quote-right"></i>
+  </p>
+  <p>
+    <i class="fas fa-hourglass-half"></i>
+    <%= @activity.duration %> min
+  </p>
+  <p>
+    <i class="fas fa-map-marked-alt"></i>
     <% if @activity.remote %>
       Chez moi
     <% else %>
       <%= @activity.address %>
     <% end %>
   </p>
-  <p><%#= @activity.teacher.first_name %></p>
+
   <%# SESSIONS %>
-  <h3>Créneaux disponibles</h3>
+  <p><i class="fas fa-calendar-alt"></i> Créneaux disponibles</p>
   <%= simple_form_for [ @booking ] do |f| %>
-    <%= f.input :session_id, collection: Session.where(activity_id: @activity), prompt: "Choisir un créneau", label: false  %>
-    <% if current_user.status == "teacher" %>
-      <%= f.submit "Réserver", class: "btn btn-primary", disabled: true %>
-    <% else %>
-        <%= f.submit "Réserver", class: "btn btn-primary " %>
-    <% end %>
+    <div class="d-flex" style="height: 40px;">
+      <%= f.input :session_id,
+                  collection: Session.where(activity_id: @activity),
+                  prompt: "Choisir un créneau",
+                  label: false,
+                  input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
+      <% if current_user.status == "teacher" %>
+        <%= f.submit "Réserver", class: "btn btn-primary", disabled: true %>
+      <% else %>
+          <%= f.submit "Réserver", class: "btn btn-primary " %>
+      <% end %>
+    </div>
   <% end %>
+
   <%# MAP %>
   <% if !@activity.remote %>
     <div id="map"
