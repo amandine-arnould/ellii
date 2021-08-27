@@ -10,15 +10,15 @@
         <div class="row g-0">
           <div class="col-md-4">
             <h4 class="card-title text-center">prochain <br> atelier:</h4>
-              <h4 class="card-text text-center"><strong><%=booking.session.start_at.strftime("%B %d, %Y %H")%>h</strong></h4>
-              <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
+              <h4 class="card-text text-center"><strong><%=booking.session.start_at.strftime("%B %d, %Y %H")%> h</strong></h4>
+              <%= link_to activity_session_path(session), class: "btn btn-primary" do %>
                 Rejoindre l'Atelier
               <% end %>
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h4 class="card-title"><%= booking.session.activity_id %></h4>
-              <p class="card-text">Short description of the activity should go here.</p>
+              <h4 class="card-title"><%= booking.session.activity.title %></h4>
+              <p class="card-text"><%= truncate(booking.session.activity.description, :length => 80) %></p>
                 <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
                 booking_path(booking),
                 method: :delete,
@@ -29,6 +29,7 @@
       </div>
       <% end %>
     </div>
+
 
     <%# MY PROFILE SECTION %>
     <div class="col-4">
