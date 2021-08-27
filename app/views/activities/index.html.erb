@@ -1,8 +1,8 @@
-<div class="container mb-5">
+<div class="container mb-5 d-flex flex-column align-items-center">
   <% if @activities[0].nil? %>
     <h1 class="mt-5">Nous n'avons aucune activité à vous proposer pour le moment...</h1>
   <% else %>
-    <h1 class="mt-5 mb-4 text-center">Liste des activités</h1>
+    <h1 class="mt-5 mb-5 text-center">Liste des activités</h1>
 		<div class ="d-flex flex-column">
 			<% @activities.each do |activity| %>
 				<div class="card-index-activity d-flex mb-4">
@@ -25,5 +25,5 @@
 			<% end %>
 		</div>
   <% end %>
-  <%= link_to "Retour vers la page d'accueil", root_path, class: "btn btn-light mt-3" %>
+  <%= link_to "Retour vers la page d'accueil", root_path, class: "btn btn-secondary mt-3" %>
 </div>
