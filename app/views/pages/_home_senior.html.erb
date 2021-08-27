@@ -3,21 +3,23 @@
     <h1>Bonjour <%= current_user.first_name %> !</h1>
   </div>
 
-  <div class="mood">
-    <h2 class="text-center mb-5">Comment allez-vous ?</h2>
-    <%= simple_form_for @mood do |f| %>
-      <%= f.input :score,
-          as: :radio_buttons,
-          collection: Mood::SCORES,
-          collection_wrapper_tag: 'div',
-          collection_wrapper_class: 'category-wrapper',
-          item_wrapper_class: 'category-item',
-          label_method: lambda { |score| render 'mood_label', score: score },
-          input_html: {class: 'category-selector'}
-          %>
-      <%= f.button :submit, "Enregistrer mon humeur", class: "btn-primary" %>
-    <% end %>
-  </div>
+  <% if current_user.moods.last.created_at.day != Date.today.day %>
+    <div class="mood">
+      <h2 class="text-center mb-5">Comment allez-vous ?</h2>
+      <%= simple_form_for @mood do |f| %>
+        <%= f.input :score,
+            as: :radio_buttons,
+            collection: Mood::SCORES,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            label_method: lambda { |score| render 'mood_label', score: score },
+            input_html: {class: 'category-selector'}
+            %>
+        <%= f.button :submit, "Enregistrer mon humeur", class: "btn-primary" %>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="text-center type-location-form">
     <%= simple_form_for :search, url: activities_path, method: "GET"  do |f| %>
