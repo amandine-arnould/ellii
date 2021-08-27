@@ -5,20 +5,6 @@ class SessionsController < ApplicationController
     @token = generate_token(@session)
   end
 
-  def start
-    # client = Twilio::REST::Client.new(ENV["ACCOUNT_SID"], ENV["AUTH_TOKEN"])
-    # client.video.rooms.create(unique_name: id)
-    @session = Session.find(params[:id])
-    @session.running = true
-    redirect_to activity_session_path(@session) if @session.save
-  end
-
-  def end
-    @session = Session.find(params[:id])
-    @session.running = false
-    redirect_to dashboard_path if @session.save
-  end
-
   def destroy
     @session = Sessions.find(params[:id])
     @session.destroy
