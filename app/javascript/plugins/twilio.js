@@ -52,6 +52,7 @@ const twilioInit = () => {
         link.click();
       });
 
+      // MUTE AUDIO
       const muteAudio = document.getElementById("muteAudio");
       muteAudio.addEventListener("click", () => {
         room.localParticipant.audioTracks.forEach((track) => {
@@ -59,6 +60,7 @@ const twilioInit = () => {
         });
       });
 
+      // UNMUTE AUDIO
       const unmuteAudio = document.getElementById("unmuteAudio");
       unmuteAudio.addEventListener("click", () => {
         room.localParticipant.audioTracks.forEach((track) => {
@@ -66,6 +68,7 @@ const twilioInit = () => {
         });
       });
 
+      // MUTE VIDEO
       const userVideo = document.getElementById("userVideo");
       const muteVideo = document.getElementById("muteVideo");
       muteVideo.addEventListener("click", () => {
@@ -75,6 +78,7 @@ const twilioInit = () => {
         });
       });
 
+      // UNMUTE VIDEO
       const unmuteVideo = document.getElementById("unmuteVideo");
       unmuteVideo.addEventListener("click", () => {
         userVideo.style.opacity = "1";
