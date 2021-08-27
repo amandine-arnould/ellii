@@ -1,5 +1,27 @@
-<div class="container mt-5">
-  <% if @session.running? %>
+<div class="container mt-5 text-center">
+  <% if Time.now - 10 < @session.start_at %>
+    <%#  if false %>
+    <p>La session n'a pas encore débutée!</p>
+    <p>Veuillez patienter...</p>
+    <div id="countdown" data-timer="<%= @session.start_at %>">
+      <ul>
+        <li><span id="days"></span>Jours</li>
+        <li><span id="hours"></span>Heures</li>
+        <li><span id="minutes"></span>Minutes</li>
+        <li><span id="seconds"></span>Secondes</li>
+      </ul>
+    </div>
+    <div id="join-session">
+      <%= link_to activity_session_path(@session), class: "btn btn-primary" do %>
+        <i class="fas fa-video"></i> Rejoindre ma session
+      <% end %>
+    </div>
+  <% elsif Time.now > @session.start_at + 120 %>
+    <p><i class="fas fa-video-slash"></i> Cette session est terminée!</p>
+    <%= link_to root_path, class: "btn btn-primary" do %>
+        <i class="fas fa-paper-plane"></i> Retour à la page d'accueil
+      <% end %>
+  <% else %>
     <div
     class="twilio-video"
     data-sid="<%= ENV["ACCOUNT_SID"] %>"
@@ -31,26 +53,6 @@
           </div>
         </div>
       </div>
-      <%# <div class="row">
-      <div class="col-7">
-        <p class="text-center"> %>
-      <%#= @booking.user == current_user ? @booking.proposal.proposer.email : @booking.booker.email %>
-      <%# </p>
-      </div>
-    </div> %>
-      <%#= link_to '', root_path, class: 'd-none root-link', data: {turbolinks: false}  %>
     </div>
-  <% else %>
-    <p>La session n'a pas encore débutée.</p>
-    <%# if Date.now - 10 < @session.start_at ||  Date.now > @session.start_at + 120
-          && current_user == "teacher" || current_user == "admin" %>
-    <% binding.pry %>
-    <% if current_user == "teacher" || current_user == "admin" %>
-      <%= link_to start_session_path(@session), class: "btn btn-primary" do %>
-        > Générer ma session
-      <% end %>
-    <% else %>
-      <p>Veuillez patienter...</p>
-    <% end %>
   <% end %>
 </div>
