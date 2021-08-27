@@ -42,11 +42,15 @@
     </div>
   <% else %>
     <p>La session n'a pas encore débutée.</p>
-    <p>Veuillez patienter...</p>
     <%# if Date.now - 10 < @session.start_at ||  Date.now > @session.start_at + 120
           && current_user == "teacher" || current_user == "admin" %>
+    <% binding.pry %>
     <% if current_user == "teacher" || current_user == "admin" %>
-      <%= link_to "Générer session", session_path(@session)  %>
+      <%= link_to start_session_path(@session), class: "btn btn-primary" do %>
+        > Générer ma session
+      <% end %>
+    <% else %>
+      <p>Veuillez patienter...</p>
     <% end %>
   <% end %>
 </div>
