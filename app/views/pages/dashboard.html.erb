@@ -1,35 +1,34 @@
 <%# CONTAINER WITH MARGIN FOR SPACE FROM NAV-BAR %>
 <div class="container mt-4">
-<%# SENIOR DASHBOARD %>
-
+  <%# SENIOR DASHBOARD %>
   <%# MY UPCOMING ATELIERS SECTION, CLICK TO JOIN SESSION%>
   <div class="row">
     <div class="col-8">
       <% @user_bookings.each do |booking| %>
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <h4 class="card-title text-center">prochain <br> atelier:</h4>
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <h4 class="card-title text-center">prochain <br>
+                 atelier:</h4>
               <h4 class="card-text text-center"><strong><%=booking.session.start_at.strftime("%B %d, %Y %H")%>h</strong></h4>
               <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
                 Rejoindre l'Atelier
               <% end %>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title"><%= booking.session.activity_id %></h4>
-              <p class="card-text">Short description of the activity should go here.</p>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title"><%= booking.session.activity_id %></h4>
+                <p class="card-text">Une brève description de l'activité...</p>
                 <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
                 booking_path(booking),
                 method: :delete,
                 data: { confirm: "Annuler?" } %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       <% end %>
     </div>
-
     <%# MY PROFILE SECTION %>
     <div class="col-4">
       <div class="card text-center" id="profile-card">
@@ -37,17 +36,11 @@
         <div class="card-body">
           <h5 class="card-title"><%= current_user.first_name %> <%= current_user.last_name %></h5>
           <p class="card-text"><%= current_user.email %></p>
-            <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
-              <i class="fas fa-user-edit"></i> Modifier profil
-            <% end %>
+          <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
+            <i class="fas fa-user-edit"></i> Modifier mon profil
+          <% end %>
+        </div>
       </div>
     </div>
+    <%# ALL ATELIERS %>
   </div>
-
-  <%# ALL ATELIERS %>
-
-
-
-
-
-</div>
