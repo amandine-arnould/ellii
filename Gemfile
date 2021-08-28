@@ -39,8 +39,12 @@ gem 'pundit'
 gem 'geocoder'
 gem "abyme"
 gem "twilio-ruby"
+
+# Active admin
 gem "activeadmin", github: "activeadmin/activeadmin"
 gem "inherited_resources", github: "activeadmin/inherited_resources"
+gem "active_admin_flat_skin"
+gem "font-awesome-rails"
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
