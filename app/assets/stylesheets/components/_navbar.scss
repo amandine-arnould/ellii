@@ -19,12 +19,12 @@
     padding-top: 6px;
     padding-bottom: 6px;
     text-decoration: none;
-    color: #1D4668;
+    color: $purple;
     font-weight: 600;
     font-size: 17px;
 
     &:hover {
-      color: $purple;
+      color: #1D4668;
     }
   }
 }
