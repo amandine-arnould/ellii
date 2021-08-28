@@ -1,7 +1,7 @@
 .mood {
   text-align: center;
   margin: 22px auto 50px auto;
-  background-color: white;
+  background-color: #EDE9FF;
   padding: 22px 20px;
   border-radius: 6px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
@@ -24,12 +24,14 @@
 
   .category-item {
     flex: 0 0 0 0 20%;
-    background-color: #EDE9FF;
+    background-color: white;
     // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
     border-radius: 6px;
     width: 120px;
+    transition: background-color 0.3s ease-in;
 
     &:hover {
+      background-color: #4DB4D4;
       // #frown {
       //   color: #FF6161;
       // }
@@ -47,7 +49,7 @@
       // }
 
       i {
-        color: #624CD4;
+        color: white;
       }
     }
   }
@@ -69,20 +71,20 @@
   //   color: white !important;
   // }
 
-  #mood_score_1:checked + label i {
-    color: #FF6161;
-  }
-  #mood_score_2:checked + label i {
-    color: #FF8F8F;
-  }
-  #mood_score_3:checked + label i {
-    color: #624CD4;
-  }
-  #mood_score_4:checked + label i {
-    color: #4DB4D4;
-  }
-  #mood_score_5:checked + label i {
-    color: #2C88BF;
+  #mood_score_1:checked + label,
+  #mood_score_2:checked + label,
+  #mood_score_3:checked + label,
+  #mood_score_4:checked + label,
+  #mood_score_5:checked + label {
+    background-color: #4DB4D4;
+    border-radius: 6px;
   }
 
+  #mood_score_1:checked + label i,
+  #mood_score_2:checked + label i,
+  #mood_score_3:checked + label i,
+  #mood_score_4:checked + label i,
+  #mood_score_5:checked + label i {
+    color: white;
+  }
 }
