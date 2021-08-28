@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: $light-pink;
   height: 70px;
 }
 
@@ -10,4 +10,49 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 80px;
+}
+
+.navbar-lewagon .menu {
+  width: 65%;
+
+  a {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-decoration: none;
+    color: $purple;
+    font-weight: 600;
+    font-size: 17px;
+
+    &:hover {
+      color: #1D4668;
+    }
+  }
+}
+
+.navbar-lewagon {
+
+  .messages {
+    position: relative;
+    padding-top: 8px;
+    margin-right: 40px;
+  }
+
+  .message-icon {
+    font-size: 28px;
+    color: $purple;
+  }
+
+  .message-number {
+    position: absolute;
+    top: -1px;
+    right: -11px;
+    background-color: #FF6161;
+    border-radius: 20px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    margin-bottom: 0;
+  }
 }

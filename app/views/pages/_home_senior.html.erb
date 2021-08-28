@@ -1,11 +1,22 @@
-<div class="container mt-5 mb-5">
-  <div class="text-center mt-5">
-    <h1>Bonjour <%= current_user.first_name %> !</h1>
+<div class="container mt-5 mb-5 senior-homepage">
+  <%# GREETING %>
+  <div class="text-center mt-5 d-flex justify-content-between align-items-center" style="margin-bottom: 90px;">
+    <div>
+      <h1 style="font-size: 68px; margin-bottom: 20px; color: #1D4668;">Bonjour</h1>
+      <h1 style="font-family: 'Kaisei HarunoUmi', serif; font-size: 68px; margin-bottom: 50px; color: #2C88BF;">
+        <%= current_user.first_name %>
+      </h1>
+      <p style="font-size: 25px;  ">Nous sommes ravis de vous revoir ! 👋</p>
+    </div>
+    <%= image_tag "illustrations/chess.png", style:"width: 550px;" %>
   </div>
 
+  <%# MOOD %>
+  <h3 class="section-title "><i class="fas fa-angle-double-right"></i> Humeur du jour</h3>
   <% if current_user.moods.last.created_at.day != Date.today.day %>
-    <div class="mood">
-      <h2 class="text-center mb-5">Comment allez-vous ?</h2>
+    <div class="mood" style="margin-bottom: 90px;">
+      <h2 class="text-center mb-2" style="color: #1D4668;">Comment allez-vous aujourd'hui ?</h2>
+      <p class="text-center mb-5">Choisissez votre humeur ci-dessous</p>
       <%= simple_form_for @mood do |f| %>
         <%= f.input :score,
             as: :radio_buttons,
@@ -16,11 +27,15 @@
             label_method: lambda { |score| render 'mood_label', score: score },
             input_html: {class: 'category-selector'}
             %>
-        <%= f.button :submit, "Enregistrer mon humeur", class: "btn-primary" %>
+        <%= f.button :submit, "Enregistrer mon humeur 🚀", class: "btn-primary btn-font" %>
       <% end %>
     </div>
+  <% else %>
+    <p>Votre humeur du jour a bien été enregistrée pour aujourd'hui, revenez nous voir demain pour nous dire comment vous vous sentez ! 🎭</p>
+    <%= image_tag "illustrations/mood.png", style:"width: 350px; display: block; margin: 10px auto 90px auto;" %>
   <% end %>
 
+  <h3 class="section-title "><i class="fas fa-angle-double-right"></i> Choix d'un atelier</h3>
   <div class="text-center type-location-form">
     <%= simple_form_for :search, url: activities_path, method: "GET"  do |f| %>
       <div class="choose-type">
@@ -47,7 +62,7 @@
             label_method: lambda { |remote| render 'location_label', remote: remote },
             legend_tag: false %>
       </div>
-      <%= f.button :submit, "Voir les activités", class: "btn-primary" %>
+      <%= f.button :submit, "Voir les ateliers 🧘", class: "btn-primary btn-font" %>
     <% end %>
   </div>
 </div>

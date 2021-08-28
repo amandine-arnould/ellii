@@ -1,35 +1,13 @@
 .mood {
   text-align: center;
-  margin: 50px auto;
+  margin: 22px auto 50px auto;
+  background-color: #EDE9FF;
+  padding: 22px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 
   i {
-    color: rgb(167, 167, 167);
-  }
-
-  #frown {
-    &:hover {
-      color: red;
-    }
-  }
-  #meh {
-    &:hover {
-      color: orange;
-    }
-  }
-  #smile {
-    &:hover {
-      color: rgb(255, 217, 0);
-    }
-  }
-  #smile-beam {
-    &:hover {
-      color: lightgreen;
-    }
-  }
-  #laugh-beam {
-    &:hover {
-      color: green;
-    }
+    color: #1D4668;
   }
 }
 
@@ -46,6 +24,34 @@
 
   .category-item {
     flex: 0 0 0 0 20%;
+    background-color: white;
+    // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    border-radius: 6px;
+    width: 120px;
+    transition: background-color 0.3s ease-in;
+
+    &:hover {
+      background-color: #4DB4D4;
+      // #frown {
+      //   color: #FF6161;
+      // }
+      // #meh {
+      //   color: #FF8F8F;
+      // }
+      // #smile {
+      //   color: #624CD4;
+      // }
+      // #smile-beam {
+      //   color: #4DB4D4;
+      // }
+      // #laugh-beam {
+      //   color: #2C88BF;
+      // }
+
+      i {
+        color: white;
+      }
+    }
   }
 
   .category-selector {
@@ -65,20 +71,20 @@
   //   color: white !important;
   // }
 
-  #mood_score_1:checked + label i {
-    color: red;
-  }
-  #mood_score_2:checked + label i {
-    color: orange;
-  }
-  #mood_score_3:checked + label i {
-    color: rgb(250, 236, 37);
-  }
-  #mood_score_4:checked + label i {
-    color: lightgreen;
-  }
-  #mood_score_5:checked + label i {
-    color: green;
+  #mood_score_1:checked + label,
+  #mood_score_2:checked + label,
+  #mood_score_3:checked + label,
+  #mood_score_4:checked + label,
+  #mood_score_5:checked + label {
+    background-color: #4DB4D4;
+    border-radius: 6px;
   }
 
+  #mood_score_1:checked + label i,
+  #mood_score_2:checked + label i,
+  #mood_score_3:checked + label i,
+  #mood_score_4:checked + label i,
+  #mood_score_5:checked + label i {
+    color: white;
+  }
 }
