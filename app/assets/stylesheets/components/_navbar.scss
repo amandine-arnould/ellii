@@ -19,9 +19,12 @@
     padding-top: 6px;
     padding-bottom: 6px;
     text-decoration: none;
+    color: rgb(80, 80, 80);
+    font-weight: 600;
+    font-size: 17px;
 
     &:hover {
-      border-bottom: solid 1px red;
+      color: $purple;
     }
   }
 }
@@ -42,7 +45,7 @@
     position: absolute;
     top: -1px;
     right: -11px;
-    background-color: #6447F9;
+    background-color: $purple;
     border-radius: 20px;
     width: 22px;
     height: 22px;
