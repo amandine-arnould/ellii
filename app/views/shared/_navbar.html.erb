@@ -6,7 +6,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <% if user_signed_in? %>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between menu">
       <%= link_to "Toutes les activités", activities_path %>
       <%= link_to "Mon tableau de bord", dashboard_path %>
       <%= link_to "Nous contacter", "#" %>
@@ -15,8 +15,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center justify-content-between">
       <% if user_signed_in? %>
-        <li class="nav-item active mr-4">
-          <%= current_user.first_name %>
+        <li class="nav-item active messages">
+          <i class="far fa-envelope message-icon"></i>
+          <p class="message-number">5</p>
         </li>
         <li class="nav-item dropdown">
           <% if current_user.avatar.nil? %>
