@@ -1,17 +1,24 @@
 <%# CONTAINER WITH MARGIN FOR SPACE FROM NAV-BAR %>
 <div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <%# -- SENIOR DASHBOARD -- %>
     <li class="nav-item" role="presentation">
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mes activités</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="decouvrir-tab" data-toggle="tab" href="#decouvrir" role="tab" aria-controls="decouvrir" aria-selected="false">Découvrir</a>
+      <a class="nav-link" id="balades-tab" data-toggle="tab" href="#balades" role="tab" aria-controls="balades" aria-selected="false">Mes balades</a>
     </li>
+    <%# -- ADMIN DASHBOARD -- %>
+    <% if current_user.status == "admin" %>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="decouvrir-tab" data-toggle="tab" href="#decouvrir" role="tab" aria-controls="decouvrir" aria-selected="false">Découvrir</a>
+      </li>
+    <% end %>
   </ul>
   <div class="tab-content mt-3" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="container mt-4">
-        <%# SENIOR DASHBOARD %>
+        <%# --- SENIOR DASHBOARD --- %>
         <%# MY UPCOMING ATELIERS SECTION, CLICK TO JOIN SESSION%>
         <div class="row">
           <div class="col-8">
@@ -59,28 +66,47 @@
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="decouvrir" role="tabpanel" aria-labelledby="decouvrir-tab">
-      <%# EPHAD %>
+    <div class="tab-pane fade" id="balades" role="tabpanel" aria-labelledby="balades-tab">
+      <%# BALADES %>
       <div class="container">
-      <h2>Découvrir les établissements spécialisés à proximité</h2>
-        <div class="cards">
-          <% @ephad["records"].each do |ephad| %>
-            <div class="card-ephad ">
-              <img src="<%= "#{@image_url}#{ephad["fields"]["image"]["id"]}" %>" />
-              <div class="card-ephad-infos">
-                <div>
-                  <h2><%= ephad["fields"]["nom_de_l_ehpad"] %></h2>
-                  <p><%= ephad["fields"]["adresse"] %></p>
-                  <p><%= ephad["fields"]["code_postal"] %></p>
-                  <p><%= ephad["fields"]["ville"] %></p>
-                </div>
-                <h2 class="card-ephad-pricing"><%= ephad["fields"]["telephone"] %></h2>
-                <%# <gsimg src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-ephad-user avatar-bordered" /> %>
-              </div>
-            </div>
-          <% end %>
-        </div>
+        <h3>Paris autrement : balades dans les arrondissements</h3>
+        <% @balades["records"].each do |balade| %>
+          <h4 class="mt-5"><%= balade["fields"]["titre_balade"].split.map(&:capitalize).join(' ') %></h4>
+          <p><strong>Mots clés :</strong> <%= balade["fields"]["mot_cle"].gsub(";", ", ") %></p>
+          <p><strong>Pour qui :</strong> <%= balade["fields"]["pour_qui"] %></p>
+          <p><strong>Quand :</strong> <%= balade["fields"]["quand"] %></p>
+          <p><strong>Pourquoi :</strong> <%= balade["fields"]["pourquoi"] %></p>
+          <p><strong>Arrondissement :</strong> <%= balade["fields"]["arrondissement"] %></p>
+          <p><strong>Description :</strong> <%= balade["fields"]["texte_intro"] %></p>
+          <hr class="mt-5">
+        <% end %>
       </div>
     </div>
+    <%# --- ADMIN DASHBOARD --- %>
+    <% if current_user.status == "true" %>
+      <div class="tab-pane fade" id="decouvrir" role="tabpanel" aria-labelledby="decouvrir-tab">
+        <%# EPHAD %>
+        <div class="container">
+          <h2>Découvrir les établissements spécialisés à proximité</h2>
+          <div class="cards">
+            <% @ephad["records"].each do |ephad| %>
+              <div class="card-ephad ">
+                <img src="<%= "#{@image_url}#{ephad["fields"]["image"]["id"]}" %>" />
+                <div class="card-ephad-infos">
+                  <div>
+                    <h2><%= ephad["fields"]["nom_de_l_ehpad"] %></h2>
+                    <p><%= ephad["fields"]["adresse"] %></p>
+                    <p><%= ephad["fields"]["code_postal"] %></p>
+                    <p><%= ephad["fields"]["ville"] %></p>
+                  </div>
+                  <h2 class="card-ephad-pricing"><%= ephad["fields"]["telephone"] %></h2>
+                  <%# <gsimg src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-ephad-user avatar-bordered" /> %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
