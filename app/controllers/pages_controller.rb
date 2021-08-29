@@ -1,3 +1,6 @@
+require "json"
+require "open-uri"
+
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
@@ -11,6 +14,12 @@ class PagesController < ApplicationController
 
     @user_info = current_user
     @user_bookings = Booking.where(user: current_user)
+
+    #EPHAD
+    url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=liste-des-ehpad"
+    ephad_serialized = URI.open(url).read
+    @ephad = JSON.parse(ephad_serialized)
+    @image_url = "https://opendata.paris.fr/api/v2/catalog/datasets/liste-des-ehpad/files/"
   end
 
 end
