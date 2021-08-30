@@ -35,7 +35,7 @@
 
   <%# SESSIONS %>
   <p><i class="fas fa-calendar-alt"></i> Créneaux disponibles</p>
-  <%= simple_form_for [ @booking ] do |f| %>
+  <%= simple_form_for @booking do |f| %>
     <div class="d-flex" style="height: 40px;">
       <%# if @activity.sessions.select { |session| session.start_at >=  Date.today } %>
         <%= f.input :session_id,

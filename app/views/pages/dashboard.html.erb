@@ -2,53 +2,93 @@
 <div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <%# -- SENIOR DASHBOARD -- %>
+    <% if current_user.status == "senior" %>
     <li class="nav-item" role="presentation">
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mes activités</a>
     </li>
     <li class="nav-item" role="presentation">
       <a class="nav-link" id="balades-tab" data-toggle="tab" href="#balades" role="tab" aria-controls="balades" aria-selected="false">Mes balades</a>
     </li>
+    <% end %>
     <%# -- ADMIN DASHBOARD -- %>
     <% if current_user.status == "admin" %>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="decouvrir-tab" data-toggle="tab" href="#decouvrir" role="tab" aria-controls="decouvrir" aria-selected="false">Découvrir</a>
       </li>
     <% end %>
+    <%# -- TEACHER TABS-- %>
+    <% if current_user.status == "teacher" %>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mes activités</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="teacher-tab" data-toggle="tab" href="#cours" role="tab" aria-controls="cours" aria-selected="false">Mes cours passés</a>
+    </li>
+    <% end %>
   </ul>
   <div class="tab-content mt-3" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="container mt-4">
         <%# --- SENIOR DASHBOARD --- %>
-        <%# MY UPCOMING ATELIERS SECTION, CLICK TO JOIN SESSION%>
         <div class="row">
-          <div class="col-8">
-            <% @user_bookings.each do |booking| %>
-              <div class="card mb-3">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <h4 class="card-title text-center">prochain <br>
-                      atelier:</h4>
-                    <h4 class="card-text text-center"><strong><%= booking.session.start_at.strftime("%d")%> <%= @month[booking.session.start_at.month] %><br>
-                        <%= booking.session.start_at.strftime("%Y") %> <br>
-                        à <%= booking.session.start_at.strftime("%H")%>h<%= booking.session.start_at.strftime("%M") %></strong></h4>
-                    <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
-                      Rejoindre l'Atelier
-                    <% end %>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h4 class="card-title"><%= booking.session.activity.title %></h4>
-                      <p class="card-text"><%= truncate(booking.session.activity.description, :length => 80) %></p>
-                      <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
-                  booking_path(booking),
-                  method: :delete,
-                  data: { confirm: "Annuler?" } %>
+          <% if current_user.status == 'senior'%>
+            <div class="col-8">
+              <% @user_bookings.each do |booking| %>
+                <div class="card mb-3">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <h4 class="card-title text-center">prochain <br>
+                        atelier:</h4>
+                      <h4 class="card-text text-center"><strong><%= booking.session.start_at.strftime("%d")%> <%= @month[booking.session.start_at.month] %><br>
+                          <%= booking.session.start_at.strftime("%Y") %> <br>
+                          à <%= booking.session.start_at.strftime("%H")%>h<%= booking.session.start_at.strftime("%M") %></strong></h4>
+                      <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
+                        Rejoindre l'Atelier
+                      <% end %>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h4 class="card-title"><%= booking.session.activity.title %></h4>
+                        <p class="card-text"><%= truncate(booking.session.activity.description, :length => 80) %></p>
+                        <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
+                    booking_path(booking),
+                    method: :delete,
+                    data: { confirm: "Annuler?" } %>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
+          <%# ////// TEACHER DASHBOARD /////%>
+          <% if current_user.status == 'teacher'%>
+            <div class="col-8">
+              <h4>Mes Activités</h4>
+              <% @user_activities.each do |activity| %>
+                <div class="card mb-3">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <h4 class="card-text text-center"><strong><%= activity.title %> </strong></h4>
+                        <h5 class=><%= activity.duration %> minutes</h5>
+                      <%= link_to activity_path(activity), class: "btn btn-primary" do %>
+                        Modifier l'Atelier
+                      <% end %>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <p class="card-text"><%= truncate(activity.description, :length => 80) %></p>
+                        <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
+                    activity_path(activity),
+                    method: :delete,
+                    data: { confirm: "Annuler?" } %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
           <%# MY PROFILE SECTION %>
           <div class="col-4">
             <div class="card text-center" id="profile-card">
@@ -79,6 +119,45 @@
           <p><strong>Arrondissement :</strong> <%= balade["fields"]["arrondissement"] %></p>
           <p><strong>Description :</strong> <%= balade["fields"]["texte_intro"] %></p>
           <hr class="mt-5">
+        <% end %>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="cours" role="tabpanel" aria-labelledby="teacher-tab">
+    <%# ----TEACHER COURS PASSES TAB------ %>
+      <div class="container">
+        <h3>Mes Cours Passés</h3>
+        <% @user_activities.each do |activity| %>
+          <% if activity.sessions.select { |session| session.start_at <= Date.today }.each do |session| %>
+            <div class="card mb-3">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <h4 class="card-text text-left"><strong><%= activity.title %> </strong></h4>
+                      <h5 class="card-text text-left"><%= session.start_at.strftime("%d")%> <%= @month[session.start_at.month] %><br>
+                      <%= session.start_at.strftime("%Y") %> <br>
+                          à <%= session.start_at.strftime("%H")%>h<%= session.start_at.strftime("%M") %></h5>
+                  <%= link_to activity_path(activity), class: "btn btn-primary" do %>
+                    Modifier l'Atelier
+                  <% end %>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <%= form_for :booking_comment, url: add_comment_bookings_path, html: { method: :patch } do |f| %>
+                      <div class="d-flex" style="height: 40px;">
+                      <%# unless session.users.nil? %>
+                        <%= f.select :comment, session.users.map { |s| [s.first_name, s.id]}  %>
+                        <%= f.text_area :content %>
+                        <%= f.hidden_field :session_id, value: session.id %>
+                         <%# input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
+                            <%= f.submit "Soumettre", class: "btn btn-primary " %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>
