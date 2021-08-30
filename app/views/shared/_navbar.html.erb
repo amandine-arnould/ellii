@@ -9,10 +9,10 @@
   <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center justify-content-between">
       <% if user_signed_in? %>
-        <li style="margin-right: 40px;">
+        <li style="margin-right: 40px;", class="<%= 'active' if params[:action] == 'home' %>">
           <%= link_to "Choisir un atelier", root_path(anchor: "program") %>
         </li>
-        <li style="margin-right: 40px;">
+        <li style="margin-right: 40px;", class="<%= 'active' if params[:action] == 'dashboard' %>">
           <%= link_to "Mon tableau de bord", dashboard_path %>
         </li>
         <li style="margin-right: 40px;">

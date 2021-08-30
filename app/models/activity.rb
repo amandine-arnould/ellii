@@ -3,8 +3,8 @@ class Activity < ApplicationRecord
 
   LOCATION = { "Distanciel" => true, "Présentiel" => false }
   TYPE = ["Corps", "Esprit"]
-  ACTIVITIES_BODY = ["Yoga", "Danse"]
-  ACTIVITIES_MIND = ["Méditation", "Cours de cuisine"]
+  ACTIVITIES_BODY = ["Yoga", "Danse", "Badminton", "Renforcement musculaire", "Marche"]
+  ACTIVITIES_MIND = ["Méditation", "Cours de cuisine", "Calligraphie", "Echecs", "Maquillage", "Musique", "Peinture", "Photographie"]
   ACTIVITY_TITLES = ACTIVITIES_BODY.concat(ACTIVITIES_MIND)
   MIN_CHAR_DESCRIPTION = 250
 
