@@ -1,13 +1,19 @@
 .mood {
   text-align: center;
   margin: 22px auto 50px auto;
-  background-color: #EDE9FF;
+  background-color: white;
   padding: 22px 20px;
-  border-radius: 6px;
+  border-radius: 3px 210px 210px 220px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 
-  i {
-    color: #1D4668;
+  .smiley-mood {
+    width: 60px;
+  }
+
+  .description {
+    font-size: 17px;
+    margin-bottom: 0;
+    margin-top: 10px;
   }
 }
 
@@ -19,39 +25,14 @@
   .category-wrapper {
     display: flex;
     justify-content: space-between;
+    margin: auto;
     flex-wrap: wrap;
+    width: 90%;
   }
 
   .category-item {
-    flex: 0 0 0 0 20%;
-    background-color: white;
-    // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-    border-radius: 6px;
-    width: 120px;
-    transition: background-color 0.3s ease-in;
-
-    &:hover {
-      background-color: #4DB4D4;
-      // #frown {
-      //   color: #FF6161;
-      // }
-      // #meh {
-      //   color: #FF8F8F;
-      // }
-      // #smile {
-      //   color: #624CD4;
-      // }
-      // #smile-beam {
-      //   color: #4DB4D4;
-      // }
-      // #laugh-beam {
-      //   color: #2C88BF;
-      // }
-
-      i {
-        color: white;
-      }
-    }
+    // flex: 0 0 0 0 20%;
+    background-color: transparent;
   }
 
   .category-selector {
@@ -63,8 +44,16 @@
     display: block;
     cursor: pointer;
     width: 100%;
-    font-size: 80px;
     text-align: center;
+    padding: 12px 30px;
+    background-color: #EDE9FF;
+    border-radius: 6px;
+    transition: 0.3s ease-out;
+    &:hover {
+      background-color: #4DB4D4;
+      color: white;
+      transition: 0.3s ease-out;
+    }
   }
 
   // .category-selector:checked + label {
@@ -78,13 +67,10 @@
   #mood_score_5:checked + label {
     background-color: #4DB4D4;
     border-radius: 6px;
-  }
-
-  #mood_score_1:checked + label i,
-  #mood_score_2:checked + label i,
-  #mood_score_3:checked + label i,
-  #mood_score_4:checked + label i,
-  #mood_score_5:checked + label i {
     color: white;
   }
+}
+
+.mood .btn-font {
+  margin-top: 30px;
 }
