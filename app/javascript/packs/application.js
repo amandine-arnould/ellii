@@ -26,6 +26,7 @@ import { twilioInit } from "../plugins/twilio.js";
 import "controllers";
 import { initMapbox } from "../plugins/init_mapbox";
 import { initAutocomplete } from "../plugins/init_autocomplete";
+import "chartkick/chart.js"
 
 
 // Internal imports, e.g:

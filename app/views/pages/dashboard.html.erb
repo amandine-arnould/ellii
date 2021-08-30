@@ -109,4 +109,5 @@
       </div>
     <% end %>
   </div>
+  <%= line_chart Mood.group_by_day(:created_at).count %>
 </div>
