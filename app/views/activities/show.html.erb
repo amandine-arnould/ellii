@@ -37,12 +37,13 @@
   <p><i class="fas fa-calendar-alt"></i> Créneaux disponibles</p>
   <%= simple_form_for [ @booking ] do |f| %>
     <div class="d-flex" style="height: 40px;">
-      <%= f.input :session_id,
-                  collection: Session.where(activity_id: @activity),
+      <%# if @activity.sessions.select { |session| session.start_at >=  Date.today } %>
+        <%= f.input :session_id,
+                    collection: Session.where(activity_id: @activity).where("start_at >= ?", Date.today),
 
-                  prompt: "Choisir un créneau",
-                  label: false,
-                  input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
+                    prompt: "Choisir un créneau",
+                    label: false,
+                    input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
       <% if current_user.status == "teacher" %>
         <%= f.submit "Réserver", class: "btn btn-primary", disabled: true %>
       <% else %>
