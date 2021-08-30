@@ -5,16 +5,19 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <% if user_signed_in? %>
-    <div class="d-flex justify-content-between menu">
-      <%= link_to "Toutes les activités", activities_path %>
-      <%= link_to "Mon tableau de bord", dashboard_path %>
-      <%= link_to "Nous contacter", "#" %>
-    </div>
-  <% end %>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+  <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center justify-content-between">
       <% if user_signed_in? %>
+        <li style="margin-right: 40px;">
+          <%= link_to "Choisir un atelier", root_path(anchor: "program") %>
+        </li>
+        <li style="margin-right: 40px;">
+          <%= link_to "Mon tableau de bord", dashboard_path %>
+        </li>
+        <li style="margin-right: 40px;">
+          <%= link_to "Nous contacter", "#" %>
+        </li>
         <li class="nav-item active messages">
           <i class="far fa-envelope message-icon"></i>
           <p class="message-number">5</p>
