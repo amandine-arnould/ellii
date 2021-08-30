@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def show
     @session = Session.find(params[:id])
+    @message = Message.new
     authorize @session
     @token = generate_token(@session)
   end
