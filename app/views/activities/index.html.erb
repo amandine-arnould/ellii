@@ -1,25 +1,35 @@
-<div class="container mb-5 d-flex flex-column align-items-center">
+<div class="container mb-5 d-flex flex-column align-items-center activity-index">
   <% if @activities.empty? %>
     <h1 class="mt-5">Nous n'avons aucun atelier correspondant à votre recherche à vous proposer pour le moment...</h1>
   <% else %>
-    <h1 class="mt-5 mb-5 text-center">Nos ateliers
-      <strong class="tag">
-        <%if params[:search][:mind] == "true" %>
-          On apprend !
-        <% elsif params[:search][:mind] == "false" %>
-          On bouge !
-        <% end %>
-      </strong>
-      <strong class="tag">
-        <%if params[:search][:remote] == "true" %>
-          Chez moi
-        <%elsif params[:search][:remote] == "false" %>
-          A l'extérieur
-        <% end %>
-      </strong>
+    <h1 class="mt-5 mb-4 text-center">Nos ateliers
+      <% if params[:search][:mind]!=""%>
+        <strong class="tag" style="margin-right: 20px; margin-left: 20px;">
+          <%if params[:search][:mind] == "true" %>
+            On apprend !
+          <% elsif params[:search][:mind] == "false" %>
+            On bouge !
+          <% end %>
+        </strong>
+      <% end %>
+      <% if params[:search][:remote]!=""%>
+        <strong class="tag">
+          <%if params[:search][:remote] == "true" %>
+            Chez moi
+          <%elsif params[:search][:remote] == "false" %>
+            A l'extérieur
+          <% end %>
+        </strong>
+      <% end %>
     </h1>
-    <p><%= @activities.select { |activity| activity.sessions.any? { |session| session.start_at >= Date.today } }.count %> atelier(s) trouvés</p>
-		<div class ="cards-trip">
+    <p class="mb-5" style="font-size: 20px;"><%= @activities.select { |activity| activity.sessions.any? { |session| session.start_at >= Date.today } }.count %> atelier(s) trouvé(s)</p>
+    <div style = "width: 100%;">
+      <%= link_to "Retour vers la page d'accueil", root_path, class: "btn btn-secondary mb-3",
+          style: "border-radius: 4px; background-color: #9fb3b8; border: none; margin-left: 16px;"
+      %>
+    </div>
+
+    <div class ="cards-trip">
 			<% @activities.each do |activity| %>
         <% if activity.sessions.any? { |session| session.start_at >= Date.today } %>
 
@@ -48,5 +58,4 @@
 			<% end %>
 		</div>
   <% end %>
-  <%= link_to "Retour vers la page d'accueil", root_path, class: "btn btn-secondary mt-3" %>
 </div>
