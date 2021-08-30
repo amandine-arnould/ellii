@@ -1,22 +1,23 @@
 <div class="container mt-5 mb-5 senior-homepage">
   <%# GREETING %>
-  <div class="text-center mt-5 d-flex justify-content-between align-items-center" style="margin-bottom: 90px;">
+  <div class="mt-5 d-flex justify-content-between align-items-center" style="margin-bottom: 90px;">
     <div>
-      <h1 style="font-size: 68px; margin-bottom: 20px; color: #1D4668;">Bonjour</h1>
+      <h1 style="font-size: 35px; margin-bottom: 10px; color: #1D4668;">Ravis de vous revoir 👋,</h1>
       <h1 style="font-family: 'Kaisei HarunoUmi', serif; font-size: 68px; margin-bottom: 50px; color: #2C88BF;">
         <%= current_user.first_name %>
       </h1>
-      <p style="font-size: 25px;  ">Nous sommes ravis de vous revoir ! 👋</p>
+      <%= link_to "Voir mes activités", dashboard_path, class: "btn btn-primary btn-font", style: "margin-right: 20px;" %>
+      <%= link_to "Programmer", root_path(anchor: "program"), class: "btn btn-font", style: "color: #6447F9; border: #6447F9 solid 1px; padding-right: 35px; padding-left: 35px;" %>
     </div>
     <%= image_tag "illustrations/chess.png", style:"width: 550px;" %>
   </div>
 
   <%# MOOD %>
-  <h3 class="section-title "><i class="fas fa-angle-double-right"></i> Humeur du jour</h3>
   <% if current_user.moods.last.nil? || current_user.moods.last.created_at.day != Date.today.day %>
     <div class="mood" style="margin-bottom: 90px;">
-      <h2 class="text-center mb-2" style="color: #1D4668;">Comment allez-vous aujourd'hui ?</h2>
-      <p class="text-center mb-5">Choisissez votre humeur ci-dessous</p>
+      <h3 class="section-title ">Humeur du jour</h3>
+      <h2 class="text-center mb-2" style="color: #6447F9;">Comment allez-vous aujourd'hui ?</h2>
+      <p class="text-center mb-5" style="color: #797979;">Choisissez votre humeur ci-dessous</p>
       <%= simple_form_for @mood do |f| %>
         <%= f.input :score,
             as: :radio_buttons,
@@ -27,19 +28,23 @@
             label_method: lambda { |score| render 'mood_label', score: score },
             input_html: {class: 'category-selector'}
             %>
-        <%= f.button :submit, "Enregistrer mon humeur 🚀", class: "btn-primary btn-font" %>
+        <%= f.button :submit, "Enregistrer mon humeur", class: "btn-primary btn-font" %>
       <% end %>
     </div>
   <% else %>
-    <p>Votre humeur du jour a bien été enregistrée pour aujourd'hui, revenez nous voir demain pour nous dire comment vous vous sentez ! 🎭</p>
-    <%= image_tag "illustrations/mood.png", style:"width: 350px; display: block; margin: 10px auto 90px auto;" %>
+    <div class="mood" style="margin-bottom: 90px;">
+      <h3 class="section-title ">Humeur du jour</h3>
+      <p style="width: 80%; margin: auto;">Votre humeur du jour a bien été enregistrée pour aujourd'hui, revenez nous voir demain pour nous dire comment vous vous sentez !</p>
+      <%= image_tag "illustrations/mood.png", style:"width: 350px; display: block; margin: 30px auto 10px auto;" %>
+    </div>
   <% end %>
 
-  <h3 class="section-title "><i class="fas fa-angle-double-right"></i> Choix d'un atelier</h3>
-  <div class="text-center type-location-form">
+  <div class="text-center type-location-form"  id="program">
+  <h3 class="section-title">Choix d'un atelier</h3>
     <%= simple_form_for :search, url: activities_path, method: "GET"  do |f| %>
       <div class="choose-type">
-        <h2 class="text-center mb-5">Que fait-on aujourd'hui ?</h2>
+        <h2 class="text-center mb-2" style="color: #6447F9;">Que fait-on aujourd'hui ?</h2>
+        <p class="text-center mb-5" style="color: #797979;">Choisissez un type d'atelier</p>
         <%= f.input :mind,
             as: :radio_buttons,
             collection_wrapper_tag: 'div',
@@ -51,7 +56,8 @@
             legend_tag: false %>
       </div>
       <div class="choose-location">
-        <h2 class="text-center mb-5 mt-5">Plutôt chez vous ou à l'extérieur ?</h2>
+        <h2 class="text-center mb-2 mt-5" style="color: #6447F9;">Plutôt chez vous ou à l'extérieur ?</h2>
+        <p class="text-center mb-5" style="color: #797979;">Choisissez la localisation de l'atelier</p>
         <%= f.input :remote,
             as: :radio_buttons,
             collection_wrapper_tag: 'div',
@@ -62,7 +68,7 @@
             label_method: lambda { |remote| render 'location_label', remote: remote },
             legend_tag: false %>
       </div>
-      <%= f.button :submit, "Voir les ateliers 🧘", class: "btn-primary btn-font" %>
+      <%= f.button :submit, "Voir les ateliers 🧘", class: "btn-primary btn-font mt-4" %>
     <% end %>
   </div>
 </div>
