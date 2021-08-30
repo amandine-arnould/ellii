@@ -17,18 +17,17 @@
 }
 
 .navbar-lewagon .menu {
-  width: 65%;
+  // width: 65%;
 
   a {
     padding-top: 6px;
     padding-bottom: 6px;
     text-decoration: none;
-    color: $purple;
-    font-weight: 600;
+    color: #94a8b8;
     font-size: 17px;
 
     &:hover {
-      color: #1D4668;
+      color: $purple;
     }
   }
 }
