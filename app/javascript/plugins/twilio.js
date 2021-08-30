@@ -5,7 +5,6 @@ const twilioInit = () => {
   const yourVideo = document.querySelector(".remote-media-div");
   const video = document.getElementById("userVideo");
   const leaveBtn = document.getElementById("leave-btn");
-  const link = document.querySelector(".root-link");
   const Video = Twilio.Video;
   let videoRoom, localStream;
 
@@ -49,7 +48,6 @@ const twilioInit = () => {
       leaveBtn.addEventListener("click", () => {
         videoRoom.disconnect();
         console.log(`Disconnected from Room ${videoRoom.name}`);
-        link.click();
       });
 
       // MUTE AUDIO
