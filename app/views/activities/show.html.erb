@@ -1,67 +1,4 @@
-<div class="container mb-5 d-flex flex-column">
-  <h1 class="mt-5 mb-3 text-center"><%= @activity.title %> avec <%= @activity.user.first_name %></h1>
-
-  <%# EDIT AND DELETE ACTIVITY %>
-  <div class="d-flex justify-content-center mb-4">
-    <% if @activity.user == current_user %>
-      <% if current_user.status == "teacher" || current_user.status == "admin" %>
-        <%= link_to edit_activity_path(@activity) do %>
-          <i class="fas fa-pencil-alt mr-3"></i>
-        <% end %>
-        <%= link_to activity_path(@activity), method: :delete, data: { confirm: "Etes-vous sûr de vouloir supprimer #{@activity.title} ?"} do %>
-          <i class="far fa-trash-alt" style="color: red;"></i>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <p class="text-justify">
-    <i class="fas fa-quote-left"></i>
-    <%= @activity.description %>
-    <i class="fas fa-quote-right"></i>
-  </p>
-  <p>
-    <i class="fas fa-hourglass-half"></i>
-    <%= @activity.duration %> min
-  </p>
-  <p>
-    <i class="fas fa-map-marked-alt"></i>
-    <% if @activity.remote %>
-      Chez moi
-    <% else %>
-      <%= @activity.address %>
-    <% end %>
-  </p>
-
-  <%# SESSIONS %>
-  <p><i class="fas fa-calendar-alt"></i> Créneaux disponibles</p>
-  <%= simple_form_for @booking do |f| %>
-    <div class="d-flex" style="height: 40px;">
-      <%# if @activity.sessions.select { |session| session.start_at >=  Date.today } %>
-        <%= f.input :session_id,
-                    collection: Session.where(activity_id: @activity).where("start_at >= ?", Date.today),
-
-                    prompt: "Choisir un créneau",
-                    label: false,
-                    input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
-      <% if current_user.status == "teacher" %>
-        <%= f.submit "Réserver", class: "btn btn-primary", disabled: true %>
-      <% else %>
-          <%= f.submit "Réserver", class: "btn btn-primary " %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <%# MAP %>
-  <% if !@activity.remote %>
-    <div id="map"
-        class="mb-4 mt-3"
-        style="width: 100%; height: 400px; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.1);"
-        data-marker="<%= @marker.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-  <% end %>
-
+<div class="container mb-5 d-flex flex-column activity-show">
   <%# BACK TO RESULTS %>
   <div class="back-to-results">
     <%= simple_form_for :search, url: activities_path, method: :get do |f| %>
@@ -80,5 +17,71 @@
       <%= f.button :submit, "Retour aux activités", class: "btn btn-dark mt-3" %>
     <% end %>
   </div>
+  <div class="row mt-5 d-flex justify-content-between" style="background-color: white; border-radius: 40px;">
+    <div class="col-6">
+      <h1 class="mt-5 mb-3 text-left"><strong><%= @activity.title %></strong><br> avec <%= @activity.user.first_name.capitalize %></h1>
+      <%# EDIT AND DELETE ACTIVITY %>
+      <div class="d-flex justify-content-center mb-4">
+        <% if @activity.user == current_user %>
+          <% if current_user.status == "teacher" || current_user.status == "admin" %>
+            <%= link_to edit_activity_path(@activity) do %>
+              <i class="fas fa-pencil-alt mr-3"></i>
+            <% end %>
+            <%= link_to activity_path(@activity), method: :delete, data: { confirm: "Etes-vous sûr de vouloir supprimer #{@activity.title} ?"} do %>
+              <i class="far fa-trash-alt" style="color: red;"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
 
+      <p>
+        <i class="fas fa-hourglass-half"></i>
+        <%= @activity.duration %> min
+      </p>
+      <p>
+        <i class="fas fa-map-marked-alt"></i>
+        <% if @activity.remote %>
+          Chez moi
+        <% else %>
+          <%= @activity.address %>
+        <% end %>
+      </p>
+      <p><i class="fas fa-calendar-alt"></i> Créneaux disponibles</p>
+      <%= simple_form_for @booking do |f| %>
+        <div class="d-flex" style="height: 40px;">
+          <%# if @activity.sessions.select { |session| session.start_at >=  Date.today } %>
+            <%= f.input :session_id,
+                        collection: Session.where(activity_id: @activity).where("start_at >= ?", Date.today),
+
+                        prompt: "Choisir un créneau",
+                        label: false,
+                        input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
+          <% if current_user.status == "teacher" %>
+            <%= f.submit "Réserver", class: "btn btn-primary", disabled: true %>
+          <% else %>
+              <%= f.submit "Réserver", class: "btn btn-primary " %>
+          <% end %>
+        </div>
+      <% end %>
+      <p class="section-title mt-3"><i class="fas fa-user mr-2"></i><%= @activity.max_participants %> places restantes</p>
+      <p class="text-justify mt-5">
+        <i class="fas fa-quote-left"></i>
+        <%= @activity.description %>
+        <i class="fas fa-quote-right"></i>
+      </p>
+
+      <%# SESSIONS %>
+    </div>
+    <%# MAP %>
+    <div class="col-6 p-0">
+      <% if !@activity.remote %>
+        <div id="map"
+            style="height: 100%; border-top-right-radius: 40px; border-bottom-right-radius: 40px;"
+            data-marker="<%= @marker.to_json %>"
+            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      <% end %>
+
+    </div>
+  </div>
 </div>
