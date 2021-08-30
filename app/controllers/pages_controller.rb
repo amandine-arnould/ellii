@@ -14,6 +14,7 @@ class PagesController < ApplicationController
 
     @user_info = current_user
     @user_bookings = Booking.where(user: current_user)
+    @user_activities = Activity.where(user: current_user)
 
     # BALADES
     url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=paris-autrement-balades-dans-les-arrondissements-peripheriques-parcours"
