@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_27_100925) do
+ActiveRecord::Schema.define(version: 2021_08_30_101250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,30 @@ ActiveRecord::Schema.define(version: 2021_08_27_100925) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "interests", force: :cascade do |t|
+    t.string "category"
+    t.string "name"
+    t.string "description"
+    t.string "address"
+    t.string "why"
+    t.string "when"
+    t.string "keywords"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_interests_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "session_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["session_id"], name: "index_messages_on_session_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "moods", force: :cascade do |t|
     t.integer "score"
     t.bigint "user_id", null: false
@@ -94,6 +118,15 @@ ActiveRecord::Schema.define(version: 2021_08_27_100925) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["activity_id"], name: "index_sessions_on_activity_id"
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "interest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
+    t.index ["user_id"], name: "index_user_interests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -118,6 +151,11 @@ ActiveRecord::Schema.define(version: 2021_08_27_100925) do
   add_foreign_key "activities", "users"
   add_foreign_key "bookings", "sessions"
   add_foreign_key "bookings", "users"
+  add_foreign_key "interests", "users"
+  add_foreign_key "messages", "sessions"
+  add_foreign_key "messages", "users"
   add_foreign_key "moods", "users"
   add_foreign_key "sessions", "activities"
+  add_foreign_key "user_interests", "interests"
+  add_foreign_key "user_interests", "users"
 end

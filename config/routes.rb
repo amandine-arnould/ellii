@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:create, :index, :destroy, :show]
   resources :sessions, only: [:show, :edit, :update, :destroy], as: :activity_session do
+    resources :messages, only: :create
     member do
       get :start, :end
     end

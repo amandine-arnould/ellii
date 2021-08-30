@@ -2,6 +2,7 @@ class Session < ApplicationRecord
   belongs_to :activity
   has_many :bookings
   has_many :users, through: :bookings
+  has_many :messages
   validates :start_at, presence: true
 
   after_create :set_session_name
