@@ -1,46 +1,113 @@
 <%# CONTAINER WITH MARGIN FOR SPACE FROM NAV-BAR %>
-<div class="container mt-4">
-  <%# SENIOR DASHBOARD %>
-  <%# MY UPCOMING ATELIERS SECTION, CLICK TO JOIN SESSION%>
-  <div class="row">
-    <div class="col-8">
-      <% @user_bookings.each do |booking| %>
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <h4 class="card-title text-center">prochain <br> atelier:</h4>
-              <h4 class="card-text text-center"><strong><%=booking.session.start_at.strftime("%B %d, %Y %H")%> h</strong></h4>
-              <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
-                Rejoindre l'Atelier
-              <% end %>
+<div class="container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <%# -- SENIOR DASHBOARD -- %>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mes activités</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="balades-tab" data-toggle="tab" href="#balades" role="tab" aria-controls="balades" aria-selected="false">Mes balades</a>
+    </li>
+    <%# -- ADMIN DASHBOARD -- %>
+    <% if current_user.status == "admin" %>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="decouvrir-tab" data-toggle="tab" href="#decouvrir" role="tab" aria-controls="decouvrir" aria-selected="false">Découvrir</a>
+      </li>
+    <% end %>
+  </ul>
+  <div class="tab-content mt-3" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="container mt-4">
+        <%# --- SENIOR DASHBOARD --- %>
+        <%# MY UPCOMING ATELIERS SECTION, CLICK TO JOIN SESSION%>
+        <div class="row">
+          <div class="col-8">
+            <% @user_bookings.each do |booking| %>
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <h4 class="card-title text-center">prochain <br>
+                      atelier:</h4>
+                    <h4 class="card-text text-center"><strong><%= booking.session.start_at.strftime("%d")%> <%= @month[booking.session.start_at.month] %><br>
+                        <%= booking.session.start_at.strftime("%Y") %> <br>
+                        à <%= booking.session.start_at.strftime("%H")%>h<%= booking.session.start_at.strftime("%M") %></strong></h4>
+                    <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
+                      Rejoindre l'Atelier
+                    <% end %>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title"><%= booking.session.activity.title %></h4>
+                      <p class="card-text"><%= truncate(booking.session.activity.description, :length => 80) %></p>
+                      <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
+                  booking_path(booking),
+                  method: :delete,
+                  data: { confirm: "Annuler?" } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h4 class="card-title"><%= booking.session.activity.title %></h4>
-              <p class="card-text"><%= truncate(booking.session.activity.description, :length => 80) %></p>
-                <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
-                booking_path(booking),
-                method: :delete,
-                data: { confirm: "Annuler?" } %>
+          <%# MY PROFILE SECTION %>
+          <div class="col-4">
+            <div class="card text-center" id="profile-card">
+              <i class="far fa-user" style="font-size: 100px;"></i>
+              <div class="card-body">
+                <h5 class="card-title"><%= current_user.first_name %> <%= current_user.last_name %></h5>
+                <p class="card-text"><%= current_user.email %></p>
+                <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
+                  <i class="fas fa-user-edit"></i> Modifier mon profil
+                <% end %>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
-
-    <%# MY PROFILE SECTION %>
-    <div class="col-4">
-      <div class="card text-center" id="profile-card">
-        <i class="far fa-user" style="font-size: 100px;"></i>
-        <div class="card-body">
-          <h5 class="card-title"><%= current_user.first_name %> <%= current_user.last_name %></h5>
-          <p class="card-text"><%= current_user.email %></p>
-          <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
-            <i class="fas fa-user-edit"></i> Modifier mon profil
-          <% end %>
+          <%# ALL ATELIERS %>
         </div>
       </div>
     </div>
-    <%# ALL ATELIERS %>
+    <div class="tab-pane fade" id="balades" role="tabpanel" aria-labelledby="balades-tab">
+      <%# BALADES %>
+      <div class="container">
+        <h3>Paris autrement : balades dans les arrondissements</h3>
+        <% @balades["records"].each do |balade| %>
+          <h4 class="mt-5"><%= balade["fields"]["titre_balade"].split.map(&:capitalize).join(' ') %></h4>
+          <p><strong>Mots clés :</strong> <%= balade["fields"]["mot_cle"].gsub(";", ", ") %></p>
+          <p><strong>Pour qui :</strong> <%= balade["fields"]["pour_qui"] %></p>
+          <p><strong>Quand :</strong> <%= balade["fields"]["quand"] %></p>
+          <p><strong>Pourquoi :</strong> <%= balade["fields"]["pourquoi"] %></p>
+          <p><strong>Arrondissement :</strong> <%= balade["fields"]["arrondissement"] %></p>
+          <p><strong>Description :</strong> <%= balade["fields"]["texte_intro"] %></p>
+          <hr class="mt-5">
+        <% end %>
+      </div>
+    </div>
+    <%# --- ADMIN DASHBOARD --- %>
+    <% if current_user.status == "true" %>
+      <div class="tab-pane fade" id="decouvrir" role="tabpanel" aria-labelledby="decouvrir-tab">
+        <%# EPHAD %>
+        <div class="container">
+          <h2>Découvrir les établissements spécialisés à proximité</h2>
+          <div class="cards">
+            <% @ephad["records"].each do |ephad| %>
+              <div class="card-ephad ">
+                <img src="<%= "#{@image_url}#{ephad["fields"]["image"]["id"]}" %>" />
+                <div class="card-ephad-infos">
+                  <div>
+                    <h2><%= ephad["fields"]["nom_de_l_ehpad"] %></h2>
+                    <p><%= ephad["fields"]["adresse"] %></p>
+                    <p><%= ephad["fields"]["code_postal"] %></p>
+                    <p><%= ephad["fields"]["ville"] %></p>
+                  </div>
+                  <h2 class="card-ephad-pricing"><%= ephad["fields"]["telephone"] %></h2>
+                  <%# <gsimg src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-ephad-user avatar-bordered" /> %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
+  <%= line_chart Mood.group_by_day(:created_at).count %>
+</div>

@@ -1,5 +1,5 @@
 <div class="container mb-5 d-flex flex-column align-items-center">
-  <% if @activities[0].nil? %>
+  <% if @activities.empty? %>
     <h1 class="mt-5">Nous n'avons aucune activité à vous proposer pour le moment...</h1>
   <% else %>
     <h1 class="mt-5 mb-5 text-center">Liste des activités</h1>
@@ -16,8 +16,19 @@
             <img class="card-img" src="https://cdn.dribbble.com/users/6024852/screenshots/15977513/media/8dbb9a5e197a208e6bce93d2660fc5bf.jpeg?compress=1&resize=1600x1200" alt="">
           <% end %>
           <div class="d-flex flex-column justify-content-between w-100">
-						<h3 class="card-title text-left"><%= activity.title %></h3>
-            <div class="d-flex justify-content-end">
+						<h3 class="card-title text-left">
+              <%= activity.title %>
+            </h3>
+            <p>
+              <i class="fas fa-quote-left"></i>
+              <%= truncate(activity.description, :length => 80) %>
+              <i class="fas fa-quote-right"></i>
+            </p>
+            <div class="d-flex justify-content-between">
+            <p>
+              <i class="fas fa-hourglass-half"></i>
+              <%= activity.duration %> min
+            </p>
 						  <%= link_to "En savoir plus", activity_path(activity), class: "btn btn-primary text-center mt-auto"%>
             </div>
           </div>
