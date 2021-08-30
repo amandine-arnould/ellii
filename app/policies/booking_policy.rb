@@ -24,4 +24,8 @@ class BookingPolicy < ApplicationPolicy
   def destroy?
     user.status == "admin" || user.status == "senior"  || user.status == "relative"
   end
+
+  def add_comment?
+    user.status == "admin" || record.session.activity.user == user
+  end
 end

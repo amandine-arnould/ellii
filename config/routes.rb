@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :bookings, only: [:new]
     end
   end
-  resources :bookings, only: [:create, :index, :destroy, :show]
+  resources :bookings, only: [:create, :index, :destroy, :show] do
+    patch :add_comment, on: :collection
+  end
   resources :sessions, only: [:show, :edit, :update, :destroy], as: :activity_session
 end

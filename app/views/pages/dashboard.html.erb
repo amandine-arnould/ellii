@@ -142,11 +142,16 @@
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <p class="card-text"><%= truncate(activity.description, :length => 80) %></p>
-                    <%= link_to 'Signaler',
-                activity_path(activity),
-                method: :delete,
-                data: { confirm: "Annuler?" } %>
+                    <%= form_for :booking_comment, url: add_comment_bookings_path, html: { method: :patch } do |f| %>
+                      <div class="d-flex" style="height: 40px;">
+                      <%# unless session.users.nil? %>
+                        <%= f.select :comment, session.users.map { |s| [s.first_name, s.id]}  %>
+                        <%= f.text_area :content %>
+                        <%= f.hidden_field :session_id, value: session.id %>
+                         <%# input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
+                            <%= f.submit "Soumettre", class: "btn btn-primary " %>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>

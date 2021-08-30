@@ -35,7 +35,7 @@
 
   <%# SESSIONS %>
   <p><i class="fas fa-calendar-alt"></i> Créneaux disponibles</p>
-  <%= simple_form_for [ @booking ] do |f| %>
+  <%= simple_form_for @booking do |f| %>
     <div class="d-flex" style="height: 40px;">
       <%= f.input :session_id,
                   collection: Session.where(activity_id: @activity),
