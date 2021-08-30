@@ -39,6 +39,9 @@ gem 'pundit'
 gem 'geocoder'
 gem "abyme"
 gem "twilio-ruby"
+# Chart gems
+gem "chartkick"
+gem 'groupdate'
 
 # Active admin
 gem "activeadmin", github: "activeadmin/activeadmin"
