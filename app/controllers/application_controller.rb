@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  #helpers setup
+  def default_url_options
+    { host: ENV["www.ellii.net"] || "localhost:3000" }
+  end
+
   private
 
   def configure_permitted_parameters
