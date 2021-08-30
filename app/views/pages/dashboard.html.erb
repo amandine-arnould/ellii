@@ -188,4 +188,13 @@
       </div>
     <% end %>
   </div>
+  <% if !current_user.moods.last.nil? %>
+    <%= line_chart current_user.moods.group_by_day(:created_at, format: "%a %e %b").maximum(:score),
+      xtitle: "Jours",
+      ytitle: "Humeurs",
+      colors: ["#6447F9", "#6447F9"],
+      discrete: true,
+      ymin: 1,
+      ymax: 5 %>
+  <% end %>
 </div>

@@ -1,42 +1,58 @@
-<div class="container mt-5">
-  <div
+<div class="container mt-5 text-center">
+  <% if Time.now - 10 < @session.start_at %>
+    <%#  if false %>
+    <p>La session n'a pas encore débutée!</p>
+    <p>Veuillez patienter...</p>
+    <div id="countdown" data-timer="<%= @session.start_at %>">
+      <ul>
+        <li><span id="days"></span>Jours</li>
+        <li><span id="hours"></span>Heures</li>
+        <li><span id="minutes"></span>Minutes</li>
+        <li><span id="seconds"></span>Secondes</li>
+      </ul>
+    </div>
+    <div id="join-session">
+      <%= link_to activity_session_path(@session), class: "btn btn-primary" do %>
+        <i class="fas fa-video"></i> Rejoindre ma session
+      <% end %>
+    </div>
+  <% elsif Time.now > @session.start_at + 120 %>
+    <p><i class="fas fa-video-slash"></i> Cette session est terminée!</p>
+    <%= link_to root_path, class: "btn btn-primary" do %>
+        <i class="fas fa-paper-plane"></i> Retour à la page d'accueil
+      <% end %>
+  <% else %>
+    <div
     class="twilio-video"
     data-sid="<%= ENV["ACCOUNT_SID"] %>"
     data-room="<%= @session.id %>"
     data-token="<%= @token %>"
     data-status="<%= current_user.status %>"
     >
-    <div class="row justify-content-between">
-      <div class="col-7">
-        <div class="participant text-center">
+      <div class="row justify-content-between">
+        <div class="col-7">
+          <div class="participant text-center">
+          </div>
         </div>
-      </div>
-      <div class="col-4">
-        <div class="remote-media-div text-center">
-          <div style="position: relative;background: black; overflow: hidden; border-radius: 6px;">
-            <video id="userVideo" autoplay muted="true" ></video>
-          </div>
-          <div class="btn-group mt-3">
-            <button style="width: 40px;" id="muteAudio" class="btn btn-outline-secondary btn-sm"><i class="fas fa-microphone-alt-slash"></i></button>
-            <button style="width: 40px;" id="unmuteAudio" class="btn btn-outline-secondary btn-sm"><i class="fas fa-microphone-alt"></i></button>
-          </div>
-          <div class="btn-group mt-3">
-            <button style="width: 40px;" id="muteVideo" class="btn btn-outline-secondary btn-sm"><i class="fas fa-video-slash"></i></button>
-            <button style="width: 40px;" id="unmuteVideo" class="btn btn-outline-secondary btn-sm"><i class="fas fa-video"></i></button>
-          </div>
-          <div class="btn-group mt-3">
-            <button id='leave-btn' class='btn btn-outline-primary btn-sm'>Quitter l'activité</button>
+        <div class="col-4">
+          <div class="remote-media-div text-center">
+            <div style="position: relative;background: black; overflow: hidden; border-radius: 6px;">
+              <video id="userVideo" autoplay muted="true" ></video>
+            </div>
+            <div class="btn-group mt-3">
+              <button style="width: 40px;" id="muteAudio" class="btn btn-outline-secondary btn-sm"><i class="fas fa-microphone-alt-slash"></i></button>
+              <button style="width: 40px;" id="unmuteAudio" class="btn btn-outline-secondary btn-sm"><i class="fas fa-microphone-alt"></i></button>
+            </div>
+            <div class="btn-group mt-3">
+              <button style="width: 40px;" id="muteVideo" class="btn btn-outline-secondary btn-sm"><i class="fas fa-video-slash"></i></button>
+              <button style="width: 40px;" id="unmuteVideo" class="btn btn-outline-secondary btn-sm"><i class="fas fa-video"></i></button>
+            </div>
+            <div class="btn-group mt-3">
+              <button id='leave-btn' class='btn btn-outline-primary btn-sm'>Quitter l'activité</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <%# <div class="row">
-      <div class="col-7">
-        <p class="text-center"> %>
-    <%#= @booking.user == current_user ? @booking.proposal.proposer.email : @booking.booker.email %>
-    <%# </p>
-      </div>
-    </div> %>
-    <%#= link_to '', root_path, class: 'd-none root-link', data: {turbolinks: false}  %>
-  </div>
+  <% end %>
 </div>
