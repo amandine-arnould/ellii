@@ -30,7 +30,7 @@
     data-status="<%= current_user.status %>"
     >
       <div class="row justify-content-between">
-        <div class="col-7">
+        <div class="col-8">
           <div class="participant text-center">
           </div>
         </div>
@@ -51,16 +51,18 @@
               <button id='leave-btn' class='btn btn-outline-primary btn-sm'>Quitter l'activité</button>
             </div>
           </div>
+          <div class="container mt-3">
+            <div id="messages" data-session-id="<%= @session.id %>">
+              <%# @session.messages.each do |message| %>
+                <%#= render "messages/message", message: message %>
+                <%# end %>
+                <%= render @session.messages %>
+              </div>
+              <%= render "messages/form", session: @session, message: @message %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div id="messages mt-3" data-session-id="<%= @session.id %>">
-      <% @session.messages.each do |message| %>
-        <% render "../messages/message" %>
-      <% end %>
-    </div>
-    <%= simple_form_for [ @session, @message ], url: activity_session_messages_path(@session), remote: true do |f| %>
-      <%= f.input :content, label: false, placeholder: "Tapez votre message ici :" %>
-    <% end %>
   <% end %>
 </div>
