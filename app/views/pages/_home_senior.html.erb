@@ -13,7 +13,7 @@
 
   <%# MOOD %>
   <h3 class="section-title "><i class="fas fa-angle-double-right"></i> Humeur du jour</h3>
-  <% if current_user.moods.last.created_at.day != Date.today.day %>
+  <% if current_user.moods.last.nil? || current_user.moods.last.created_at.day != Date.today.day %>
     <div class="mood" style="margin-bottom: 90px;">
       <h2 class="text-center mb-2" style="color: #1D4668;">Comment allez-vous aujourd'hui ?</h2>
       <p class="text-center mb-5">Choisissez votre humeur ci-dessous</p>
