@@ -52,19 +52,22 @@
             </div>
           </div>
 
-          <div class="container mt-3 full-height chat">
+          <div class="container mt-5 full-height chat">
             <h2><i class="fab fa-slack-hash left-icon"></i> Espace de discussion</h2>
 
-            <div id="messages" data-session-id="<%= @session.id %>" style="width: 100%;">
+            <div style="width: 100%;">
               <%# @session.messages.each do |message| %>
                 <%#= render "messages/message", message: message %>
                 <%# end %>
-              <div class="chat-messages">
+              <div id="messages" data-session-id="<%= @session.id %>" class="chat-messages">
                 <%= render @session.messages %>
               </div>
 
               <div class="new-message">
-                <%= render "messages/form", session: @session, message: @message %>
+                <div data-controller="message-form">
+
+                  <%= render "messages/form", session: @session, message: @message %>
+                </div>
               </div>
             </div>
           </div>

@@ -1,11 +1,13 @@
-<div data-controller="message-form", class="new-message d-flex", style="display: flex;">
   <%= simple_form_for [ session, message ],
                       url: activity_session_messages_path(session),
                       data: {
                         message_form_target: 'form',
                         action: 'submit->message-form#send'
                         } do |f| %>
-    <%= f.input :content, label: false, placeholder: "Tapez votre message ici :", class: "new-message-txt" %>
-    <%= f.button :submit, "Envoyer", class: "btn-primary btn-font btn-send" %>
+    <%= f.input :content,
+          label: false,
+          placeholder: "Entrer votre message ici",
+          class: "new-message-txt",
+          input_html: {style: "margin-right: 10px;"} %>
+    <%= f.button :submit, "Envoyer", class: "btn-primary btn-font btn-send chat-submit" %>
   <% end %>
-</div>

@@ -1,5 +1,9 @@
 .full-height {
-  height: 500px;
+  height: 510px;
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 35px;
+  width: 100%;
 }
 
 .chat {
@@ -8,6 +12,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
 
   h2 {
@@ -16,6 +21,7 @@
     border-bottom: #f0f0f0 solid 1px;
     margin: 0%;
     width: 100%;
+    padding-bottom: 10px;
 
     i {
       font-size: 20px;
@@ -26,15 +32,17 @@
 .chat {
 
   .chat-messages {
-    margin-top: 16px;
-    overflow: scroll;
-    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 370px;
     width: 100%;
   }
 
   .message {
     display: flex;
     align-items: flex-start;
+    border-bottom: #f0f0f0 solid 1px;
+    padding: 10px 0px;
   }
 
   .message-txt {
@@ -52,50 +60,39 @@
   .message-txt h3 {
     font-size: 16px;
     padding-bottom: 2px;
-  }
+    color: $purple;
 
-  .message-txt p {
-    padding-bottom: 16px;
-  }
-
-  .message-txt em {
-    font-style: normal;
-    color: #E93E8C;
-    font-size: 15px;
-    font-family: 'Space Mono', monospace;
+    small {
+      color: #1d4668;
+      padding-left: 3px;
+    }
   }
 
   .new-message {
-    padding: 10px 0px;
-    display: flex;
+    padding: 20px 0px 10px 0px;
+    //display: flex;
     width: 100%;
   }
 
-  .new-message input {
-    flex-grow: 1;
-    margin-right: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #f0f0f0;
+  .new-message form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .new-message input:focus {
-    border: solid 3px #bbadba;
-    box-shadow: none;
-    outline: none;
+  .new-message input {
+    padding: 5px 0 5px 15px;
+    border-radius: 35px;
+    border: 1px solid #f0f0f0;
   }
 
   .new-message .btn-send {
     border: none;
-    width: 100px;
-    border-radius: 4px;
+    border-radius: 20px;
+    height: fit-content;
+    padding: 5px 20px;
   }
-
-  .new-message .btn-send:hover {
-    background-color: #4A3949;
-    color: white;
-  }
-
 
   .avatar {
     width: 40px;
@@ -103,6 +100,12 @@
     object-fit: cover;
     object-position: center;
     border-radius: 4px;
+  }
+
+  .message_content {
+    flex-grow: 1;
+    margin-bottom: 0;
+    margin-right: 10px;
   }
 
 }
