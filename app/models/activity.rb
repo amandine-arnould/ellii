@@ -13,6 +13,7 @@ class Activity < ApplicationRecord
 
   belongs_to :user
   has_many :sessions, dependent: :destroy
+  has_many :bookings, through: :sessions
   abymize :sessions, permit: :all_attributes
 
   validates :title, presence: true

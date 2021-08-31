@@ -10,14 +10,17 @@ Rails.application.routes.draw do
       resources :bookings, only: [:new]
     end
   end
+
   resources :bookings, only: [:create, :index, :destroy, :show, :update] do
     patch :add_comment, on: :collection
     patch :add_score, on: :member
   end
+
   resources :sessions, only: [:show, :edit, :update, :destroy], as: :activity_session do
     resources :messages, only: :create
     member do
       get :start, :end
+      get :slots, to: 'sessions#slots'
     end
   end
 end
