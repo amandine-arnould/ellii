@@ -1,5 +1,9 @@
 .footer {
   height: 120px;
+
+  p {
+    color: $purple;
+  }
 }
 
 .footer .socials {
@@ -19,7 +23,7 @@
 
 .footer .social-icon {
   color: $purple;
-  font-size: 50px;
+  font-size: 28px;
   margin-right: 20px;
   margin-left: 20px;
 }
