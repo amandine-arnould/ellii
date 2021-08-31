@@ -27,6 +27,7 @@ import "controllers";
 import { initMapbox } from "../plugins/init_mapbox";
 import { initAutocomplete } from "../plugins/init_autocomplete";
 import { initializeClock } from "../components/timer";
+import { initSessionCable } from "../channels/session_channel";
 import "chartkick/chart.js"
 
 // Internal imports, e.g:
@@ -40,6 +41,7 @@ document.addEventListener("turbolinks:load", () => {
   triggerActivityAddress();
   initAutocomplete();
   initMapbox();
+  initSessionCable();
   if (document.querySelector(".twilio-video")) {
     twilioInit();
   }

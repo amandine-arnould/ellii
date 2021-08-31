@@ -1,4 +1,10 @@
 <div class="container mb-5 d-flex flex-column activity-show">
+
+  <%# HTML SETUP - VIEWS FOR META %>
+  <% content_for :meta_title, "#{@activity.title} is on #{DEFAULT_META["meta_product_name"]}" %>
+  <% content_for :meta_description, @activity.description %>
+  <%# content_for :meta_image, cl_image_path(@activity.photo.path) %>
+
   <%# BACK TO RESULTS %>
   <div class="back-to-results">
     <%= simple_form_for :search, url: activities_path, method: :get do |f| %>

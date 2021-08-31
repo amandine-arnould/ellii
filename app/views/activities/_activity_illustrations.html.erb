@@ -1,0 +1,27 @@
+<% if activity.title.downcase == "yoga" %>
+  <%= image_path "illustrations/yoga.png", class:"card-img" %>
+<% elsif activity.title.downcase == "méditation" %>
+  <%= image_path "illustrations/meditation.png", class:"card-img" %>
+<% elsif activity.title.downcase == "danse" %>
+  <%= image_path "illustrations/dance.png", class:"card-img" %>
+<% elsif activity.title.downcase == "cours de cuisine" %>
+  <%= image_path "illustrations/cooking.png", class:"card-img" %>
+<% elsif activity.title.downcase == "calligraphie" %>
+  <%= image_path "illustrations/calligraphy.png", class:"card-img" %>
+<% elsif activity.title.downcase == "badminton" %>
+  <%= image_path "illustrations/badminton.png", class:"card-img" %>
+<% elsif activity.title.downcase == "renforcement musculaire" %>
+  <%= image_path "illustrations/musculation.png", class:"card-img" %>
+<% elsif activity.title.downcase == "marche" %>
+  <%= image_path "illustrations/running.png", class:"card-img" %>
+<% elsif activity.title.downcase == "echecs" %>
+  <%= image_path "illustrations/chess.png", class:"card-img" %>
+<% elsif activity.title.downcase == "maquillage" %>
+  <%= image_path "illustrations/makeup.png", class:"card-img" %>
+<% elsif activity.title.downcase == "musique" %>
+  <%= image_path "illustrations/music.png", class:"card-img" %>
+<% elsif activity.title.downcase == "peinture" %>
+  <%= image_path "illustrations/painting.png", class:"card-img" %>
+<% elsif activity.title.downcase == "photographie" %>
+  <%= image_path "illustrations/photography.png", class:"card-img" %>
+<% end %>

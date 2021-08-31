@@ -1,42 +1,61 @@
-<div class="container mb-5 d-flex flex-column align-items-center">
+<div class="container mb-5 d-flex flex-column align-items-center activity-index">
   <% if @activities.empty? %>
-    <h1 class="mt-5">Nous n'avons aucune activité à vous proposer pour le moment...</h1>
+    <h1 class="mt-5">Nous n'avons aucun atelier correspondant à votre recherche à vous proposer pour le moment...</h1>
   <% else %>
-    <h1 class="mt-5 mb-5 text-center">Liste des activités</h1>
-		<div class ="d-flex flex-column">
+    <h1 class="mt-5 mb-4 text-center">Nos ateliers
+      <% if params[:search][:mind]!=""%>
+        <strong class="tag" style="margin-right: 20px; margin-left: 20px;">
+          <%if params[:search][:mind] == "true" %>
+            On apprend !
+          <% elsif params[:search][:mind] == "false" %>
+            On bouge !
+          <% end %>
+        </strong>
+      <% end %>
+      <% if params[:search][:remote]!=""%>
+        <strong class="tag">
+          <%if params[:search][:remote] == "true" %>
+            Chez moi
+          <%elsif params[:search][:remote] == "false" %>
+            A l'extérieur
+          <% end %>
+        </strong>
+      <% end %>
+    </h1>
+    <p class="mb-5" style="font-size: 20px;"><%= @activities.select { |activity| activity.sessions.any? { |session| session.start_at >= Date.today } }.count %> atelier(s) trouvé(s)</p>
+    <div style = "width: 100%;">
+      <%= link_to "Retour vers la page d'accueil", root_path, class: "btn btn-secondary mb-3",
+          style: "border-radius: 4px; background-color: #9fb3b8; border: none; margin-left: 16px;"
+      %>
+    </div>
+
+    <div class ="cards-trip">
 			<% @activities.each do |activity| %>
         <% if activity.sessions.any? { |session| session.start_at >= Date.today } %>
-          <div class="card-index-activity d-flex mb-4">
-            <% if activity.title.downcase == "yoga" %>
-              <img class="card-img" src="https://cdn.dribbble.com/users/6024852/screenshots/15593756/media/365eb82411fe7529743dafd0ba2de79d.jpg?compress=1&resize=1600x1200" alt="">
-            <% elsif activity.title.downcase == "méditation" %>
-              <img class="card-img" src="https://cdn.dribbble.com/users/6024852/screenshots/15565023/media/987b29bd5f82a841142900ff698e0cc3.jpg?compress=1&resize=1600x1200" alt="">
-            <% elsif activity.title.downcase == "danse" %>
-              <img class="card-img" src="https://cdn.dribbble.com/users/466099/screenshots/10543884/media/1ececd66a2fcfb19f4b6fc2e3820a306.png?compress=1&resize=1600x1200" alt="">
-            <% elsif activity.title.downcase == "cours de cuisine" %>
-              <img class="card-img" src="https://cdn.dribbble.com/users/6024852/screenshots/15977513/media/8dbb9a5e197a208e6bce93d2660fc5bf.jpeg?compress=1&resize=1600x1200" alt="">
-            <% end %>
-            <div class="d-flex flex-column justify-content-between w-100">
-              <h3 class="card-title text-left">
-                <%= activity.title %>
-              </h3>
-              <p>
-                <i class="fas fa-quote-left"></i>
-                <%= truncate(activity.description, :length => 80) %>
-                <i class="fas fa-quote-right"></i>
-              </p>
-              <div class="d-flex justify-content-between">
-              <p>
-                <i class="fas fa-hourglass-half"></i>
-                <%= activity.duration %> min
-              </p>
-                <%= link_to "En savoir plus", activity_path(activity), class: "btn btn-primary text-center mt-auto"%>
+
+          <div class="card-trip">
+            <div style="background-color: rgb(216, 231, 235)">
+              <div class="card-trip-top"
+                style="background-image: url(
+                  <%= render "activity_illustrations", activity: activity%>
+                )">
               </div>
             </div>
+            <div class="card-trip-bottom" >
+              <div class="card-trip-pres">
+                <h3><%= activity.title %> - <%= activity.duration %> min</h3>
+                <p><%= truncate(activity.description, :length => 180) %></p>
+              </div>
+            </div>
+            <% if current_user.avatar.attached? %>
+              <%= cl_image_tag activity.user.avatar.key, class:"avatar2"%>
+            <% else %>
+              <%= image_tag "default_avatar.png", class:"avatar2"%>
+            <% end %>
+            <%= link_to "En savoir plus", activity_path(activity), class: "btn btn-primary text-center mb-3", style: "display: block; width: fit-content; margin: auto; padding: 4px 25px;"%>
           </div>
          <% end %>
 			<% end %>
 		</div>
   <% end %>
-  <%= link_to "Retour vers la page d'accueil", root_path, class: "btn btn-secondary mt-3" %>
 </div>

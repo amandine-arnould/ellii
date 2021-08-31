@@ -23,9 +23,9 @@ class ActivitiesController < ApplicationController
         {
           lat: @activity.latitude,
           lng: @activity.longitude,
-          info_window: render_to_string(partial: "info_window", locals: { activity: @activity })
-      }
-    # else
+          info_window: render_to_string(partial: "info_window", locals: { activity: @activity }),
+        }
+      # else
     end
   end
 
@@ -38,7 +38,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     @activity.user = current_user
     authorize @activity
-    Activity::ACTIVITIES_MIND.include?(@activity.title) ? @activity.mind = 'true' : @activity.mind = 'false'
+    Activity::ACTIVITIES_MIND.include?(@activity.title) ? @activity.mind = "true" : @activity.mind = "false"
     if @activity.save
       redirect_to activity_path(@activity)
     else
