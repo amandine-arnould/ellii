@@ -2,9 +2,9 @@
   <h1 class="mt-5 mb-3 text-center"><%= @activity.title %> avec <%= @activity.user.first_name %></h1>
 
   <%# HTML SETUP - VIEWS FOR META %>
-  <% content_for :meta_title, "#{@activity.name} is on #{DEFAULT_META["meta_product_name"]}" %> %>
+  <% content_for :meta_title, "#{@activity.title} is on #{DEFAULT_META["meta_product_name"]}" %> %>
   <% content_for :meta_description, @activity.description %>
-  <% content_for :meta_image, cl_image_path(@activity.photo.path)
+  <%# <% content_for :meta_image, cl_image_path(@activity.photo.path) %>
 
   # <%# EDIT AND DELETE ACTIVITY %>
   <div class="d-flex justify-content-center mb-4">
