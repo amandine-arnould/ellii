@@ -90,7 +90,8 @@
             </div>
           <% end %>
           <%# MY PROFILE SECTION %>
-          <div class="col-4">
+        <% if false %>
+           <div class="col-4">
             <div class="card text-center" id="profile-card">
               <i class="far fa-user" style="font-size: 100px;"></i>
               <div class="card-body">
@@ -102,6 +103,7 @@
               </div>
             </div>
           </div>
+        <% end %>
           <%# ALL ATELIERS %>
         </div>
       </div>
@@ -188,6 +190,35 @@
       </div>
     <% end %>
   </div>
+
+
+
+  <div class="my-calendar">
+    <%= month_calendar(events: @user_sessions) do |date, sessions| %>
+      <%= date %>
+      <% sessions.each do |session| %>
+        <div>
+          <%= session.activity.title %>
+        </div>
+      <% end %>
+
+    <% end %>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <% if !current_user.moods.last.nil? %>
     <%= line_chart current_user.moods.group_by_day(:created_at, format: "%a %e %b").maximum(:score),
       xtitle: "Jours",

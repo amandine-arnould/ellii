@@ -27,5 +27,9 @@ class PagesController < ApplicationController
     ephad_serialized = URI.open(url).read
     @ephad = JSON.parse(ephad_serialized)
     @image_url = "https://opendata.paris.fr/api/v2/catalog/datasets/liste-des-ehpad/files/"
+
+    #CALENDAR
+    @user_sessions = current_user.sessions_as_senior
+
   end
 end
