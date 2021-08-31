@@ -28,4 +28,12 @@ class BookingPolicy < ApplicationPolicy
   def add_comment?
     user.status == "admin" || record.session.activity.user == user
   end
+
+  def add_score?
+    user.status == "senior"
+  end
+
+  def update?
+    user.status == "senior"
+  end
 end

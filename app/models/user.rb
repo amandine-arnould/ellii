@@ -17,4 +17,12 @@ class User < ApplicationRecord
   # validates :phone_number, presence: true # regex "(0|\\+33|0033)[1-9][0-9]{8}"
   # validates :address, presence: true
   # validates :avatar, presence: true
+
+  def next_session
+    bookings.joins(:session).find_by('start_at > ?', Date.today)&.session
+  end
+
+  def previous_session
+    bookings.joins(:session).find_by('start_at < ?', Date.today)&.session
+  end
 end
