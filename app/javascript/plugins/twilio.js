@@ -16,18 +16,20 @@ const twilioInit = () => {
       yourVideo.insertAdjacentHTML("afterbegin", "Vous");
       video.srcObject = vid;
       localStream = vid;
-      console.log(video);
       leaveBtn.addEventListener("click", () => {
         const tracks = vid.getTracks();
         tracks.forEach((track) => track.stop());
       });
     });
 
-  createLocalTracks({
-    audio: true,
-    video: { width: 640 },
-  })
+    createLocalTracks({
+      audio: true,
+      video: { width: 640 },
+    })
     .then((localTracks) => {
+     leaveBtn.addEventListener("click", () => {
+        localTracks.forEach((track) => track.stop());
+      });
       return connect(twilioContainer.dataset.token, {
         name: twilioContainer.dataset.room,
         tracks: localTracks,
@@ -40,6 +42,7 @@ const twilioInit = () => {
       room.participants.forEach(participantConnected);
       room.on("participantConnected", participantConnected);
 
+      window.lol = room
       room.on("participantDisconnected", participantDisconnected);
       room.once("disconnected", (error) =>
         room.participants.forEach(participantDisconnected)
@@ -47,6 +50,7 @@ const twilioInit = () => {
       // leave room
       leaveBtn.addEventListener("click", () => {
         videoRoom.disconnect();
+        // room.tracks.forEach((track) => track.stop());
         console.log(`Disconnected from Room ${videoRoom.name}`);
       });
 
@@ -68,8 +72,10 @@ const twilioInit = () => {
 
       // MUTE VIDEO
       const userVideo = document.getElementById("userVideo");
+
       const muteVideo = document.getElementById("muteVideo");
       muteVideo.addEventListener("click", () => {
+        console.log(userVideo);
         userVideo.style.opacity = "0";
         room.localParticipant.videoTracks.forEach((track) => {
           track.track.disable();
