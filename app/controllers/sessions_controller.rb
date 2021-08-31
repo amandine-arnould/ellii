@@ -13,6 +13,15 @@ class SessionsController < ApplicationController
     redirect_back(fallback_location: dashboard_path)
   end
 
+  def slots
+    skip_authorization
+    @session = Session.find(params[:id])
+
+    respond_to do |format|
+      format.json { render json: { slots: @session.remaining_slots } }
+    end
+  end
+
   private
 
   def generate_token(session)
