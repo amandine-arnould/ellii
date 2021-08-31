@@ -23,6 +23,11 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.update(booking_params)
+  end
 
   def destroy
     @booking = Booking.find(params[:id])
@@ -39,9 +44,16 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  # def add_score
+  #   @booking = Booking.find(params[:id])
+  #   @booking.update(score: params['booking_score']['content'])
+  #   redirect_to dashboard_path
+  #   authorize @booking
+  # end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:session_id)
+    params.require(:booking).permit(:session_id, :score)
   end
 end
