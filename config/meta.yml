@@ -2,4 +2,4 @@ meta_product_name: "Ellii"
 meta_title: "Ellii - Votre coach personnalisé pour Bien-Vieillir à domicile!"
 meta_description: "Ellii permet d'entretenir et d'améliorer les conditions physiques et cérébrales des seniors à domicile à l'aide d'un suivi personnalisé et simplifié."
 meta_image: "spa.png" # should exist in `app/assets/images/`
-twitter_account: "@product_twitter_account"   # required for Twitter Cards
+twitter_account: "@ellii_seniors"   # required for Twitter Cards
