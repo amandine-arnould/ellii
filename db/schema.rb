@@ -80,20 +80,6 @@ ActiveRecord::Schema.define(version: 2021_08_30_101250) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
-  create_table "interests", force: :cascade do |t|
-    t.string "category"
-    t.string "name"
-    t.string "description"
-    t.string "address"
-    t.string "why"
-    t.string "when"
-    t.string "keywords"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_interests_on_user_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.string "content"
     t.bigint "session_id", null: false
@@ -120,15 +106,6 @@ ActiveRecord::Schema.define(version: 2021_08_30_101250) do
     t.index ["activity_id"], name: "index_sessions_on_activity_id"
   end
 
-  create_table "user_interests", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "interest_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
-    t.index ["user_id"], name: "index_user_interests_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -151,11 +128,8 @@ ActiveRecord::Schema.define(version: 2021_08_30_101250) do
   add_foreign_key "activities", "users"
   add_foreign_key "bookings", "sessions"
   add_foreign_key "bookings", "users"
-  add_foreign_key "interests", "users"
   add_foreign_key "messages", "sessions"
   add_foreign_key "messages", "users"
   add_foreign_key "moods", "users"
   add_foreign_key "sessions", "activities"
-  add_foreign_key "user_interests", "interests"
-  add_foreign_key "user_interests", "users"
 end
