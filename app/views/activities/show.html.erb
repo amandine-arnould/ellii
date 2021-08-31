@@ -24,7 +24,7 @@
     <% end %>
   </div>
   <div class="row mt-5 d-flex justify-content-between" style="background-color: white; border-radius: 40px;">
-    <div class="col-6 pl-4">
+    <div class="col-6 pl-4" style="padding-right: 26px;">
       <h1 class="mt-5 mb-3 text-left"><strong><%= @activity.title %></strong><br> avec <%= @activity.user.first_name.capitalize %></h1>
       <%# EDIT AND DELETE ACTIVITY %>
       <div class="d-flex justify-content-center mb-4">
@@ -92,8 +92,10 @@
             data-marker="<%= @marker.to_json %>"
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
+      <% else %>
+        <div style="background-image: url(<%= image_path "illustrations/remote3.png" %>); background-size: cover; background-position: center; height: 100%; border-top-right-radius: 40px; border-bottom-right-radius: 40px;">
+        </div>
       <% end %>
-
     </div>
   </div>
 </div>
