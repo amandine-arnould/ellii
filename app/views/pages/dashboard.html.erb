@@ -33,32 +33,47 @@
         <div class="row">
           <% if current_user.status == 'senior'%>
             <div class="col-8">
-              <% @user_bookings.each do |booking| %>
-                <div class="card mb-3">
-                  <div class="row g-0">
-                    <div class="col-md-4">
-                      <h4 class="card-title text-center">prochain <br>
-                        atelier:</h4>
-                      <h4 class="card-text text-center"><strong><%= booking.session.start_at.strftime("%d")%> <%= @month[booking.session.start_at.month] %><br>
-                          <%= booking.session.start_at.strftime("%Y") %> <br>
-                          à <%= booking.session.start_at.strftime("%H")%>h<%= booking.session.start_at.strftime("%M") %></strong></h4>
-                      <%= link_to activity_session_path(booking.session), class: "btn btn-primary" do %>
-                        Rejoindre l'Atelier
-                      <% end %>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
-                        <h4 class="card-title"><%= booking.session.activity.title %></h4>
-                        <p class="card-text"><%= truncate(booking.session.activity.description, :length => 80) %></p>
-                        <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
-                    booking_path(booking),
-                    method: :delete,
-                    data: { confirm: "Annuler?" } %>
-                      </div>
+            <%# -------PROCHAIN ATELIER------ %>
+              <h4 class="card-title text-left">votre prochain atelier:</h4>
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <h4 class="card-text text-center" id='previous-session'><strong><%= current_user.next_session.start_at.strftime("%d")%> <%= @month[current_user.next_session.start_at.month] %><br>
+                        <%= current_user.next_session.start_at.strftime("%Y") %> <br>
+                        à <%= current_user.next_session.start_at.strftime("%H")%>h<%= current_user.next_session.start_at.strftime("%M") %></strong></h4>
+                    <%= link_to activity_session_path(current_user.next_session), class: "btn btn-primary" do %>
+                      Rejoindre l'Atelier
+                    <% end %>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title"><%= current_user.next_session.activity.title %></h4>
+                      <p class="card-text"><%= truncate(current_user.next_session.activity.description, :length => 80) %></p>
+                      <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
+                  booking_path(current_user.bookings.last),
+                  method: :delete,
+                  data: { confirm: "Annuler?" } %>
                     </div>
                   </div>
                 </div>
-              <% end %>
+              </div>
+              <%# -----PRECEDENT ATELIER -----%>
+              <h4 class="card-title text-left">votre dernier atelier:</h4>
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <h4 class="card-text text-center"><strong><%= current_user.previous_session.start_at.strftime("%d")%> <%= @month[current_user.previous_session.start_at.month] %><br>
+                        <%= current_user.previous_session.start_at.strftime("%Y") %> <br>
+                        à <%= current_user.previous_session.start_at.strftime("%H")%>h<%= current_user.previous_session.start_at.strftime("%M") %></strong></h4>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title"><%= current_user.previous_session.activity.title %></h4>
+                      <p class="card-text">Review du cours ici</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           <% end %>
           <%# ////// TEACHER DASHBOARD /////%>
