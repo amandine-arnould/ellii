@@ -23,4 +23,13 @@ class Session < ApplicationRecord
   def remaining_slots
     activity.max_participants - bookings.length
   end
+
+  def start_time
+    start_at.to_datetime
+  end
+
+  def end_time
+    (start_at + 1.hour).to_datetime
+  end
+
 end
