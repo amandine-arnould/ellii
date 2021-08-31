@@ -6,7 +6,7 @@
   <% content_for :meta_description, @activity.description %>
   <%# <% content_for :meta_image, cl_image_path(@activity.photo.path) %>
 
-  # <%# EDIT AND DELETE ACTIVITY %>
+  <%# EDIT AND DELETE ACTIVITY %>
   <div class="d-flex justify-content-center mb-4">
     <% if @activity.user == current_user %>
       <% if current_user.status == "teacher" || current_user.status == "admin" %>
