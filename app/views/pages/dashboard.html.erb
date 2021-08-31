@@ -113,23 +113,7 @@
               <% end %>
             </div>
           <% end %>
-<%# ----- MY PROFILE SECTION ----- %>
-          <div class="col-4">
-            <div class="card text-center" id="profile-card">
-              <i class="far fa-user" style="font-size: 100px;"></i>
-              <div class="card-body">
-                <h5 class="card-title"><%= current_user.first_name %> <%= current_user.last_name %></h5>
-                <p class="card-text"><%= current_user.email %></p>
-                <%= link_to edit_user_registration_path, class: "btn btn-primary" do %>
-                  <i class="fas fa-user-edit"></i> Modifier mon profil
-                <% end %>
-              </div>
-            </div>
-          </div>
-<%# ----- ALL ATELIERS ----- %>
-        </div>
-      </div>
-    </div>
+          
     <div class="tab-pane fade" id="balades" role="tabpanel" aria-labelledby="balades-tab">
       <%# BALADES %>
       <div class="container">
@@ -211,13 +195,43 @@
       </div>
     <% end %>
   </div>
+
+
+
+  <div class="my-calendar">
+    <%= month_calendar(events: @user_sessions) do |date, sessions| %>
+      <%= date %>
+      <% sessions.each do |session| %>
+        <div>
+          <%= session.activity.title %>
+        </div>
+      <% end %>
+
+    <% end %>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <% if !current_user.moods.last.nil? %>
-    <%= line_chart current_user.moods.group_by_day(:created_at, format: "%a %e %b").maximum(:score),
-      xtitle: "Jours",
+  <%= area_chart current_user.moods.group_by_day(:created_at, format: "%d-%m").maximum(:score),
+      # xtitle: "Jours",
+      label: "Humeur",
       ytitle: "Humeurs",
       colors: ["#6447F9", "#6447F9"],
-      discrete: true,
-      ymin: 1,
-      ymax: 5 %>
+      empty: "Nous n'avons actuellement aucune information sur votre humeur",
+      discrete: true
+   %>
   <% end %>
 </div>
