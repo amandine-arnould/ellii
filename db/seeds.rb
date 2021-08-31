@@ -6,8 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Activity.destroy_all
-activity1 = Activity.new(title: "Yoga", description: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word and and the Little Blind Text should", min_participants: 10, max_participants: 25, duration: 60, address: "31 Marina Coastal Dr, Singapour", user_id: 1)
-activity1.save!
-activity2 = Activity.new(title: "Gym", description: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word and and the Little Blind Text should", min_participants: 10, max_participants: 25, duration: 60, address: "Paris, France", user_id: 1)
-activity2.save!
+Mood.destroy_all
+mood1 = Mood.new(score: 1, user_id: 2, created_at: Time.strptime("28/08/2021 12:00", "%d/%m/%Y %H:%M") )
+mood1.save!
+mood2 = Mood.new(score: 2, user_id: 2, created_at: Time.strptime("29/08/2021 12:00", "%d/%m/%Y %H:%M") )
+mood2.save!
+mood3 = Mood.new(score: 3, user_id: 2, created_at: Time.strptime("30/08/2021 12:00", "%d/%m/%Y %H:%M"))
+mood3.save!
+mood4 = Mood.new(score: 3, user_id: 2, created_at: Time.strptime("31/08/2021 12:00", "%d/%m/%Y %H:%M"))
+mood4.save!
+mood5 = Mood.new(score: 2, user_id: 2, created_at: Time.strptime("01/09/2021 12:00", "%d/%m/%Y %H:%M"))
+mood5.save!
+mood6 = Mood.new(score: 3, user_id: 2, created_at: Time.strptime("02/09/2021 12:00", "%d/%m/%Y %H:%M"))
+mood6.save!
+mood7 = Mood.new(score: 4, user_id: 2, created_at: Time.strptime("03/09/2021 12:00", "%d/%m/%Y %H:%M"))
+mood7.save!
