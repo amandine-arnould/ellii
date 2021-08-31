@@ -71,14 +71,21 @@
                   <div class="col-md-8">
                     <div class="card-body">
                       <h4 class="card-title"><%= current_user.previous_session.activity.title %></h4>
-                      <p class="card-text">Something about leaving a review</p>
                       <%= simple_form_for current_user.bookings.last do |f| %>
-                        <div class="d-flex" style="height: 40px;">
-                      <%# unless session.users.nil? %>
-                        <%= f.select :score, [*1..5]  %>
-                        <%= f.submit "Soumettre", class: "btn btn-primary " %>
+                      <div class="atelier-mood">
+                        <%= f.input :score,
+                            as: :radio_buttons,
+                            collection: Booking::SCORES,
+                            collection_wrapper_tag: 'div',
+                            collection_wrapper_class: 'category-wrapper',
+                            item_wrapper_class: 'category-item',
+                            legend_tag: false,
+                            label_method: lambda { |score| render 'mood_label_atelier', score: score },
+                            input_html: {class: 'category-selector'}
+                            %>
+                        <%= f.button :submit, "Enregistrer", class: "btn btn-primary " %>
+                        <% end %>
                       </div>
-                    <% end %>
                     </div>
                   </div>
                 </div>
@@ -113,7 +120,7 @@
               <% end %>
             </div>
           <% end %>
-          
+
     <div class="tab-pane fade" id="balades" role="tabpanel" aria-labelledby="balades-tab">
       <%# BALADES %>
       <div class="container">
