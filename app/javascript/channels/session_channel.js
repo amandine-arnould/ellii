@@ -10,6 +10,8 @@ const initSessionCable = () => {
       { channel: "SessionChannel", id: id },
       {
         received(data) {
+          console.log("data received")
+          console.log(data)
           messagesContainer.insertAdjacentHTML("beforeend", data);
         },
       }

@@ -28,6 +28,7 @@ import { initMapbox } from "../plugins/init_mapbox";
 import { initAutocomplete } from "../plugins/init_autocomplete";
 import { initializeClock } from "../components/timer";
 import { initSessionCable } from "../channels/session_channel";
+import { chatScroll } from "../components/chat_scroll";
 import "chartkick/chart.js"
 
 // Internal imports, e.g:
@@ -48,4 +49,5 @@ document.addEventListener("turbolinks:load", () => {
   if (document.querySelector("#countdown")) {
     initializeClock();
   }
+  chatScroll();
 });
