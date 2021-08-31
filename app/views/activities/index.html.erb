@@ -25,7 +25,7 @@
     <p class="mb-5" style="font-size: 20px;"><%= @activities.select { |activity| activity.sessions.any? { |session| session.start_at >= Date.today } }.count %> atelier(s) trouvé(s)</p>
     <div style = "width: 100%;">
       <%= link_to "Retour vers la page d'accueil", root_path, class: "btn btn-secondary mb-3",
-          style: "border-radius: 4px; background-color: #9fb3b8; border: none; margin-left: 16px;"
+          style: "border-radius: 21px; background-color: #9fb3b8; border: none; margin-left: 16px; padding: 8px 25px;"
       %>
     </div>
 
