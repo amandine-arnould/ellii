@@ -110,7 +110,7 @@
             </div>
             <% else %>
               <div class='event' id='esprit'>
-                <%=session.activity.title %>
+                <p><%=session.activity.title%> à <%=session.start_at.strftime('%H')%>h<%=session.start_at.strftime('%M')%></p>
               </div>
           <% end %>
         <% end %>
