@@ -1,0 +1,23 @@
+<div class="tab-pane fade" id="decouvrir" role="tabpanel" aria-labelledby="decouvrir-tab">
+  <%# EPHAD %>
+  <div class="container">
+    <h2>Découvrir les établissements spécialisés à proximité</h2>
+    <div class="cards">
+      <% @ephad["records"].each do |ephad| %>
+        <div class="card-ephad ">
+          <img src="<%= "#{@image_url}#{ephad["fields"]["image"]["id"]}" %>" />
+          <div class="card-ephad-infos">
+            <div>
+              <h2><%= ephad["fields"]["nom_de_l_ehpad"] %></h2>
+              <p><%= ephad["fields"]["adresse"] %></p>
+              <p><%= ephad["fields"]["code_postal"] %></p>
+              <p><%= ephad["fields"]["ville"] %></p>
+            </div>
+            <h2 class="card-ephad-pricing"><%= ephad["fields"]["telephone"] %></h2>
+            <%# <gsimg src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-ephad-user avatar-bordered" /> %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
