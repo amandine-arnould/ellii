@@ -22,10 +22,10 @@ class PagesController < ApplicationController
     # @balades = JSON.parse(balades_serialized)
 
     #EPHAD
-    url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=liste-des-ehpad"
-    ephad_serialized = URI.open(url).read
-    @ephad = JSON.parse(ephad_serialized)
-    @image_url = "https://opendata.paris.fr/api/v2/catalog/datasets/liste-des-ehpad/files/"
+    # url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=liste-des-ehpad"
+    # ephad_serialized = URI.open(url).read
+    # @ephad = JSON.parse(ephad_serialized)
+    # @image_url = "https://opendata.paris.fr/api/v2/catalog/datasets/liste-des-ehpad/files/"
 
     #CALENDAR
     @user_sessions = current_user.sessions_as_senior
