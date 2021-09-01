@@ -6,7 +6,7 @@ class Activity < ApplicationRecord
   ACTIVITIES_BODY = ["Yoga", "Danse", "Badminton", "Renforcement musculaire", "Marche"]
   ACTIVITIES_MIND = ["Méditation", "Cours de cuisine", "Calligraphie", "Echecs", "Maquillage", "Musique", "Peinture", "Photographie"]
   ACTIVITY_TITLES = ACTIVITIES_BODY.concat(ACTIVITIES_MIND)
-  MIN_CHAR_DESCRIPTION = 250
+  MIN_CHAR_DESCRIPTION = 2
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
