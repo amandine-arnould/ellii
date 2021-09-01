@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # validates :avatar, presence: true
 
   def next_session
-    current_session || bookings.joins(:session).find_by('start_at > ?', Date.today)&.session
+    current_session || bookings.joins(:session).find_by('start_at > ?', Time.now)&.session
   end
 
   def current_session
@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def previous_session
-    bookings.joins(:session).find_by('start_at < ?', Date.today)&.session
+    bookings.joins(:session).find_by('start_at < ?', Time.now)&.session
   end
 
   def default_avatar
