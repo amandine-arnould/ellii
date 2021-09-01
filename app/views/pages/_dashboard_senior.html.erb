@@ -1,12 +1,10 @@
-<div class="row">
-  <div class="col-3">
-    <h4 class="card-title text-left">votre prochain atelier:</h4>
-  </div>
+<div class="row next-activity">
   <div class="col-9">
     <%# ------- PROCHAIN ATELIER ------ %>
     <% if current_user.next_session.present? %>
      <div class="card booking-card mb-3">
       <div class="card-left">
+        <h4 class="mb-4">Prochain atelier</h4>
         <i class="far fa-calendar"></i>
         <h4 class="card-text date text-center"><%= current_user.next_session.start_at.strftime("%d")%> <%= @month[current_user.next_session.start_at.month].downcase %> <%= current_user.next_session.start_at.strftime("%Y") %> </h4>
         <h4 class="card-text time text-center"><%= current_user.next_session.start_at.strftime("%H")%>h<%= current_user.next_session.start_at.strftime("%M") %></h4>
