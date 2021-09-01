@@ -119,8 +119,8 @@
     <% if !current_user.moods.last.nil? %>
       <%= area_chart current_user.moods.group_by_day(:created_at, format: "%d-%m").maximum(:score),
                           # xtitle: "Jours",
+                          # ytitle: "Humeurs",
                           label: "Humeur",
-                          ytitle: "Humeurs",
                           colors: ["#6447F9", "#6447F9"],
                           empty: "Nous n'avons actuellement aucune information sur votre humeur",
                           discrete: true %>
