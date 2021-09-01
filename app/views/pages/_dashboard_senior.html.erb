@@ -77,21 +77,25 @@
             <div class="card-right card-body col-8">
               <h4 class="card-title"><%= current_user.previous_session.activity.title %></h4>
               <p>Comment vous sentiez-vous après cet atelier ?</p>
-              <%= simple_form_for current_user.bookings.last do |f| %>
-                <div class="atelier-mood">
-                  <%= f.input :score,
-                                as: :radio_buttons,
-                                collection: Booking::SCORES,
-                                collection_wrapper_tag: 'div',
-                                collection_wrapper_class: 'category-wrapper',
-                                item_wrapper_class: 'category-item',
-                                legend_tag: false,
-                                label_method: lambda { |score| render 'mood_label_atelier', score: score },
-                                input_html: {class: 'category-selector'}
-                                %>
-                  <%= f.button :submit, "Enregistrer mon humeur", class: "btn btn-primary btn-save-mood mt-3"%>
-                </div>
-              <% end %>
+                <%= simple_form_for current_user.bookings.last do |f| %>
+                  <div class="atelier-mood">
+                    <%= f.input :score,
+                                  as: :radio_buttons,
+                                  collection: Booking::SCORES,
+                                  collection_wrapper_tag: 'div',
+                                  collection_wrapper_class: 'category-wrapper',
+                                  item_wrapper_class: 'category-item',
+                                  legend_tag: false,
+                                  label_method: lambda { |score| render 'mood_label_atelier', score: score },
+                                  input_html: {class: 'category-selector'}
+                                  %>
+                    <% if !current_user.bookings.last.score.nil?  %>
+                      <p class="mt-4">Vous avez déjà enregistré votre humeur pour cet atelier</p>
+                    <% else %>
+                      <%= f.button :submit, "Enregistrer mon humeur", class: "btn btn-primary btn-save-mood mt-3"%>
+                    <% end %>
+                  </div>
+                <% end %>
             </div>
           </div>
         <% end %>
