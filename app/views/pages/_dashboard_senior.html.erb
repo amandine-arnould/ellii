@@ -51,7 +51,7 @@
                   <%= link_to "Rejoindre l'atelier 🚀", activity_session_path(current_user.next_session), class: "btn btn-primary btn-join" %>
                 <% end %>
                 <%= link_to "Annuler".html_safe,
-                                          booking_path(current_user.bookings.last),
+                                          booking_path(current_user.bookings.find_by(session: current_user.next_session)),
                                           method: :delete,
                                           data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
                                           class: "btn-cancel" %>
