@@ -74,7 +74,7 @@
           <%= month_calendar(events: @user_sessions) do |date, sessions| %>
             <%= date %>
             <% sessions.each do |session| %>
-              <div>
+              <div class='event'>
                 <%= session.activity.title %>
               </div>
             <% end %>
