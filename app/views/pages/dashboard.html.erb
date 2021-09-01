@@ -2,6 +2,13 @@
 <div class="container mt-4">
   <%# ---- SENIOR DASHBOARD ---- %>
   <% if current_user.status == 'senior'%>
+      <div id="countdown" data-timer="<%= current_user.next_session.start_at %>">
+      <ul>
+        <li style="font-size: 1rem; padding: 3px;"><span id="days" style="font-size: 1rem;"></span>Jours</li>
+        <li style="font-size: 1rem; padding: 3px"><span id="hours" style="font-size: 1rem;"></span>Heures</li>
+        <li style="font-size: 1rem; padding: 3px"><span id="minutes" style="font-size: 1rem;"></span>Minutes</li>
+      </ul>
+    </div>
     <div class="row">
       <div class="col-3">
         <h4 class="card-title text-left">votre prochain atelier:</h4>
