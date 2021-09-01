@@ -46,7 +46,7 @@
                 <p><%= truncate(activity.description, :length => 180) %></p>
               </div>
             </div>
-            <%= image_tag current_user.default_avatar, class:"avatar2"%>
+            <%= image_tag activity.user.default_avatar, class:"avatar2"%>
             <%= link_to "En savoir plus", activity_path(activity), class: "btn btn-primary text-center mb-3", style: "display: block; width: fit-content; margin: auto; padding: 4px 25px;"%>
           </div>
          <% end %>
