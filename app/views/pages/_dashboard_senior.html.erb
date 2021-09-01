@@ -4,26 +4,28 @@
   </div>
   <div class="col-9">
     <%# ------- PROCHAIN ATELIER ------ %>
-    <div class="card booking-card mb-3">
-      <div class="card-left">
-        <i class="far fa-calendar"></i>
-        <h4 class="card-text date text-center"><%= current_user.next_session.start_at.strftime("%d")%> <%= @month[current_user.next_session.start_at.month].downcase %> <%= current_user.next_session.start_at.strftime("%Y") %> </h4>
-        <h4 class="card-text time text-center"><%= current_user.next_session.start_at.strftime("%H")%>h<%= current_user.next_session.start_at.strftime("%M") %></h4>
-      </div>
-      <div class="card-right card-body">
-        <h4 class="card-title"><%= current_user.next_session.activity.title %></h4>
-        <p class="card-text text-justify"><%= truncate(current_user.next_session.activity.description, :length => 150) %></p>
-        <div class="d-flex justify-content-between align-items-center mt-5">
-          <%= link_to "Rejoindre l'atelier 🚀", activity_session_path(current_user.next_session), class: "btn btn-primary btn-join" %>
-          <%= link_to "Annuler".html_safe,
-                                    booking_path(current_user.bookings.last),
-                                    method: :delete,
-                                    data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
-                                    class: "btn-cancel" %>
+    <% if current_user.next_session.present? %>
+      <div class="card booking-card mb-3">
+        <div class="card-left">
+          <i class="far fa-calendar"></i>
+          <h4 class="card-text date text-center"><%= current_user.next_session.start_at.strftime("%d")%> <%= @month[current_user.next_session.start_at.month].downcase %> <%= current_user.next_session.start_at.strftime("%Y") %> </h4>
+          <h4 class="card-text time text-center"><%= current_user.next_session.start_at.strftime("%H")%>h<%= current_user.next_session.start_at.strftime("%M") %></h4>
+        </div>
+        <div class="card-right card-body">
+          <h4 class="card-title"><%= current_user.next_session.activity.title %></h4>
+          <p class="card-text text-justify"><%= truncate(current_user.next_session.activity.description, :length => 150) %></p>
+          <div class="d-flex justify-content-between align-items-center mt-5">
+            <%= link_to "Rejoindre l'atelier 🚀", activity_session_path(current_user.next_session), class: "btn btn-primary btn-join" %>
+            <%= link_to "Annuler".html_safe,
+                                      booking_path(current_user.bookings.last),
+                                      method: :delete,
+                                      data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
+                                      class: "btn-cancel" %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
 <div class="row">
   <div class="col-3">
