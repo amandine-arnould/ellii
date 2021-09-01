@@ -22,7 +22,13 @@ class User < ApplicationRecord
   # validates :avatar, presence: true
 
   def next_session
-    bookings.joins(:session).find_by('start_at > ?', Date.today)&.session
+    current_session || bookings.joins(:session).find_by('start_at > ?', Date.today)&.session
+  end
+
+  def current_session
+    bookings.joins(:session).where('start_at < ?', Time.now).find do |e|
+      e.session.start_at + e.session.activity.duration.minutes > Time.now
+    end&.session
   end
 
   def previous_session
