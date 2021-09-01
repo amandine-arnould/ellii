@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
                                                    current_user.last_name
     # GRANT ACCESS TO VIDEO
     grant = Twilio::JWT::AccessToken::VideoGrant.new
-    grant.room = session.id
+    grant.room = session.hex_key
     token.add_grant grant
     # SERIALIZE THE TOKEN AS A JWT
     token.to_jwt

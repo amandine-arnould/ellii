@@ -1,7 +1,7 @@
 <div class="m-5 text-center">
   <% if Time.now < @session.start_at - 10 %>
     <%#  if false %>
-    <p>La session n'a pas encore débutée!</p>
+    <p>La session n'a pas encore débuté!</p>
     <p>Veuillez patienter...</p>
     <div id="countdown" data-timer="<%= @session.start_at %>">
       <ul>
@@ -25,7 +25,7 @@
     <div
     class="twilio-video"
     data-sid="<%= ENV["ACCOUNT_SID"] %>"
-    data-room="<%= @session.id %>"
+    data-room="<%= @session.hex_key %>"
     data-token="<%= @token %>"
     data-status="<%= current_user.status %>"
     >

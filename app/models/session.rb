@@ -5,7 +5,8 @@ class Session < ApplicationRecord
   has_many :messages
   validates :start_at, presence: true
 
-  after_create :set_session_name
+  # callback ActiveRecord
+  after_create :set_hex_key
 
   scope :upcoming, -> (activity) { where(activity: activity).where("start_at >= ?", Date.today) }
 
@@ -32,4 +33,17 @@ class Session < ApplicationRecord
     (start_at + 1.hour).to_datetime
   end
 
+  private
+
+  def set_session_name
+    client = Twilio::REST::Client.new(ENV["ACCOUNT_SID"], ENV["AUTH_TOKEN"])
+    client.video.rooms.create(unique_name: hex_key)
+  end
+
+  def set_hex_key
+    require "securerandom"
+
+    update(hex_key: SecureRandom.hex(16))
+    set_session_name
+  end
 end
