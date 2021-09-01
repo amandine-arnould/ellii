@@ -85,9 +85,15 @@
       <%= month_calendar(events: @user_sessions) do |date, sessions| %>
         <%= date %>
         <% sessions.each do |session| %>
-          <div>
-            <%= session.activity.title %>
-          </div>
+          <% if session.activity.mind == false%>
+            <div class='event' id='corps'>
+              <%=session.activity.title %>
+            </div>
+            <% else %>
+              <div class='event' id='esprit'>
+                <%=session.activity.title %>
+              </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
