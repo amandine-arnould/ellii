@@ -1,0 +1,60 @@
+<div class="col-8">
+  <h4>Mes Activités</h4>
+  <% @user_activities.each do |activity| %>
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <h4 class="card-text text-center"><strong><%= activity.title %> </strong></h4>
+          <h5 class=><%= activity.duration %> minutes</h5>
+          <%= link_to activity_path(activity), class: "btn btn-primary" do %>
+            Modifier l'Atelier
+          <% end %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <p class="card-text"><%= truncate(activity.description, :length => 80) %></p>
+            <%= link_to '<i class="fa fa-trash "></i>'.html_safe,
+                                    activity_path(activity),
+                                    method: :delete,
+                                    data: { confirm: "Annuler?" } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%# ---- TEACHER COURS PASSÉS TAB ------ %>
+<div class="container">
+  <h3>Mes Cours Passés</h3>
+  <% @user_activities.each do |activity| %>
+    <% if activity.sessions.select { |session| session.start_at <= Date.today }.each do |session| %>
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <h4 class="card-text text-left"><strong><%= activity.title %> </strong></h4>
+            <h5 class="card-text text-left"><%= session.start_at.strftime("%d")%> <%= @month[session.start_at.month] %><br>
+              <%= session.start_at.strftime("%Y") %> <br>
+              à <%= session.start_at.strftime("%H")%>h<%= session.start_at.strftime("%M") %></h5>
+            <%= link_to activity_path(activity), class: "btn btn-primary" do %> Modifier l'Atelier
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <%= form_for :booking_comment, url: add_comment_bookings_path, html: { method: :patch } do |f| %>
+                <div class="d-flex" style="height: 40px;">
+                  <%# unless session.users.nil? %>
+                  <%= f.select :comment, session.users.map { |s| [s.first_name, s.id]}  %>
+                  <%= f.text_area :content %>
+                  <%= f.hidden_field :session_id, value: session.id %>
+                  <%# input_html: { style: "width: 500px; height: 40px; margin-right: 10px;"}  %>
+                  <%= f.submit "Soumettre", class: "btn btn-primary " %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+</div>

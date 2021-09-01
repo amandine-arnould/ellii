@@ -17,9 +17,9 @@ class PagesController < ApplicationController
     @user_activities = Activity.where(user: current_user)
 
     # BALADES
-    url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=paris-autrement-balades-dans-les-arrondissements-peripheriques-parcours"
-    balades_serialized = URI.open(url).read
-    @balades = JSON.parse(balades_serialized)
+    # url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=paris-autrement-balades-dans-les-arrondissements-peripheriques-parcours"
+    # balades_serialized = URI.open(url).read
+    # @balades = JSON.parse(balades_serialized)
 
     #EPHAD
     url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=liste-des-ehpad"

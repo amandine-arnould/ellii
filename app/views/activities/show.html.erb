@@ -20,11 +20,11 @@
           collection: [@activity.remote],
           legend_tag: false %>
 
-      <%= f.button :submit, "Retour aux activités", class: "btn btn-secondary mt-3", style: "background-color:  #9FB3B8; color: white; padding: 8px 25px; border: none;" %>
+      <%= f.button :submit, "Retour aux activités", class: "btn btn-secondary btn-back mt-3" %>
     <% end %>
   </div>
   <div class="row mt-5 d-flex justify-content-between" style="background-color: white; border-radius: 40px;">
-    <div class="col-6 pl-4">
+    <div class="col-6 pl-4" style="padding-right: 26px;">
       <h1 class="mt-5 mb-3 text-left"><strong><%= @activity.title %></strong><br> avec <%= @activity.user.first_name.capitalize %></h1>
       <%# EDIT AND DELETE ACTIVITY %>
       <div class="d-flex justify-content-center mb-4">
@@ -41,7 +41,7 @@
       </div>
 
       <p class="title-infos">
-        <i class="fas fa-hourglass-half mr-2"></i>
+        <i class="fas fa-stopwatch mr-2"></i>
         <%= @activity.duration %> min
       </p>
       <p class="title-infos">
@@ -92,8 +92,10 @@
             data-marker="<%= @marker.to_json %>"
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
+      <% else %>
+        <div style="background-image: url(<%= image_path "illustrations/remote3.png" %>); background-size: cover; background-position: center; height: 100%; border-top-right-radius: 40px; border-bottom-right-radius: 40px;">
+        </div>
       <% end %>
-
     </div>
   </div>
 </div>
