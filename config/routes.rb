@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   begin
-    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
+    ActiveAdmin.routes(self)
   rescue Exception => e
     puts "ActiveAdmin: #{e.class}: #{e}"
   end
