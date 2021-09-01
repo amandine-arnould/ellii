@@ -52,11 +52,16 @@
   .event {
     font-size: smaller;
     text-align: center;
+
     // background-color: opacify($color: #dfe8fa , $amount: .5);
     margin-bottom: 5px;
-    padding: 3px;
+    padding: 4px;
     border-radius: 5px;
     cursor: pointer;
+
+    p {
+      margin: 0px;
+    }
 
   }
 
