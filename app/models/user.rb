@@ -25,4 +25,10 @@ class User < ApplicationRecord
   def previous_session
     bookings.joins(:session).find_by('start_at < ?', Date.today)&.session
   end
+
+  def default_avatar
+    return "default_avatar.png" unless avatar.attached?
+
+    "http://res.cloudinary.com/ellii/image/upload/#{avatar.key}"
+  end
 end
