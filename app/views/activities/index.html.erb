@@ -22,7 +22,8 @@
         </strong>
       <% end %>
     </h1>
-    <p class="mb-5" style="font-size: 20px;"><%= @activities.select { |activity| activity.sessions.any? { |session| session.start_at >= Date.today } }.count %> atelier(s) trouvé(s)</p>
+    <% activity_count = @activities.select { |activity| activity.sessions.any? { |session| session.start_at >= Date.today } }.count  %>
+    <p class="mb-5" style="font-size: 20px;"><%= activity_count %> <% if activity_count <= 1 %> atelier trouvé<% else %> ateliers trouvés<% end %></p>
     <div style = "width: 100%;">
       <%= link_to "Retour vers la page d'accueil", root_path, class: "btn btn-secondary btn-back mb-3", style: "margin-left: 16px;" %>
     </div>
