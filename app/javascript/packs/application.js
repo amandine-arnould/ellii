@@ -49,5 +49,7 @@ document.addEventListener("turbolinks:load", () => {
   if (document.querySelector("#countdown")) {
     initializeClock();
   }
-  chatScroll();
+  if (document.querySelector("#new_message")) {
+    chatScroll();
+  }
 });
