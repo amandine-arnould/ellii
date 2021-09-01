@@ -4,19 +4,20 @@
   padding: 20px;
   border-radius: 15px;
   background-color: rgb(255, 255, 255);
-  .day {}
 
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
+  .calendar-heading {
+    display: table;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+
+  .table thead th {
+    text-align: center;
+  }
 
   .calendar-title {
     font-size: xx-large;
-    margin-bottom: 5px;
+    margin: 0 auto;
   }
 
   table {
@@ -24,16 +25,16 @@
   }
 
   a {
-    background-color: #abc0e7;
-    color: #FEF5F6;
+    // background-color: #abc0e7;
+    color: #6447F9;
     padding: 5px;
-    border-radius: 50%;
-    margin: 7px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 12px;
   }
   a:hover {
-      background-color: #fcebed;
-      color: #abc0e7;
-      // padding: 3px;
+      background-color: #ffe0e3;
+      color: #ffffff;
       border-radius: 50%;
       text-decoration: none;
   }
@@ -45,28 +46,26 @@
     background-color: #ffffff;
   }
 
-  .start-date {}
-
-  .prev-month {}
-  .next-month { }
-  .current-month {}
-
-
-
   .event {
     font-size: smaller;
     text-align: center;
-    background-color: opacify($color: #dfe8fa , $amount: .5);
+    // background-color: opacify($color: #dfe8fa , $amount: .5);
     margin-bottom: 5px;
     padding: 3px;
     border-radius: 5px;
+
+  }
+
+  #corps {
+    background-color: aliceblue;
+    color: #6447F9;
+  }
+  #esprit {
+    background-color: #fff1f3;
+    color: #6447F9;
   }
 
   .today {
-    background-color: #f0f5ff !important;
-    .event {
-      border: 1px;
-      background-color: #ffffff;
-    }
+    background-color:  #f6f5ff !important;
   }
 }
