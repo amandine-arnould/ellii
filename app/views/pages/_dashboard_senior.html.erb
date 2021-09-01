@@ -105,7 +105,7 @@
         <% sessions.each do |session| %>
           <% if session.activity.mind == false%>
             <div class='event' id='corps'>
-              <%=session.activity.title %>
+                <p><%=session.activity.title%> à <%=session.start_at.strftime('%H')%>h<%=session.start_at.strftime('%M')%></p>
             </div>
             <% else %>
               <div class='event' id='esprit'>
