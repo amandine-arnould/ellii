@@ -4,7 +4,8 @@
   </div>
   <div class="col-9">
     <%# ------- PROCHAIN ATELIER ------ %>
-    <div class="card booking-card mb-3">
+    <% if current_user.next_session.present? %>
+     <div class="card booking-card mb-3">
       <div class="card-left">
         <i class="far fa-calendar"></i>
         <h4 class="card-text date text-center"><%= current_user.next_session.start_at.strftime("%d")%> <%= @month[current_user.next_session.start_at.month].downcase %> <%= current_user.next_session.start_at.strftime("%Y") %> </h4>
@@ -33,7 +34,7 @@
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
 <div class="row">
   <div class="col-3">
