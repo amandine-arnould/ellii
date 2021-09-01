@@ -65,3 +65,23 @@
     font-weight: 600;
   }
 }
+
+// VISITOR NAVBAR
+
+.navbar-lewagon .sign-up {
+  background-color: $purple;
+  padding: 4px 18px;
+  border-radius: 30px;
+  box-shadow: 2px 4px 10px #bcbcbc;
+
+  &:hover {
+    opacity: 0.8;
+    a {
+      color: white;
+    }
+  }
+
+  .btn-sign-up{
+    color: white;
+  }
+}
