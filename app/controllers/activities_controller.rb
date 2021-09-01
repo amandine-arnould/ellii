@@ -24,6 +24,13 @@ class ActivitiesController < ApplicationController
           lat: @activity.latitude,
           lng: @activity.longitude,
           info_window: render_to_string(partial: "info_window", locals: { activity: @activity }),
+          image_url: helpers.asset_url('map-pin-solid.svg')
+        }
+      @user_marker =
+        {
+          lat: current_user.latitude,
+          lng: current_user.longitude,
+          image_url: helpers.asset_url('home-solid.svg')
         }
       # else
     end
