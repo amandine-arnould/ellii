@@ -1,46 +1,82 @@
-<div class="row">
-  <div class="col-3">
-    <h4 class="card-title text-left">votre prochain atelier:</h4>
-  </div>
-  <div class="col-9">
+<h2 class="text-center mt-5" style="margin-bottom: 40px;">
+  <i class="fas fa-chart-line" style="margin-right: 20px;"></i> Mon tableau de bord
+</h2>
+
+
+<%# ------- TAB ------ %>
+
+<ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" aria-selected="true">Mes activités</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="moods-tab" data-toggle="tab" href="#moods" role="tab" aria-controls="moods" aria-selected="false">Mes humeurs</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="preferences-tab" data-toggle="tab" href="#preferences" role="tab" aria-controls="preferences" aria-selected="false">Mes préférences</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="profil-tab" data-toggle="tab" href="#profil" role="tab" aria-controls="profil" aria-selected="false">Mon profil</a>
+  </li>
+</ul>
+
+<div class="tab-content mx-3" id="myTabContent">
+  <div class="tab-pane fade show active" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
+
     <%# ------- PROCHAIN ATELIER ------ %>
-    <div class="card booking-card mb-3">
-      <div class="card-left">
-        <i class="far fa-calendar"></i>
-        <h4 class="card-text date text-center"><%= current_user.next_session.start_at.strftime("%d")%> <%= @month[current_user.next_session.start_at.month].downcase %> <%= current_user.next_session.start_at.strftime("%Y") %> </h4>
-        <h4 class="card-text time text-center"><%= current_user.next_session.start_at.strftime("%H")%>h<%= current_user.next_session.start_at.strftime("%M") %></h4>
-      </div>
-      <div class="card-right card-body">
-        <h4 class="card-title"><%= current_user.next_session.activity.title %></h4>
-        <p class="card-text text-justify"><%= truncate(current_user.next_session.activity.description, :length => 150) %></p>
-        <div class="d-flex justify-content-between align-items-center mt-5">
-          <%= link_to "Rejoindre l'atelier 🚀", activity_session_path(current_user.next_session), class: "btn btn-primary btn-join" %>
-          <%= link_to "Annuler".html_safe,
-                                    booking_path(current_user.bookings.last),
-                                    method: :delete,
-                                    data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
-                                    class: "btn-cancel" %>
-        </div>
+
+    <div class="row next-activity">
+      <div class="col-9">
+        <% if current_user.next_session.present? %>
+          <div class="card booking-card mb-3 row">
+            <div class="card-left col-4">
+              <h4 class="mb-4">Prochain atelier</h4>
+              <i class="far fa-calendar"></i>
+              <h4 class="card-text date text-center"><%= current_user.next_session.start_at.strftime("%d")%> <%= @month[current_user.next_session.start_at.month].downcase %> <%= current_user.next_session.start_at.strftime("%Y") %> </h4>
+              <h4 class="card-text time text-center"><%= current_user.next_session.start_at.strftime("%H")%>h<%= current_user.next_session.start_at.strftime("%M") %></h4>
+            </div>
+            <div class="card-right card-body col-8">
+              <h4 class="card-title"><%= current_user.next_session.activity.title %></h4>
+              <p class="card-text text-justify"><%= truncate(current_user.next_session.activity.description, :length => 150) %></p>
+              <div class="d-flex justify-content-between align-items-center mt-5">
+                <% if Time.now < (current_user.next_session.start_at - 60.minutes).to_datetime %>
+                  <div id="countdown" data-timer="<%= current_user.next_session.start_at %>">
+                    <ul style="margin-bottom: 0px; padding-left: 0px;">
+                      <li style="font-size: 1rem; padding: 3px; text-align: center;"><span id="days" style="font-size: 1rem; text-align: center;"></span>Jours</li>
+                      <li style="font-size: 1rem; padding: 3px; text-align: center;"><span id="hours" style="font-size: 1rem; text-align: center;"></span>Heures</li>
+                      <li style="font-size: 1rem; padding: 3px; text-align: center;"><span id="minutes" style="font-size: 1rem; text-align: center;"></span>Minutes</li>
+                    </ul>
+                  </div>
+                <% else %>
+                  <%= link_to "Rejoindre l'atelier 🚀", activity_session_path(current_user.next_session), class: "btn btn-primary btn-join" %>
+                <% end %>
+                <%= link_to "Annuler".html_safe,
+                                          booking_path(current_user.bookings.last),
+                                          method: :delete,
+                                          data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
+                                          class: "btn-cancel" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-3">
-    <h4 class="card-title text-left">votre dernier atelier:</h4>
-  </div>
-  <div class="col-9">
-    <% if current_user.previous_session.present? %>
-      <div class="card booking-card mb-3" id='previous-session'>
-        <div class="row g-0">
-          <div class="col-md-4">
-            <h4 class="card-text text-center"><strong><%= current_user.previous_session.start_at.strftime("%d")%> <%= @month[current_user.previous_session.start_at.month] %><br>
-                <%= current_user.previous_session.start_at.strftime("%Y") %> <br>
-                à <%= current_user.previous_session.start_at.strftime("%H")%>h<%= current_user.previous_session.start_at.strftime("%M") %></strong></h4>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
+
+    <%# ------- DERNIER ATELIER ------ %>
+
+    <div class="row last-activity">
+      <div class="col-9">
+        <% if current_user.previous_session.present? %>
+          <div class="card booking-card mb-3 row" id='previous-session'>
+            <div class="card-left col-4">
+              <h4 class="mb-4">Dernier atelier</h4>
+              <i class="far fa-calendar"></i>
+              <h4 class="card-text date text-center"><%= current_user.previous_session.start_at.strftime("%d")%> <%= @month[current_user.previous_session.start_at.month] %> <%= current_user.previous_session.start_at.strftime("%Y") %> </h4>
+              <h4 class="card-text time text-center"><%= current_user.previous_session.start_at.strftime("%H")%>h<%= current_user.previous_session.start_at.strftime("%M") %></h4>
+            </div>
+            <div class="card-right card-body col-8">
               <h4 class="card-title"><%= current_user.previous_session.activity.title %></h4>
+              <p>Comment vous sentiez-vous après cet atelier ?</p>
               <%= simple_form_for current_user.bookings.last do |f| %>
                 <div class="atelier-mood">
                   <%= f.input :score,
@@ -53,60 +89,57 @@
                                 label_method: lambda { |score| render 'mood_label_atelier', score: score },
                                 input_html: {class: 'category-selector'}
                                 %>
-                  <%= f.button :submit, "Enregistrer", class: "btn btn-primary " %>
+                  <%= f.button :submit, "Enregistrer mon humeur", class: "btn btn-primary btn-save-mood mt-3"%>
                 </div>
               <% end %>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-</div>
-<ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="calendar-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="calendar" aria-selected="true">Mon calendrier</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="moods-tab" data-toggle="tab" href="#moods" role="tab" aria-controls="moods" aria-selected="false">Mes humeurs</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="preferences-tab" data-toggle="tab" href="#preferences" role="tab" aria-controls="preferences" aria-selected="false">Mes préférences</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="profil-tab" data-toggle="tab" href="#profil" role="tab" aria-controls="profil" aria-selected="false">Mon profil</a>
-  </li>
-</ul>
-<div class="tab-content mx-3" id="myTabContent">
-  <div class="tab-pane fade show active" id="calendar" role="tabpanel" aria-labelledby="calendar-tab">
+    </div>
+
+    <%# CALENDAR %>
     <div class="my-calendar">
       <%= month_calendar(events: @user_sessions) do |date, sessions| %>
         <%= date %>
         <% sessions.each do |session| %>
-          <div>
-            <%= session.activity.title %>
-          </div>
+          <% if session.activity.mind == false%>
+            <div class='event' id='corps'>
+              <%=session.activity.title %>
+            </div>
+            <% else %>
+              <div class='event' id='esprit'>
+                <%=session.activity.title %>
+              </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
   </div>
+
+
   <div class="tab-pane fade" id="moods" role="tabpanel" aria-labelledby="moods-tab">
+    <%# MOOD GRAPH %>
     <% if !current_user.moods.last.nil? %>
       <%= area_chart current_user.moods.group_by_day(:created_at, format: "%d-%m").maximum(:score),
                           # xtitle: "Jours",
+                          # ytitle: "Humeurs",
                           label: "Humeur",
-                          ytitle: "Humeurs",
                           colors: ["#6447F9", "#6447F9"],
                           empty: "Nous n'avons actuellement aucune information sur votre humeur",
-                          discrete: true
-                      %>
+                          discrete: true %>
     <% end %>
   </div>
+
+
   <div class="tab-pane fade" id="preferences" role="tabpanel" aria-labelledby="preferences-tab">
     <%# <h2>Mes préférences</h2> %>
   </div>
+
+
   <div class="tab-pane fade" id="profil" role="tabpanel" aria-labelledby="profil-tab">
-    <div class="card">
+    <%# MY PROFILE %>
+    <div class="card" id='card-profil'>
       <h5 class="card-header"><%= "#{current_user.first_name} #{current_user.last_name}" %></h5>
       <div class="card-body">
         <h5 class="card-title">Mon profil</h5>
@@ -114,10 +147,10 @@
           <li class="mt-3"><strong><i class="fas fa-at"></i></strong> <%= "#{current_user.email}" %></li>
           <li class="mt-3"><strong><i class="fas fa-map-marked-alt"></i> </strong><%= "#{current_user.address}" %></li>
           <li class="mt-3"><strong><i class="fas fa-phone"></i></i></strong> <%= "#{current_user.phone_number}" %></li>
-        <li class="mt-3"><strong><i class="far fa-user"></i></i></strong> <%= "#{current_user.status.capitalize}" %></li>
-    </ul>
-    <a href="#" class="btn btn-primary">Éditer mes informations</a>
+          <li class="mt-3"><strong><i class="far fa-user"></i></i></strong> <%= "#{current_user.status.capitalize}" %></li>
+        </ul>
+        <a href="#" class="btn btn-primary">Éditer mes informations</a>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </div>
