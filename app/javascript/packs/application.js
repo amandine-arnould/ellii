@@ -30,7 +30,8 @@ import { initializeClock } from "../components/timer";
 import { initSessionCable } from "../channels/session_channel";
 import { chatScroll } from "../components/chat_scroll";
 import { chartSmilies } from "../components/chart_smilies";
-import "chartkick/chart.js"
+import { backToTop } from "../components/back_to_top";
+import "chartkick/chart.js";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -53,7 +54,10 @@ document.addEventListener("turbolinks:load", () => {
   if (document.querySelector("#new_message")) {
     chatScroll();
   }
-    if (document.querySelector("#chart-1")) {
-      chartSmilies();
-    }
+  if (document.querySelector("#chart-1")) {
+    chartSmilies();
+  }
+  if (document.querySelector(".scrollToTopBtn")) {
+    backToTop();
+  }
 });
