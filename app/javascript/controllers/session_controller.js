@@ -24,6 +24,6 @@ export default class extends Controller {
       countTarget.style.color = "#65C367";
     }
 
-    countTarget.insertAdjacentHTML("beforeend", `<span class="remaining-slots">${Math.max(data.slots, 0)} place(s) restante(s)</span>`)
+    countTarget.insertAdjacentHTML("beforeend", `<span class="remaining-slots"> <i class="fas fa-user mr-2"></i> ${Math.max(data.slots, 0)} place(s) restante(s)</span>`)
   }
 }
