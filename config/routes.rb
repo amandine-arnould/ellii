@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
+  begin
+    ActiveAdmin.routes(self)
+  rescue Exception => e
+    puts "ActiveAdmin: #{e.class}: #{e}"
+  end
+
   devise_for :users
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"

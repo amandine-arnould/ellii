@@ -1,7 +1,8 @@
 <head>
-  <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a248a030-0a0a-4286-a9dd-8b5306d53568";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+  <script type="text/javascript">
+    window.$crisp=[];window.CRISP_WEBSITE_ID="a248a030-0a0a-4286-a9dd-8b5306d53568";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+  </script>
 </head>
-
 <div class="container">
   <% if user_signed_in? %>
     <% if current_user.status == "senior" %>
@@ -10,5 +11,5 @@
   <% else %>
     <%= render "home_visitor" %>
   <% end %>
-
 </div>
+<button class="scrollToTopBtn"><i class="far fa-arrow-alt-circle-up"></i></button>

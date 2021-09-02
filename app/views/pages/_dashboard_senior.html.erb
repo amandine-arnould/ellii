@@ -32,15 +32,15 @@
             <div class="card-left col-4">
               <h4 class="mb-4">Prochain atelier</h4>
               <i class="far fa-calendar"></i>
-              <h4 class="card-text date text-center"><%= current_user.next_session.start_at.strftime("%d")%> <%= @month[current_user.next_session.start_at.month].downcase %> <%= current_user.next_session.start_at.strftime("%Y") %> </h4>
-              <h4 class="card-text time text-center"><%= current_user.next_session.start_at.strftime("%H")%>h<%= current_user.next_session.start_at.strftime("%M") %></h4>
+              <h4 class="card-text date text-center"><%= current_user.next_session.start_time.strftime("%d")%> <%= @month[current_user.next_session.start_time.month].downcase %> <%= current_user.next_session.start_time.strftime("%Y") %> </h4>
+              <h4 class="card-text time text-center"><%= current_user.next_session.start_time.strftime("%H")%>h<%= current_user.next_session.start_time.strftime("%M") %></h4>
             </div>
             <div class="card-right card-body col-8">
               <h4 class="card-title"><%= current_user.next_session.activity.title %></h4>
               <p class="card-text text-justify"><%= truncate(current_user.next_session.activity.description, :length => 150) %></p>
               <div class="d-flex justify-content-between align-items-center mt-5">
-                <% if Time.now < (current_user.next_session.start_at - 60.minutes).to_datetime %>
-                  <div id="countdown" data-timer="<%= current_user.next_session.start_at %>">
+                <% if Time.now < (current_user.next_session.start_time - 60.minutes).to_datetime %>
+                  <div id="countdown" data-timer="<%= current_user.next_session.start_time %>">
                     <ul style="margin-bottom: 0px; padding-left: 0px;">
                       <li style="font-size: 1rem; padding: 3px; text-align: center;"><span id="days" style="font-size: 1rem; text-align: center;"></span>Jours</li>
                       <li style="font-size: 1rem; padding: 3px; text-align: center;"><span id="hours" style="font-size: 1rem; text-align: center;"></span>Heures</li>
@@ -51,7 +51,7 @@
                   <%= link_to "Rejoindre l'atelier 🚀", activity_session_path(current_user.next_session), class: "btn btn-primary btn-join" %>
                 <% end %>
                 <%= link_to "Annuler".html_safe,
-                                          booking_path(current_user.bookings.last),
+                                          booking_path(current_user.bookings.find_by(session: current_user.next_session)),
                                           method: :delete,
                                           data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
                                           class: "btn-cancel" %>
@@ -71,8 +71,8 @@
             <div class="card-left col-4">
               <h4 class="mb-4">Dernier atelier</h4>
               <i class="far fa-calendar"></i>
-              <h4 class="card-text date text-center"><%= current_user.previous_session.start_at.strftime("%d")%> <%= @month[current_user.previous_session.start_at.month] %> <%= current_user.previous_session.start_at.strftime("%Y") %> </h4>
-              <h4 class="card-text time text-center"><%= current_user.previous_session.start_at.strftime("%H")%>h<%= current_user.previous_session.start_at.strftime("%M") %></h4>
+              <h4 class="card-text date text-center"><%= current_user.previous_session.start_time.strftime("%d")%> <%= @month[current_user.previous_session.start_time.month] %> <%= current_user.previous_session.start_time.strftime("%Y") %> </h4>
+              <h4 class="card-text time text-center"><%= current_user.previous_session.start_time.strftime("%H")%>h<%= current_user.previous_session.start_time.strftime("%M") %></h4>
             </div>
             <div class="card-right card-body col-8">
               <h4 class="card-title"><%= current_user.previous_session.activity.title %></h4>
@@ -109,11 +109,11 @@
         <% sessions.each do |session| %>
           <% if session.activity.mind == false%>
             <div class='event' id='corps'>
-                <p><%=session.activity.title%> à <%=session.start_at.strftime('%H')%>h<%=session.start_at.strftime('%M')%></p>
+                <p><%=session.activity.title%> à <%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%></p>
             </div>
             <% else %>
               <div class='event' id='esprit'>
-                <p><%=session.activity.title%> à <%=session.start_at.strftime('%H')%>h<%=session.start_at.strftime('%M')%></p>
+                <p><%=session.activity.title%> à <%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%></p>
               </div>
           <% end %>
         <% end %>
