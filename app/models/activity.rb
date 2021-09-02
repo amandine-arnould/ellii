@@ -18,7 +18,7 @@ class Activity < ApplicationRecord
   begin
     abymize :sessions, permit: :all_attributes
   rescue Exception => e
-    puts "Abyme est une gemme de merde"
+    puts "Abyme tried to connect and verify associations to a database that wasn't built"
   end
 
   validates :title, presence: true
