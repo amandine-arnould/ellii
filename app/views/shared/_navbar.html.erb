@@ -29,11 +29,24 @@
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
+
+      <%#  -----  VISITOR NAVBAR ----- %>
+
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        <li style="margin-right: 40px;">
+          <%= link_to "A propos", "#" %>
+        </li>
+        <li style="margin-right: 40px;">
+          <%= link_to "Contact", "#" %>
+        </li>
+        <li style="margin-right: 40px;" class="login">
+          <%= link_to "Connexion", new_user_session_path %>
+        </li>
+        <li class="sign-up">
+          <%= link_to "S'inscrire", new_user_registration_path, class: "btn-sign-up" %>
         </li>
       <% end %>
+
     </ul>
   </div>
 </div>

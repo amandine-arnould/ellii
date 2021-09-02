@@ -8,6 +8,8 @@
     <% if current_user.status == "senior" %>
       <%= render "home_senior" %>
     <% end %>
+  <% else %>
+    <%= render "home_visitor" %>
   <% end %>
 </div>
 <button class="scrollToTopBtn"><i class="far fa-arrow-alt-circle-up"></i></button>
