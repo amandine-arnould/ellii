@@ -1,5 +1,5 @@
 <div class="m-5 text-center">
-  <% if Time.now < (@session.start_time - 10.minutes).to_datetime %>
+  <% if Time.zone.now < (@session.start_time - 10.minutes).to_datetime %>
     <%#  if false %>
     <p>La session n'a pas encore débuté!</p>
     <p>Veuillez patienter...</p>
@@ -16,7 +16,7 @@
         <i class="fas fa-video"></i> Rejoindre ma session
       <% end %>
     </div>
-  <% elsif Time.now > (@session.start_time + 2.hours).to_datetime %>
+  <% elsif Time.zone.now > (@session.start_time + @session.activity.duration.minutes).to_datetime %>
     <p><i class="fas fa-video-slash"></i> Cette session est terminée!</p>
     <%= link_to root_path, class: "btn btn-primary" do %>
       <i class="fas fa-paper-plane"></i> Retour à la page d'accueil
