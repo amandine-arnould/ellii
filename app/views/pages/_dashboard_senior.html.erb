@@ -109,11 +109,11 @@
         <% sessions.each do |session| %>
           <% if session.activity.mind == false%>
             <div class='event' id='corps'>
-                <p><%=session.activity.title%> à <%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%></p>
+                <p><%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%> : <%=session.activity.title%></p>
             </div>
             <% else %>
               <div class='event' id='esprit'>
-                <p><%=session.activity.title%> à <%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%></p>
+                <p><%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%> : <%=session.activity.title%></p>
               </div>
           <% end %>
         <% end %>
