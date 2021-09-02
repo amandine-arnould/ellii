@@ -38,10 +38,10 @@
   .card {
     font-size: 30px;
     padding: 20px 40px;
-    border: none;
+    border: solid 7px transparent;
 
     &:hover {
-      background-color:#e9f1ff;
+      background-color:#e1ecff;
     }
 
   }
@@ -50,6 +50,7 @@
   #search_mind_false:checked + label .card,
   #search_remote_true:checked + label .card,
   #search_remote_false:checked + label .card {
-    background-color: #e9f1ff;
+    background-color: #e1ecff;
+    border: solid 7px $purple;
   }
 }

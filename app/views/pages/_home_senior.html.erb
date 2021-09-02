@@ -17,7 +17,7 @@
     <div class="mood" data-controller="mood-selection" data-mood-selection-target="container" style="margin-bottom: 90px;">
       <h3 class="section-title ">Humeur du jour</h3>
       <h2 class="text-center mb-2" style="color: #6447F9;">Comment allez-vous aujourd'hui ?</h2>
-      <p class="text-center mb-5" style="color: #797979;">Choisissez votre humeur ci-dessous</p>
+      <p class="text-center mb-5" style="color: #797979; font-size: 18px;">Choisissez votre humeur ci-dessous</p>
       <%= simple_form_for @mood,
           data: { "mood-selection-target" => "moodForm"} do |f| %>
         <%= f.input :score,
@@ -36,12 +36,13 @@
     <%= render "pages/mood_notification.html", score: current_user.moods.last.sentence %>
   <% end %>
 
+  <%# ACTIVITY CHOICE %>
   <div class="text-center type-location-form"  id="program">
   <h3 class="section-title">Choix d'un atelier</h3>
     <%= simple_form_for :search, url: activities_path, method: "GET"  do |f| %>
       <div class="choose-type">
         <h2 class="text-center mb-2" style="color: #6447F9;">Que fait-on aujourd'hui ?</h2>
-        <p class="text-center mb-5" style="color: #797979;">Choisissez un type d'atelier</p>
+        <p class="text-center mb-5" style="color: #797979; font-size: 18px;">Choisissez un type d'atelier</p>
         <%= f.input :mind,
             as: :radio_buttons,
             collection_wrapper_tag: 'div',
@@ -54,7 +55,7 @@
       </div>
       <div class="choose-location">
         <h2 class="text-center mb-2 mt-5" style="color: #6447F9;">Plutôt chez vous ou à l'extérieur ?</h2>
-        <p class="text-center mb-5" style="color: #797979;">Choisissez la localisation de l'atelier</p>
+        <p class="text-center mb-5" style="color: #797979; font-size: 18px;">Choisissez la localisation de l'atelier</p>
         <%= f.input :remote,
             as: :radio_buttons,
             collection_wrapper_tag: 'div',

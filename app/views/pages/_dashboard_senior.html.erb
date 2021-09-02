@@ -36,9 +36,14 @@
               <h4 class="card-text time text-center"><%= current_user.next_session.start_time.strftime("%H")%>h<%= current_user.next_session.start_time.strftime("%M") %></h4>
             </div>
             <div class="card-right card-body col-8">
-              <h4 class="card-title"><%= current_user.next_session.activity.title %></h4>
+              <h4 class="card-title"><%= current_user.next_session.activity.title %> avec <%= current_user.next_session.activity.user.first_name %></h4>
               <p class="card-text text-justify"><%= truncate(current_user.next_session.activity.description, :length => 150) %></p>
               <div class="d-flex justify-content-between align-items-center mt-5">
+                <%= link_to "Annuler".html_safe,
+                                          booking_path(current_user.bookings.find_by(session: current_user.next_session)),
+                                          method: :delete,
+                                          data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
+                                          class: "btn-cancel" %>
                 <% if Time.now < (current_user.next_session.start_time - 60.minutes).to_datetime %>
                   <div id="countdown" data-timer="<%= current_user.next_session.start_time %>">
                     <ul style="margin-bottom: 0px; padding-left: 0px;">
@@ -50,11 +55,6 @@
                 <% else %>
                   <%= link_to "Rejoindre l'atelier 🚀", activity_session_path(current_user.next_session), class: "btn btn-primary btn-join" %>
                 <% end %>
-                <%= link_to "Annuler".html_safe,
-                                          booking_path(current_user.bookings.find_by(session: current_user.next_session)),
-                                          method: :delete,
-                                          data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
-                                          class: "btn-cancel" %>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@
               <h4 class="card-text time text-center"><%= current_user.previous_session.start_time.strftime("%H")%>h<%= current_user.previous_session.start_time.strftime("%M") %></h4>
             </div>
             <div class="card-right card-body col-8">
-              <h4 class="card-title"><%= current_user.previous_session.activity.title %></h4>
+              <h4 class="card-title"><%= current_user.previous_session.activity.title %> avec <%= current_user.previous_session.activity.user.first_name %> </h4>
               <p>Comment vous sentiez-vous après cet atelier ?</p>
                 <%= simple_form_for current_user.bookings.last do |f| %>
                   <div class="atelier-mood">
@@ -109,11 +109,11 @@
         <% sessions.each do |session| %>
           <% if session.activity.mind == false%>
             <div class='event' id='corps'>
-                <p><%=session.activity.title%> à <%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%></p>
+                <p><%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%> : <%=session.activity.title%></p>
             </div>
             <% else %>
               <div class='event' id='esprit'>
-                <p><%=session.activity.title%> à <%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%></p>
+                <p><%=session.start_time.strftime('%H')%>h<%=session.start_time.strftime('%M')%> : <%=session.activity.title%></p>
               </div>
           <% end %>
         <% end %>
