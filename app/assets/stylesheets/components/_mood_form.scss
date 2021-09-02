@@ -48,12 +48,14 @@
     cursor: pointer;
     width: 100%;
     text-align: center;
-    padding: 12px 30px;
-    background-color: #d8e7ea;
+    padding: 30px 30px;
+    border: solid 7px transparent;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
     border-radius: 6px;
     transition: 0.3s ease-out;
     &:hover {
-      background-color: #4DB4D4;
+      background-color: #E2ECFF;
       color: white;
       transition: 0.3s ease-out;
     }
@@ -68,9 +70,10 @@
   #mood_score_3:checked + label,
   #mood_score_4:checked + label,
   #mood_score_5:checked + label {
-    background-color: #4DB4D4;
+    background-color: #E2ECFF;
     border-radius: 6px;
     color: white;
+    border: solid 7px $purple;
   }
 }
 
