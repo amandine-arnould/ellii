@@ -59,7 +59,7 @@
           <div class="d-flex" style="height: 40px;">
             <%# if @activity.sessions.select { |session| session.start_at >=  Date.today } %>
               <%= f.input :session_id,
-                          collection: Session.upcoming(@activity).where.not(id: current_user.bookings.pluck(:session_id)),
+                          collection: Session.upcoming(@activity).sort_by(&:start_at),
                           prompt: "Choisir un créneau",
                           label: false,
                           input_html: { style: "width: 300px; height: 40px; margin-right: 10px; border-radius: 5px;", data: { session_target: 'input', action: 'change->session#change' } } %>
