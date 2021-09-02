@@ -58,14 +58,12 @@ Activity.create!(title: "Marche", description: "Comme toutes les activités en e
 puts "Nombre d'activités crées :#{Activity.count}"
 Activity.all.each do |act|
   [
-    Time.strptime("30/08/2021 12:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("30/08/2021 16:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("01/09/2021 12:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("01/09/2021 16:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("03/09/2021 12:00", "%d/%m/%Y %H:%M"),
+    Time.strptime("02/09/2021 12:00", "%d/%m/%Y %H:%M"),
+    Time.strptime("02/09/2021 16:00", "%d/%m/%Y %H:%M"),
+    Time.strptime("03/09/2021 14:00", "%d/%m/%Y %H:%M"),
     Time.strptime("03/09/2021 16:45", "%d/%m/%Y %H:%M"),
-    Time.strptime("05/09/2021 12:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("05/09/2021 16:00", "%d/%m/%Y %H:%M"),
+    Time.strptime("04/09/2021 14:00", "%d/%m/%Y %H:%M"),
+    Time.strptime("04/09/2021 16:00", "%d/%m/%Y %H:%M"),
     Time.strptime("07/09/2021 12:00", "%d/%m/%Y %H:%M"),
     Time.strptime("07/09/2021 16:00", "%d/%m/%Y %H:%M")
   ].each do |hour|
