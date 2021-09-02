@@ -44,7 +44,7 @@
                                           method: :delete,
                                           data: { confirm: "Etes-vous sûr de vouloir annuler cet atelier ?" },
                                           class: "btn-cancel" %>
-                <% if Time.now < (current_user.next_session.start_time - 60.minutes).to_datetime %>
+                <% if Time.zone.now < (current_user.next_session.start_time - 60.minutes).to_datetime %>
                   <div id="countdown" data-timer="<%= current_user.next_session.start_time %>">
                     <ul style="margin-bottom: 0px; padding-left: 0px;">
                       <li style="font-size: 1rem; padding: 3px; text-align: center;"><span id="days" style="font-size: 1rem; text-align: center;"></span>Jours</li>
