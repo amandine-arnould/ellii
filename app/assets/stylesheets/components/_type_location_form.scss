@@ -7,6 +7,11 @@
   border-radius: 220px 3px 210px 210px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 
+  strong {
+    margin-right: 10px;
+    font-weight: 600;
+  }
+
   .category-wrapper {
     display: flex;
     justify-content: space-around;
