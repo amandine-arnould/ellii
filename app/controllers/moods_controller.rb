@@ -8,9 +8,14 @@ class MoodsController < ApplicationController
     @mood.user = current_user
     authorize @mood
     if @mood.save
-      redirect_to root_path
-    else
-      render :new
+      respond_to do |format|
+        format.json {
+          html_content = render_to_string partial: "pages/mood_notification", locals: {score: @mood.sentence}, layout: false, formats: [:html]
+          render json: {
+                   partial: html_content,
+                 }
+        }
+      end
     end
   end
 
