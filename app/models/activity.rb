@@ -14,7 +14,12 @@ class Activity < ApplicationRecord
   belongs_to :user
   has_many :sessions, dependent: :destroy
   has_many :bookings, through: :sessions
-  abymize :sessions, permit: :all_attributes
+
+  begin
+    abymize :sessions, permit: :all_attributes
+  rescue Exception => e
+    puts "Abyme tried to connect and verify associations to a database that wasn't built"
+  end
 
   validates :title, presence: true
   validates :description, presence: true, length: { minimum: MIN_CHAR_DESCRIPTION }

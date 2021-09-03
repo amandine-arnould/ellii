@@ -5,7 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+puts "Destroying all Bookings"
+Booking.destroy_all
+puts "Destroying all Messages"
+Message.destroy_all
+puts "Destroying all Sessions"
+Session.destroy_all
+puts "Destroying all Activitys"
+Activity.destroy_all
+puts "Destroying all Moods"
+Mood.destroy_all
+puts "Destroying all Users"
+User.destroy_all
 
 teacher_1 = User.new(email: "arthur@gmail.com", password: "123456", first_name: "Arthur", last_name: "Herminie", status: "teacher", phone_number: "0909090909", address: "30 rue saint-maur", admin: false)
 teacher_1.avatar.attach(io: File.open(File.join(Rails.root,"app/assets/images/avatars/arthur.png")), filename: "image")
@@ -24,7 +35,6 @@ senior.avatar.attach(io: File.open(File.join(Rails.root,"app/assets/images/avata
 senior.save!
 #changer les photos des teachers
 
-Mood.destroy_all
 Mood.create!(score: 1, user: senior, created_at: Time.strptime("27/08/2021 12:00", "%d/%m/%Y %H:%M"))
 Mood.create!(score: 2, user: senior, created_at: Time.strptime("28/08/2021 12:00", "%d/%m/%Y %H:%M"))
 Mood.create!(score: 2, user: senior, created_at: Time.strptime("29/08/2021 12:00", "%d/%m/%Y %H:%M"))
@@ -58,15 +68,15 @@ Activity.create!(title: "Marche", description: "Comme toutes les activités en e
 puts "Nombre d'activités crées :#{Activity.count}"
 Activity.all.each do |act|
   [
-    Time.strptime("02/09/2021 12:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("02/09/2021 16:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("03/09/2021 10:40", "%d/%m/%Y %H:%M"),
-    Time.strptime("03/09/2021 13:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("03/09/2021 16:45", "%d/%m/%Y %H:%M"),
-    Time.strptime("04/09/2021 14:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("04/09/2021 16:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("07/09/2021 12:00", "%d/%m/%Y %H:%M"),
-    Time.strptime("07/09/2021 16:00", "%d/%m/%Y %H:%M")
+    Time.zone.strptime("02/09/2021 14:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("02/09/2021 18:05", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("03/09/2021 10:40", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("03/09/2021 13:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("03/09/2021 16:40", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("04/09/2021 14:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("04/09/2021 16:45", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("07/09/2021 14:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("07/09/2021 16:45", "%d/%m/%Y %H:%M")
   ].each do |hour|
     session = Session.create!(start_at: hour, activity: act)
     puts "Session for #{session.activity.title} created! (at #{session.start_at})"
