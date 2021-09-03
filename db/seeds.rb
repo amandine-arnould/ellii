@@ -70,8 +70,8 @@ Activity.all.each do |act|
   [
     Time.zone.strptime("02/09/2021 14:00", "%d/%m/%Y %H:%M"),
     Time.zone.strptime("02/09/2021 18:05", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("03/09/2021 10:40", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("03/09/2021 13:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("03/09/2021 14:30", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("03/09/2021 15:00", "%d/%m/%Y %H:%M"),
     Time.zone.strptime("03/09/2021 16:40", "%d/%m/%Y %H:%M"),
     Time.zone.strptime("04/09/2021 14:00", "%d/%m/%Y %H:%M"),
     Time.zone.strptime("04/09/2021 16:45", "%d/%m/%Y %H:%M"),

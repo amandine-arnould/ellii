@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def previous_session
-    bookings.joins(:session).find_by('start_at < ?', Time.zone.now)&.session
+    bookings.joins(:session).order(start_at: :desc).find_by('start_at < ?', Time.zone.now)&.session
   end
 
   def default_avatar
