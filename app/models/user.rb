@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # validates :avatar, presence: true
 
   def next_session
-    current_session || bookings.joins(:session).find_by('start_at > ?', Time.zone.now)&.session
+    current_session || bookings.joins(:session).order(start_at: :asc).find_by('start_at > ?', Time.zone.now)&.session
   end
 
   def current_session
