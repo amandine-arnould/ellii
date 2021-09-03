@@ -54,7 +54,7 @@
       </p>
 
       <div data-controller="session">
-        <p class="title-infos"><i class="fas fa-calendar-alt mr-2"></i> Créneaux disponibles</p>
+        <%# <p class="title-infos"><i class="fas fa-calendar-alt mr-2"></i> Créneaux disponibles</p> %>
         <%= simple_form_for @booking do |f| %>
           <div class="d-flex" style="height: 40px;">
             <%# if @activity.sessions.select { |session| session.start_at >=  Date.today } %>
@@ -75,10 +75,10 @@
           </p>
       </div>
 
-      <p class="text-justify mt-5" style="color: #7B61FF;">
-        <i class="fas fa-quote-left"></i>
+      <p class="mt-4 mb-5" style="color: #1D4668;">
+        <%# <i class="fas fa-quote-left"></i> %>
         <%= @activity.description %>
-        <i class="fas fa-quote-right"></i>
+        <%# <i class="fas fa-quote-right"></i> %>
       </p>
 
       <%# SESSIONS %>
