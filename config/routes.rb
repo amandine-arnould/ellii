@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"
+  resources :contacts, only: [:new, :create]
+  # resources :contacts, only: [:index, :create], as: :contact
   resources :moods, only: [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :activities do
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
     resources :messages, only: :create
     member do
       get :start, :end
-      get :slots, to: 'sessions#slots'
+      get :slots, to: "sessions#slots"
     end
   end
 end
