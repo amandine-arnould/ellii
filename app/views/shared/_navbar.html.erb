@@ -8,6 +8,9 @@
 
   <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto d-flex align-items-center justify-content-between">
+
+      <%#  -----  LOGGED USER NAVBAR ----- %>
+
       <% if user_signed_in? %>
         <li style="margin-right: 40px;", class="<%= 'active' if params[:action] == 'home' %>">
           <%= link_to "Choisir un atelier", root_path(anchor: "program") %>
@@ -33,17 +36,17 @@
       <%#  -----  VISITOR NAVBAR ----- %>
 
       <% else %>
-        <li style="margin-right: 40px;">
-          <%= link_to "A propos", "#" %>
+        <li style="margin-right: 40px;" class="<%= 'active' if params[:action] == 'home' %>">
+          <%= link_to "Accueil", root_path %>
         </li>
-        <li style="margin-right: 40px;">
+        <li style="margin-right: 40px;" class="<%= 'active' if params[:action] == 'new' && params[:controller] == 'contacts' %>">
           <%= link_to "Contact", new_contact_path %>
         </li>
-        <li style="margin-right: 40px;" class="login">
+        <li style="margin-right: 40px;" class="login <%= 'active' if params[:action] == 'new' && params[:controller] == 'devise/sessions' %>">
           <%= link_to "Connexion", new_user_session_path %>
         </li>
         <li class="sign-up">
-          <%= link_to "S'inscrire", new_user_registration_path, class: "btn-sign-up" %>
+          <%= link_to "Se préinscrire", new_user_registration_path, class: "btn-sign-up" %>
         </li>
       <% end %>
 
