@@ -1,6 +1,6 @@
-<div class="footer d-flex flex-column align-items-center flex-direction-between">
+<div class="footer d-flex flex-column align-items-center justify-content-end">
   <div class="socials">
-    <p>Suivez-nous sur les réseaux sociaux !</p>
+    <p>Suivez ellii sur les réseaux sociaux !</p>
     <a href="" class="social-link">
       <i class="fab fa-facebook-f social-icon"></i>
     </a>
@@ -11,5 +11,21 @@
       <i class="fab fa-twitter social-icon"></i>
     </a>
   </div>
-  <p class="mb-0 footer-text">© 2021 Copyright Ellii - Fait avec 💜 au Wagon par la team capy <%= image_tag "default_avatar.png", class: "avatar-small"%></p>
+  <div class="footer-text">
+    <div class="container d-flex align-items-center">
+      <p class="mb-0">ellii © 2021</p>
+      <ul class="mb-0 d-flex align-items-center justify-content-center">
+        <li>
+          <%= link_to "Mentions légales", "#" %>
+        </li>
+        <li>
+          <%= link_to "Cookies", "#" %>
+        </li>
+        <li>
+          <%= link_to "CGU", "#" %>
+        </li>
+      </ul>
+      <p class="mb-0" style="font-weight: normal">Fait avec 🤍 au Wagon</p>
+    </div>
+  </div>
 </div>

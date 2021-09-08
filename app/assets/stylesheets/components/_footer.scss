@@ -2,7 +2,7 @@
   height: 120px;
 
   p {
-    color: $purple;
+    color: white;
   }
 }
 
@@ -10,19 +10,20 @@
   padding: 20px;
   width: 100%;
   text-align: center;
-  background-color: white;
+  background-color: #2C1E6D;
+  font-size: 18px;
 }
 
 .footer .social-link {
   text-decoration: none;
 
   &:hover .social-icon {
-    color: #E7957E;
+    color: #FFE6E6;
   }
 }
 
 .footer .social-icon {
-  color: $purple;
+  color: white;
   font-size: 28px;
   margin-right: 20px;
   margin-left: 20px;
@@ -32,9 +33,30 @@
   font-size: 18px;
   letter-spacing: 1px;
   color: white;
-  background-color: #E7957E;
+  background-color: #2C1E6D;
   width: 100%;
   text-align: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  font-weight: 600;
+
+
+  .container {
+    border-top: 1px solid white;
+    justify-content: space-between;
+    padding: 0;
+
+    ul {
+      padding: 20px 0px;
+      list-style: none;
+
+      li {
+        padding-left: 20px;
+        padding-right: 20px;
+
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }
