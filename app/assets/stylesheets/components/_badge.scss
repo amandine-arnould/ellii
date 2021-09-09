@@ -1,0 +1,14 @@
+// HOME ACTIVITY BADGES
+
+.home-activities {
+
+  .activity-badges{
+    display: flex;
+    justify-content: space-evenly;
+
+    .activity-img {
+      width: 180px;
+      border-radius: 50%;
+    }
+  }
+}

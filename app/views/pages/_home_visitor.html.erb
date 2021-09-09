@@ -1,6 +1,6 @@
-<div class="container mt-5 mb-5 visitor-homepage">
+<%# BANNER %>
 
-  <%# BANNER %>
+<div class="container mt-5 mb-5 visitor-homepage">
   <div class="mt-5 d-flex justify-content-between align-items-center banner">
     <div>
       <h1 style="font-size: 50px; margin-bottom: 10px; color: #1D4668; font-weight: 600;">Bien-vieillir et être bien entouré.</h1>
@@ -10,5 +10,18 @@
       <%= link_to "En savoir plus", root_path(anchor: "your-profile"), class: "btn btn-font", style: "margin-right: 20px; padding-right: 41px; padding-left: 41px; border: 1px solid #6447F9; color: #6447F9;" %>
     </div>
     <%= image_tag "homepage/together.png", style:"width: 550px;" %>
+  </div>
+</div>
+
+<%# ACTIVITIES %>
+
+<div class="home-activities pt-4 pb-4" style="background-color: white; margin-bottom: 100px;">
+  <h3 class="text-center mt-5" style="font-size: 16px; letter-spacing: 2px;">DÉCOUVRIR</h3>
+  <h2 class="text-center mb-5" style="font-size: 32px">Nos ateliers</h2>
+  <div class="container text-center activity-badges mb-5">
+    <%= image_tag "illustrations/badges/calligraphy.png", class:"activity-img"%>
+    <%= image_tag "illustrations/badges/meditation.png", class:"activity-img" %>
+    <%= image_tag "illustrations/badges/running.png", class:"activity-img" %>
+    <%= image_tag "illustrations/badges/cooking.png", class:"activity-img" %>
   </div>
 </div>
