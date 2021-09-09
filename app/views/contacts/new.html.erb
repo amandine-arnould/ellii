@@ -2,21 +2,14 @@
   <div class="col-md-6">
     <h1>Contactez nous</h1>
     <%= simple_form_for @contact do |f| %>
-      <%#= f.label :name%>
-      <%#= f.text_field  :name, required: true, class: "contact-form-text-area"%>
       <%= f.input :name, label: "Votre nom", placeholder: "Entrer votre nom complet" %>
-      <%#= f.label :email%>
-      <%#= f.text_field :email, required: true, class: "contact-form-text-area"%>
       <%= f.input :email, required: true, label: "Votre email", placeholder: "Entrer votre adresse email", class: "contact-form-text-area" %>
-      <%#= f.label :message %>
-      <%#= f.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area",
-            placeholder: "Send me a message"%>
-      <%= f.input :message, label: "Votre message", placeholder: "Entrer votre message", as: :text, :input_html => { class: 'test', :cols => 5, :rows => 6 } %>
+      <%= f.input :message, label: "Votre message", placeholder: "Entrer votre message", as: :text, :input_html => { class: 'test', :cols => 5, :rows => 4 } %>
       <div class= "d-none">
         <%= f.label :nickname %>
         <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
       </div>
-      <%= f.submit 'Envoyer', class: 'btn btn-primary' %>
+      <%= f.submit 'Envoyer', class: 'btn btn-primary mb-5' %>
     <% end %>
   </div>
 </div>
