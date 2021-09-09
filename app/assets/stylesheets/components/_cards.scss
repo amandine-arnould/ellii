@@ -192,3 +192,44 @@
   border: none !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
 }
+
+
+// HOME VISITOR PROFILE CARD
+
+#your-profile .profile-card {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+
+  .profile-img-container {
+    background-color: #FEF5F6;
+    margin: 20px;
+    border-radius: 20px;
+    width: fit-content;
+
+    img {
+      width: 340px;
+    }
+  }
+
+  .profile-text {
+    margin: 20px 40px 20px 20px;
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    p{
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .btn-container {
+      text-align: right;
+    }
+  }
+}

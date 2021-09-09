@@ -25,3 +25,49 @@
     <%= image_tag "illustrations/badges/cooking.png", class:"activity-img" %>
   </div>
 </div>
+
+<%# YOUR PROFILE %>
+
+<div class="container" id="your-profile"style="margin-bottom: 100px;">
+  <h3 class="text-center mt-5" style="font-size: 16px; letter-spacing: 2px;">FONCTIONNEMENT</h3>
+  <h2 class="text-center mb-5" style="font-size: 32px">Votre profil</h2>
+  <div class="profile-card">
+    <div class="profile-img-container">
+      <%= image_tag "illustrations/profile/senior.png" %>
+    </div>
+    <div class="profile-text">
+      <h2>Je suis senior</h2>
+      <p>J’ai plus de 65 ans et je souhaite participez à des ateliers, suivre mon humeur et mon agenda 🚀</p>
+      <div class="btn-container">
+        <%= link_to "En savoir plus", "#", class: "btn btn-font", style: "margin-right: 20px; padding-right: 41px; padding-left: 41px; border: 1px solid #6447F9; color: #6447F9;" %>
+        <%= link_to "Me préinscrire", new_user_registration_path, class: "btn btn-primary btn-font", style: "margin-right: 20px; padding-right: 41px; padding-left: 41px;" %>
+      </div>
+    </div>
+  </div>
+  <div class="profile-card">
+    <div class="profile-img-container">
+      <%= image_tag "homepage/together.png" %>
+    </div>
+    <div class="profile-text">
+      <h2>Je suis un proche</h2>
+      <p>Je souhaite inscrire quelqu’un qui à plus de 65 ans pour qu’il participe à des ateliers, suivre son humeur et son agenda 🚀</p>
+      <div class="btn-container">
+        <%= link_to "En savoir plus", "#", class: "btn btn-font", style: "margin-right: 20px; padding-right: 41px; padding-left: 41px; border: 1px solid #6447F9; color: #6447F9;" %>
+        <%= link_to "Me préinscrire", new_user_registration_path, class: "btn btn-primary btn-font", style: "margin-right: 20px; padding-right: 41px; padding-left: 41px;" %>
+      </div>
+    </div>
+  </div>
+  <div class="profile-card">
+    <div class="profile-img-container">
+      <%= image_tag "illustrations/mind.png" %>
+    </div>
+    <div class="profile-text">
+      <h2>Je suis animateur ou professeur</h2>
+      <p>Je souhaite animer des conférences ou donner des cours à des personnes de plus de 65 ans pour améliorer leur bien-être 🚀</p>
+      <div class="btn-container">
+        <%= link_to "En savoir plus", "#", class: "btn btn-font", style: "margin-right: 20px; padding-right: 41px; padding-left: 41px; border: 1px solid #6447F9; color: #6447F9;" %>
+        <%= link_to "Me préinscrire", new_user_registration_path, class: "btn btn-primary btn-font", style: "margin-right: 20px; padding-right: 41px; padding-left: 41px;" %>
+      </div>
+    </div>
+  </div>
+</div>
