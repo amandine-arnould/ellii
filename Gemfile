@@ -52,7 +52,7 @@ gem "active_admin_flat_skin"
 # gem "font-awesome-rails"
 
 # contact_form
-gem "mail_form"
+gem "sendgrid-ruby"
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
