@@ -191,9 +191,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    mail_form (1.9.0)
-      actionmailer (>= 5.2)
-      activemodel (>= 5.2)
     marcel (1.0.1)
     method_source (1.0.0)
     mime-types (3.3.1)
@@ -278,6 +275,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.2)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -292,6 +290,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sendgrid-ruby (6.5.1)
+      ruby_http_client (~> 3.4)
     simple_calendar (2.4.3)
       rails (>= 3.0)
     simple_form (5.1.0)
@@ -366,7 +366,6 @@ DEPENDENCIES
   inherited_resources!
   jbuilder (~> 2.7)
   listen (~> 3.2)
-  mail_form
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails
@@ -377,6 +376,7 @@ DEPENDENCIES
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
+  sendgrid-ruby
   simple_calendar (~> 2.4)
   simple_form
   spring
@@ -392,4 +392,4 @@ RUBY VERSION
    ruby 2.7.3p183
 
 BUNDLED WITH
-   2.1.4
+   2.2.21
