@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   def home
     @mood = Mood.new
     @activities = Activity.all
+    @contact = Contact.new
   end
 
   def dashboard
