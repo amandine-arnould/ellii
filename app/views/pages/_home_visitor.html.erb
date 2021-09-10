@@ -91,3 +91,29 @@
     <%= image_tag "sponsors/le-wagon-color.png" %>
   </div>
 </div>
+
+
+<%# CONTACT %>
+
+<div class="container d-flex justify-content-center contact-form" style="margin-bottom: 160px; background-image: url(<%= image_path "background_contact.png" %>);">
+  <div class="col-md-6">
+    <h3 class="text-center" style="font-size: 16px; letter-spacing: 2px;">BESOIN D'AIDE ?</h3>
+    <h2 class="text-center mb-5" style="font-size: 32px">Contactez-nous</h2>
+    <%= simple_form_for @contact do |f| %>
+      <div class="d-flex justify-content-between">
+        <%= f.input :name, label: "Votre nom", placeholder: "Votre nom complet", label: false %>
+        <%= f.input :email, required: true, label: false, placeholder: "Votre adresse email", class: "contact-form-text-area flex-grow-1" %>
+      </div>
+      <%= f.input :message, label: false, placeholder: "Votre message", as: :text, :input_html => { class: 'test', :cols => 5, :rows => 4 } %>
+      <div class= "d-none">
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+      </div>
+      <div class="d-flex justify-content-end">
+        <%= button_tag type: 'submit', class: 'btn btn-primary btn-submit' do %>
+          <p class="mb-0">Envoyer <i class="far fa-paper-plane pl-2"></i></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
