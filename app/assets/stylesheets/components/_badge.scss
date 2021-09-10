@@ -6,9 +6,13 @@
     display: flex;
     justify-content: space-evenly;
 
-    .activity-img {
-      width: 180px;
+    div {
       border-radius: 50%;
+      background-color: #FEF5F6;
+    }
+
+    .activity-img {
+      width: 200px;
     }
   }
 }
