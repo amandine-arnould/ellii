@@ -15,3 +15,35 @@
 .back-to-results .form-check {
   display: none;
 }
+
+
+// CONTACT FORM
+
+.contact-form {
+  form {
+    .contact_name,
+    .contact_email {
+      width: 49%;
+    }
+
+    .contact_name,
+    .contact_email,
+    .contact_message {
+      input,
+      textarea {
+        background-color: #EDF0F3;
+        border: none;
+        border-radius: 10px;
+        opacity: 0.8;
+      }
+
+      ::placeholder {
+        color: #1D4668;
+      }
+    }
+
+    .btn-submit{
+      padding: 10px 30px;
+    }
+  }
+}
