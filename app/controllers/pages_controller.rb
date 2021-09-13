@@ -2,7 +2,7 @@ require "json"
 require "open-uri"
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :authenticate_user!, only: [:home, :senior_path, :relative_path, :teacher_path]
 
   def home
     @mood = Mood.new
