@@ -1,0 +1,64 @@
+<%# BANNER %>
+
+<div class="container mt-5 mb-5 visitor-homepage">
+  <div class="mt-5 d-flex justify-content-between align-items-center banner">
+    <div>
+      <h3 style="font-size: 16px; letter-spacing: 2px;">COMMENT ÇA MARCHE</h3>
+      <h1 style="font-size: 50px; margin-bottom: 10px; color: #1D4668; font-weight: 600;">Je suis un proche</h1>
+      <p style="font-size: 18px;">On vous explique tout sur cette page ! Si vous avez d’autres questions n’hésitez pas à nous contacter, nous avons aussi un chat situé en bas à droite de votre écran
+        <i class="fas fa-comment-alt ml-1" style="color: white; background-color: #682ad5; padding: 7px; border-radius: 50%; font-size: 13px;"></i>
+      </p>
+    </div>
+    <%= image_tag "homepage/relative.png", style:"width: 550px;" %>
+  </div>
+</div>
+
+<%# PROCESS %>
+<div class="container path">
+  <div class="container d-flex align-items-center justify-content-between">
+    <%= image_tag "homepage/subscribe2.png", class:"illustration"  %>
+    <div class= "d-flex">
+    <h2><strong class="mr-3">1</strong></h2>
+    <h2 class="flex-grow-1">Je préinscris un parent</h2>
+    </div>
+    <%= image_tag "homepage/path.png", class:"dashed-path" %>
+  </div>
+
+  <div class="container d-flex align-items-center justify-content-between">
+    <%= image_tag "homepage/path2.png", class:"dashed-path"  %>
+    <div class= "d-flex">
+      <h2><strong class="mr-3" style="padding: 5px 12px;">2</strong></h2>
+      <h2 class="flex-grow-1">Les accès sont transmis à votre proche</h2>
+    </div>
+    <%= image_tag "homepage/access.png", class:"illustration"  %>
+  </div>
+
+  <div class="container d-flex align-items-center justify-content-between">
+    <%= image_tag "homepage/calendar.png", class:"illustration" %>
+    <div class= "d-flex">
+      <h2><strong class="mr-3" style="padding: 5px 12px;">3</strong></h2>
+      <h2 class="flex-grow-1">J'ai accès au calendrier de réservation d'atelier de mon proche</h2>
+    </div>
+    <%= image_tag "homepage/path.png", class:"dashed-path"  %>
+  </div>
+
+  <div class="container d-flex align-items-center justify-content-between">
+    <%= image_tag "homepage/path2.png", class:"dashed-path"  %>
+    <div class= "d-flex">
+      <h2><strong class="mr-3" style="padding: 5px 12px;">4</strong></h2>
+      <h2 class="flex-grow-1">Je suis avertie de l'évolution de mon proche</h2>
+    </div>
+    <%= image_tag "homepage/mood.png", class:"illustration"  %>
+  </div>
+
+  <div class="container d-flex align-items-center justify-content-between">
+    <%= image_tag "homepage/path3.png", class:"dashed-path" %>
+    <div class="flex-grow-1 text-align-center d-flex flex-column">
+      <h3 class="text-center mt-5" style="font-size: 16px; letter-spacing: 2px;">CONVAINCU ?</h3>
+      <h2 class="text-center mb-4" style="font-size: 32px">Rejoignez-nous !</h2>
+      <%= link_to "Préinscrire un proche", new_contact_path, class: "btn btn-primary btn-font", style: "padding-right: 41px; padding-left: 41px; width: fit-content; margin: auto;" %>
+    </div>
+    <%= image_tag "homepage/together.png", class:"illustration" %>
+  </div>
+
+</div>
