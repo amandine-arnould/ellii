@@ -33,4 +33,14 @@ class PagesController < ApplicationController
     @user_sessions = current_user.sessions_as_senior
 
   end
+
+  def senior_path
+  end
+
+  def relative_path
+  end
+
+  def teacher_path
+  end
+
 end
