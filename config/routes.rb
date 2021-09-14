@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get "/dashboard", to: "pages#dashboard"
+  get "/senior_path", to: "pages#senior_path"
+  get "/relative_path", to: "pages#relative_path"
+  get "/teacher_path", to: "pages#teacher_path"
   resources :contacts, only: [:new, :create]
   # resources :contacts, only: [:index, :create], as: :contact
   resources :moods, only: [:create]
