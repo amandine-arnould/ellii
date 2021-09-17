@@ -47,3 +47,42 @@
     }
   }
 }
+
+// LOGIN FORM
+
+.login-form {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 80px auto;
+
+  img {
+    width: 560px;
+    margin-right: 60px;
+  }
+
+  .form {
+
+
+    h3 {
+      font-weight: normal;
+      color: $purple;
+    }
+
+    h2 {
+      font-size: 35px;
+    }
+
+    .instruction {
+      color: #7a7a7a;
+      margin-bottom: 45px;
+    }
+
+    .btn-login {
+      border-radius: 4px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+}
