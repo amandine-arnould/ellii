@@ -68,15 +68,15 @@ Activity.create!(title: "Marche", description: "Comme toutes les activités en e
 puts "Nombre d'activités crées :#{Activity.count}"
 Activity.all.each do |act|
   [
-    Time.zone.strptime("02/09/2021 14:00", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("02/09/2021 18:05", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("03/09/2021 14:30", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("03/09/2021 15:00", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("03/09/2021 16:40", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("04/09/2021 14:00", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("04/09/2021 16:45", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("07/09/2021 14:00", "%d/%m/%Y %H:%M"),
-    Time.zone.strptime("07/09/2021 16:45", "%d/%m/%Y %H:%M")
+    Time.zone.strptime("29/09/2021 14:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("29/09/2021 18:05", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("03/10/2021 14:30", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("03/10/2021 15:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("08/10/2021 14:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("08/10/2021 16:45", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("15/11/2021 14:00", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("01/01/2022 16:45", "%d/%m/%Y %H:%M"),
+    Time.zone.strptime("01/01/2022 18:45", "%d/%m/%Y %H:%M")
   ].each do |hour|
     session = Session.create!(start_at: hour, activity: act)
     puts "Session for #{session.activity.title} created! (at #{session.start_at})"
