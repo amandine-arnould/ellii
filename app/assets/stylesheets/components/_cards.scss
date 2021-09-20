@@ -242,6 +242,12 @@
   #your-profile .profile-card {
     flex-direction: column;
 
+    .profile-img-container {
+      img {
+      width: 300px;
+    }
+  }
+
     .profile-text {
       margin: 20px;
 
