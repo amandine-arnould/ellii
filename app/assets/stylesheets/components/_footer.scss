@@ -29,6 +29,10 @@
   margin-left: 20px;
 }
 
+.footer .small-device {
+  display: none;
+}
+
 .footer .footer-text {
   font-size: 18px;
   letter-spacing: 1px;
@@ -57,6 +61,22 @@
           text-decoration: none;
         }
       }
+    }
+  }
+}
+
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+  .footer {
+    .large-device {
+      display: none;
+    }
+
+    .small-device {
+      display: block;
+    }
+
+    .footer-text {
+      font-size: 15px;
     }
   }
 }
