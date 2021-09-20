@@ -17,6 +17,21 @@
   }
 }
 
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+  .activity-badges {
+    flex-direction: column;
+
+    .badge-width {
+      width: fit-content;
+      margin: auto;
+    }
+
+    .badge-margin {
+      margin-bottom: 40px;
+    }
+  }
+}
+
 
 // HOME SPONSORS
 
