@@ -41,9 +41,39 @@
         color: #1D4668;
       }
     }
+    .btn-container {
+      display: flex;
+      justify-content: flex-end;
 
-    .btn-submit{
-      padding: 10px 30px;
+      .btn-submit{
+        padding: 10px 30px;
+      }
+    }
+  }
+}
+
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+  .contact-form-home {
+
+    .form-input {
+      flex-direction: column;
+    }
+
+    form {
+      .contact_name,
+      .contact_email {
+        width: 100%;
+      }
+
+      .btn-container {
+      display: block;
+
+        .btn-submit{
+          display: block;
+          width: 100%;
+          border-radius: 10px;
+        }
+      }
     }
   }
 }
