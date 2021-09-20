@@ -31,6 +31,10 @@
     .small-device {
       display: none;
     }
+
+    .btn-margin {
+      margin-right: 20px;
+    }
   }
 }
 
@@ -56,6 +60,10 @@
 
       .btn-know-more {
         margin-bottom: 20px;
+      }
+
+      .btn-margin {
+        margin-right: 0px;
       }
 
       img {
