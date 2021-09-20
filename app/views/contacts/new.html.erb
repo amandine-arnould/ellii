@@ -1,15 +1,22 @@
-<div class="container mt-3  d-flex justify-content-center">
-  <div class="col-md-6">
-    <h1>Contactez nous</h1>
+<div class="container d-flex justify-content-between align-items-center contact-form">
+  <%= image_tag 'illustrations/contact.png' %>
+  <div class="flex-grow-1 form align-self-stretch d-flex flex-column justify-content-center">
+    <h3>Vous souhaitez vous préinscrire ? Vous avez une question ?</h3>
+    <h2 class="mb-5">Contactez-nous !</h2>
     <%= simple_form_for @contact do |f| %>
-      <%= f.input :name, label: "Votre nom", placeholder: "Entrer votre nom complet" %>
-      <%= f.input :email, required: true, label: "Votre email", placeholder: "Entrer votre adresse email", class: "contact-form-text-area" %>
-      <%= f.input :message, label: "Votre message", placeholder: "Entrer votre message", as: :text, :input_html => { class: 'test', :cols => 5, :rows => 4 } %>
-      <div class= "d-none">
-        <%= f.label :nickname %>
-        <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+      <div class="form-inputs">
+        <%= f.input :name, label: "Nom", placeholder: "Entrer votre nom complet" %>
+        <%= f.input :email, required: true, label: "Adresse email", placeholder: "Entrer votre adresse email", class: "contact-form-text-area" %>
+        <%= f.input :message, label: "Message", placeholder: "Entrer votre message", as: :text, :input_html => { class: 'test', :cols => 5, :rows => 4 } %>
+        <div class= "d-none">
+          <%= f.label :nickname %>
+          <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+        </div>
       </div>
-      <%= f.submit 'Envoyer', class: 'btn btn-primary mb-5' %>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Envoyer", class:"btn btn-primary btn-login" %>
+      </div>
     <% end %>
   </div>
 </div>

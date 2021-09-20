@@ -19,7 +19,7 @@
 
 // CONTACT FORM
 
-.contact-form {
+.contact-form-home {
   form {
     .contact_name,
     .contact_email {
@@ -48,9 +48,10 @@
   }
 }
 
-// LOGIN FORM
+// LOGIN and CONTACT FORMS
 
-.login-form {
+.login-form,
+.contact-form {
   background-color: white;
   border-radius: 20px;
   padding: 30px;
