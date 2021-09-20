@@ -66,6 +66,31 @@
   }
 }
 
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+
+  .collapsing {
+    transition: ease-in!important;
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-lewagon ul {
+    background-color: white;
+    position: absolute;
+    width: 100vw;
+    right: 0px;
+    // top: 70px;
+    height: 150px;
+    padding-bottom: 20px;
+
+    li {
+      margin-right: 0!important;
+    }
+  }
+}
+
 // VISITOR NAVBAR
 
 .navbar-lewagon .sign-up {
