@@ -230,6 +230,42 @@
 
     .btn-container {
       text-align: right;
+
+      .btn-margin {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+  #your-profile .profile-card {
+    flex-direction: column;
+
+    .profile-text {
+      margin: 20px;
+
+      h2 {
+        text-align: center;
+      }
+
+      p {
+        text-align: justify;
+        text-align-last: center;
+      }
+
+      .btn-container {
+        text-align: center;
+
+        .btn-margin {
+          margin: 0;
+          display: block;
+        }
+
+        .btn-know-more {
+          margin-bottom: 20px;
+        }
+      }
     }
   }
 }
