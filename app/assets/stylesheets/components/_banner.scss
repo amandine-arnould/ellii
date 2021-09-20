@@ -3,7 +3,10 @@
   .banner {
 
     h1 {
-      font-weight: 400;
+      font-size: 50px;
+      margin-bottom: 10px;
+      color: #1D4668;
+      font-weight: 600;
 
       strong {
         color: $purple;
@@ -19,6 +22,63 @@
       // text-align: justify;
       line-height: 30px;
       margin: 40px 0px;
+    }
+
+    img {
+      width: 550px;
+    }
+
+    .small-device {
+      display: none;
+    }
+
+    .btn-margin {
+      margin-right: 20px;
+    }
+  }
+}
+
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+  .visitor-homepage {
+    .banner {
+      flex-direction: column;
+
+      h1{
+        font-size: 33px;
+        text-align: center;
+        text-align-last: center;
+      }
+
+      p {
+        text-align: justify;
+        text-align-last: center;
+      }
+
+      a {
+        display: block;
+      }
+
+      .btn-know-more {
+        margin-bottom: 20px;
+      }
+
+      .btn-margin {
+        margin-right: 0px;
+      }
+
+      img {
+        width: 100%;
+        margin-top: 30px;
+      }
+
+      .large-device {
+        display: none;
+      }
+
+      .small-device {
+        display: block;
+      }
+
     }
   }
 }
