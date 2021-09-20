@@ -5,9 +5,9 @@
     <h2 class="mb-5">Contactez-nous !</h2>
     <%= simple_form_for @contact do |f| %>
       <div class="form-inputs">
-        <%= f.input :name, label: "Votre nom", placeholder: "Entrer votre nom complet" %>
-        <%= f.input :email, required: true, label: "Votre email", placeholder: "Entrer votre adresse email", class: "contact-form-text-area" %>
-        <%= f.input :message, label: "Votre message", placeholder: "Entrer votre message", as: :text, :input_html => { class: 'test', :cols => 5, :rows => 4 } %>
+        <%= f.input :name, label: "Nom", placeholder: "Entrer votre nom complet" %>
+        <%= f.input :email, required: true, label: "Adresse email", placeholder: "Entrer votre adresse email", class: "contact-form-text-area" %>
+        <%= f.input :message, label: "Message", placeholder: "Entrer votre message", as: :text, :input_html => { class: 'test', :cols => 5, :rows => 4 } %>
         <div class= "d-none">
           <%= f.label :nickname %>
           <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
