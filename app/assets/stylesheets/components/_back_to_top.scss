@@ -26,3 +26,10 @@
   opacity: 1;
   transform: translateY(0)
 }
+
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+  .scrollToTopBtn {
+    bottom: 12px;
+    left: 24px;
+  }
+}
