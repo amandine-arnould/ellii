@@ -12,8 +12,12 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 80px;
+.navbar-lewagon .navbar-brand {
+  padding: 0;
+
+  img {
+    width: 108px;
+  }
 }
 
 .navbar-lewagon .menu {
