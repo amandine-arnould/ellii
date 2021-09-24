@@ -65,12 +65,24 @@
 
 @media (min-device-width: 768px) and (max-device-width: 1024px) {
   .path {
+    h2 {
+      font-size: 20px;
+
+      strong {
+        padding: 5px 10px;
+      }
+
+      #step-1 {
+        padding: 5px 12px;;
+      }
+    }
+
     .illustration {
-      width: 30%;
+      width: 28%;
     }
 
     .dashed-path {
-      width: 50%;
+      width: 38%;
     }
   }
 }
