@@ -125,23 +125,3 @@
     }
   }
 }
-
-
-// PATH BANNER
-
-.banner-path {
-  img {
-    width: 550px;
-  }
-}
-
-@media (min-device-width: 250px) and (max-device-width: 767px) {
-  .banner-path {
-    h3 {
-      text-align: center;
-    }
-    img {
-      margin-top: 0!important;
-    }
-  }
-}
