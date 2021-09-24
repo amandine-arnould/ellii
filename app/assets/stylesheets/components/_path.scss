@@ -62,3 +62,15 @@
     }
   }
 }
+
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .path {
+    .illustration {
+      width: 30%;
+    }
+
+    .dashed-path {
+      width: 50%;
+    }
+  }
+}
