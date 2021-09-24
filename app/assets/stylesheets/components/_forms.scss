@@ -81,7 +81,8 @@
 // LOGIN and CONTACT FORMS
 
 .login-form,
-.contact-form {
+.contact-form,
+.password-form {
   background-color: white;
   border-radius: 20px;
   padding: 30px;
@@ -121,7 +122,8 @@
 
 @media (min-device-width: 250px) and (max-device-width: 992px) {
   .login-form,
-  .contact-form {
+  .contact-form,
+  .password-form {
     background-color: transparent;
 
     img {
