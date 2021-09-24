@@ -20,3 +20,26 @@
     width: 400px;
   }
 }
+
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+  .path {
+    .illustration {
+      // display: none;
+    }
+
+    .dashed-path {
+      display: none;
+    }
+
+    // .step-d {
+    //   background-color: white;
+    //   margin-bottom: 20px;
+    //   padding: 20px;
+    //   border-radius: 20px;
+    // }
+
+    // h2 strong {
+    //   margin-top: 20px;
+    // }
+  }
+}
