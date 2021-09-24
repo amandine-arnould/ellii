@@ -125,3 +125,40 @@
     }
   }
 }
+
+// PATH BANNER
+
+.banner-path {
+  h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    color: #1D4668;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  img {
+    width: 550px;
+  }
+}
+
+
+@media (min-device-width: 250px) and (max-device-width: 1024px) {
+  .banner-path {
+    h3 {
+      text-align: center;
+    }
+
+    img {
+      margin-top: 0!important;
+    }
+  }
+}

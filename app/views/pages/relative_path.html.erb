@@ -1,63 +1,63 @@
 <%# BANNER %>
 
 <div class="container mt-5 mb-5 visitor-homepage">
-  <div class="mt-5 d-flex justify-content-between align-items-center banner">
+  <div class="mt-5 d-flex justify-content-between align-items-center banner banner-path">
     <div>
-      <h3 style="font-size: 16px; letter-spacing: 2px;">COMMENT ÇA MARCHE</h3>
-      <h1 style="font-size: 50px; margin-bottom: 10px; color: #1D4668; font-weight: 600;">Je suis un proche</h1>
-      <p style="font-size: 18px;">On vous explique tout sur cette page ! Si vous avez d’autres questions n’hésitez pas à nous contacter, nous avons aussi un chat situé en bas à droite de votre écran
+      <h3>COMMENT ÇA MARCHE</h3>
+      <h1>Je suis un proche</h1>
+      <p>On vous explique tout sur cette page ! Si vous avez d’autres questions n’hésitez pas à nous contacter, nous avons aussi un chat situé en bas à droite de votre écran
         <i class="fas fa-comment-alt ml-1" style="color: white; background-color: #682ad5; padding: 7px; border-radius: 50%; font-size: 13px;"></i>
       </p>
     </div>
-    <%= image_tag "homepage/relative.png", style:"width: 550px;" %>
+    <%= image_tag "homepage/relative.png" %>
   </div>
 </div>
 
 <%# PROCESS %>
 <div class="container path">
-  <div class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between step-reverse">
     <%= image_tag "homepage/subscribe2.png", class:"illustration"  %>
     <div class= "d-flex">
-    <h2><strong class="mr-3">1</strong></h2>
+    <h2><strong  id="step-1" class="mr-3">1</strong></h2>
     <h2 class="flex-grow-1">Je me préinscris afin d'être recontacté.e le moment venu et pouvoir ouvrir un compte pour un proche</h2>
     </div>
     <%= image_tag "homepage/path.png", class:"dashed-path" %>
   </div>
 
-  <div class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between step">
     <%= image_tag "homepage/path2.png", class:"dashed-path"  %>
     <div class= "d-flex">
-      <h2><strong class="mr-3" style="padding: 5px 12px;">2</strong></h2>
+      <h2><strong class="mr-3">2</strong></h2>
       <h2 class="flex-grow-1">Les accès à son compte lui sont transmis, j'ai accès à ma propre interface</h2>
     </div>
     <%= image_tag "homepage/access.png", class:"illustration"  %>
   </div>
 
-  <div class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between step-reverse">
     <%= image_tag "homepage/calendar.png", class:"illustration" %>
     <div class= "d-flex">
-      <h2><strong class="mr-3" style="padding: 5px 12px;">3</strong></h2>
+      <h2><strong class="mr-3">3</strong></h2>
       <h2 class="flex-grow-1">Je peux suivre ainsi que remplir son agenda de nouvelles activités</h2>
     </div>
     <%= image_tag "homepage/path.png", class:"dashed-path"  %>
   </div>
 
-  <div class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between step">
     <%= image_tag "homepage/path2.png", class:"dashed-path"  %>
     <div class= "d-flex">
-      <h2><strong class="mr-3" style="padding: 5px 12px;">4</strong></h2>
+      <h2><strong class="mr-3">4</strong></h2>
       <h2 class="flex-grow-1">Je peux également suivre l'évolution de sa forme et son humeur dans le temps et être informé.e en cas de besoin</h2>
     </div>
     <%= image_tag "homepage/mood.png", class:"illustration"  %>
   </div>
 
-  <div class="container d-flex align-items-center justify-content-between">
-    <%= image_tag "homepage/path3.png", class:"dashed-path" %>
+  <div class="container d-flex align-items-center justify-content-between step-reverse">
+    <%= image_tag "homepage/together.png", class:"illustration" %>
     <div class="d-flex">
-      <h2><strong class="mr-3" style="padding: 5px 12px;">5</strong></h2>
+      <h2><strong class="mr-3">5</strong></h2>
       <h2 class="flex-grow-1">Je permets à un proche de travailler sa condition physique et cérébrale de manière adaptée et personnalisée tout en restant connecté !</h2>
     </div>
-    <%= image_tag "homepage/together.png", class:"illustration" %>
+    <%#= image_tag "homepage/path3.png", class:"dashed-path" %>
   </div>
 
   <div class="container d-flex align-items-center justify-content-between">

@@ -6,9 +6,13 @@
 
     strong {
       background-color: #EDE9FF;
-      padding: 5px 14px;
+      padding: 5px 12px;
       border-radius: 50%;
       color: #6447f9;
+    }
+
+    #step-1 {
+      padding: 5px 14px;;
     }
   }
 
@@ -18,5 +22,67 @@
 
   .dashed-path {
     width: 400px;
+  }
+}
+
+@media (min-device-width: 250px) and (max-device-width: 767px) {
+  .path {
+
+    .step {
+      flex-direction: column;
+    }
+
+    .step-reverse {
+      flex-direction: column-reverse;
+    }
+
+    .step,
+    .step-reverse {
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      font-size: 20px;
+
+      strong {
+        padding: 5px 10px;
+      }
+
+      #step-1 {
+        padding: 5px 12px;;
+      }
+    }
+
+    .illustration {
+      width: 55%;
+    }
+
+    .dashed-path {
+      display: none;
+    }
+  }
+}
+
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  .path {
+    h2 {
+      font-size: 20px;
+
+      strong {
+        padding: 5px 10px;
+      }
+
+      #step-1 {
+        padding: 5px 12px;;
+      }
+    }
+
+    .illustration {
+      width: 28%;
+    }
+
+    .dashed-path {
+      width: 38%;
+    }
   }
 }
